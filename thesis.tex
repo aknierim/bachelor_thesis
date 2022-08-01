@@ -1,0 +1,62 @@
+\input{header.tex}
+\input{custom_commands.tex}
+%------------------------------------------------------------------------------
+%-------------------------    Angaben zur Arbeit   ----------------------------
+%------------------------------------------------------------------------------
+
+\author{Anno Knierim}
+\title{Finding optimal hyperparameters for cleaning algorithms for the Cherenkov Telescope Array}
+\date{2022}
+\birthplace{Hagen}
+\chair{Chair of Experimental Physics V}
+\division{Department of Physics}
+\thesisclass{Bachelor of Science}
+\submissiondate{7 September 2022}
+\firstcorrector{Prof.~Dr.~Dr.~Wolfgang Rhode}
+\secondcorrector{Dr.~Dirk Wiedner}
+
+
+\begin{document}
+\frontmatter
+% \input{content/hints.tex}
+\AddToShipoutPictureBG*{%
+  \AtTextLowerLeft{%
+    \makebox[\textwidth]{%
+      \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[opacity=0.2,inner sep=15pt] at (current page.center){\includegraphics[width=0.94\paperwidth,height=0.94\paperheight]{graphics/contours_lst.pdf}};}%
+      \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[inner sep=15pt, anchor=north east] at (current page.north east){\hspace{-15em}\includegraphics[width=0.4\paperwidth]{logos/tu-logo.pdf}};}%
+    }%
+  }%
+}
+\maketitle
+
+% Gutachterseite
+\makecorrectorpage
+
+% hier beginnt der Vorspann, nummeriert in römischen Zahlen
+\input{content/00_abstract.tex}
+\tableofcontents
+
+\mainmatter
+% Hier beginnt der Inhalt mit Seite 1 in arabischen Ziffern
+\input{content/01_introduction.tex}
+\input{content/02_IACTs_and_CTA.tex}
+\input{content/03_data_preprocessing.tex}
+\input{content/04_finding_hyperparams.tex}
+\input{content/05_results.tex}
+\input{content/06_conclusion.tex}
+
+\backmatter
+\printbibliography
+
+\appendix
+% Hier beginnt der Anhang, nummeriert in lateinischen Buchstaben
+\input{content/a_appendix.tex}
+
+\newgeometry{margin=3cm, bottom=5cm}
+\input{content/acknowledgements.tex}
+\restoregeometry
+
+\cleardoublepage
+\includepdf{content/affidavit.pdf}
+
+\end{document}
