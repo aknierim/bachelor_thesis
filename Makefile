@@ -29,6 +29,11 @@ build/thesis.pdf: FORCE | build
 	@mv build/thesis.pdf thesis.pdf
 	@echo ${GREENB}${BACKGR}Success!${RESET}
 
+# currently not working
+lst: FORCE | build
+	@TEXINPUTS="$$(pwd):" latexmk $(TeXOptions) "\def\lsttitle{1} \input{thesis.tex}" 1> build/log || cat build/log
+	@echo ${GREENB}${BACKGR}Success!${RESET}
+
 tikz: FORCE tikz/ | build
 	@TEXINPUTS="$$(pwd):" latexmk $(TeXOptions) $(TIKZFILES) 1> build/tikz_log || cat build/tikz_log
 	@for name in $(TIKZ_PDFS) ; do \

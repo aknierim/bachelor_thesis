@@ -119,23 +119,37 @@
 \usepackage{enumitem}
 
 %------------------------------------------------------------------------------
-%------------------------------ Bibliographie ---------------------------------
+%------------------------------ bibliography ----------------------------------
 %------------------------------------------------------------------------------
 
 \usepackage[
-  backend=biber,   % use modern biber backend
-  autolang=hyphen, % load hyphenation rules for if language of bibentry is not
-                   % german, has to be loaded with \setotherlanguages
-                   % in the references.bib use langid={en} for english sources
+  backend=biber,
+  giveninits=true, % abbreviate all first names for consistency
+  urldate=iso,
+  seconds=true,    % needed for urldate=ISO, silences warning
 ]{biblatex}
 \addbibresource{references.bib}  % the bib file to use
-\DefineBibliographyStrings{german}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
+% \DefineBibliographyStrings{german}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
 
 
 \usepackage{pdfpages}
 \usepackage{geometry}
 
-% Last packages, do not change order or insert new packages after these ones
+%------------------------------------------------------------------------------
+%------------------------------ Glossaries ------------------------------------
+%------------------------------------------------------------------------------
+\usepackage[xindy, toc]{glossaries}
+\setacronymstyle{long-short}
+\makeglossaries
+
+
+
+%------------------------------------------------------------------------------
+
+\usepackage{todonotes}
+
+
+% Last packages: do not change order or insert new packages after these
 \usepackage[pdfusetitle, unicode, hidelinks]{hyperref}
 \usepackage{bookmark}
 \usepackage[shortcuts]{extdash}

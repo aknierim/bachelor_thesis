@@ -1,0 +1,36 @@
+\colorlet{darkRed}{red!80!black}
+\colorlet{darkBlue}{blue!70!black}
+
+
+\renewcommand*{\glstextformat}[1]{\textcolor{black!90}{#1}}
+
+
+% \renewcommand*{\chapterformat}{\fontsize{48}{48}\color{black}\selectfont\thechapter\autodot\enskip}
+% \renewcommand*{\sectionformat}{\makebox[0pt][r]{\thesection\autodot\enskip}}
+% \renewcommand*{\subsectionformat}{\makebox[0pt][r]{\thesubsection\autodot\enskip}}
+
+% https://tex.stackexchange.com/questions/330243/chapter-heading-formatting-with-scrreprt
+% and from Max Nöthes Ph.D. thesis
+\renewcommand\chapterlinesformat[3]{%
+  \Ifstr{#1}{chapter}
+  {%
+    \makebox[\textwidth][l]{%
+      \parbox[b]{\textwidth}{\raggedchapter #3}%
+      \hspace*{\marginparsep}#2%
+    }\\*[-.5\baselineskip]
+    \colorrule[tugreen]{\textwidth}{.4pt}%
+    \par%
+  }
+  {\@hangfrom{#2}{#3}}%
+}
+\interfootnotelinepenalty=10000
+
+\hypersetup{
+  pdfa,
+  unicode,
+  pdfencoding=unicode,
+  colorlinks=true,
+  linkcolor=tugreen!40!black,
+  urlcolor=darkBlue,
+  citecolor=black,
+}

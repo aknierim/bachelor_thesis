@@ -117,9 +117,9 @@
   \end{tabular}
   \vspace*{2cm}\\
   \small\noindent%
-  This thesis is set in Latin Modern (Serif, Sans and Math) and Fira Code,\\
+  This thesis is set in Latin Modern (Serif, Sans and Math) and Fira Code\\
   typeset using \LaTeX{} with Lua\TeX{} from \TeX-Live 2020.\\
-  Title graphic by \textcolor{red}{GRAPHIC AUTHOR}.
+  Title graphic by \wip{TITLE GRAPHIC AUTHOR}.
   \newpage
 }
 

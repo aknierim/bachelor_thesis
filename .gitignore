@@ -1,4 +1,9 @@
 build/
+.vscode
 *.swp
-*.pdf
+
+# allow graphics, plots and logo files to be included in the repository
+!graphics/*
+!plots/*
+!logos/*
 
