@@ -29,16 +29,20 @@
 % |(-1,-1)   (0,-1)  (1,-1)|
 % --------------------------
 
+% ------------------------------------------------------------------------------
 
-
+% some custom commands
 \newcommand{\colorrule}[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
-
-
-
 \newcommand{\wip}[2][red]{\textcolor{#1}{\textbf{#2}}}
 
+% renewed commands
+\renewcommand*{\glstextformat}[1]{\textcolor{black!70}{\lining #1}}
 
+\renewcommand*{\chapterformat}{\fontsize{48}{48}\color{tugreen}\selectfont\thechapter\autodot\enskip}
+\renewcommand*{\sectionformat}{\makebox[0pt][r]{\thesection\autodot\enskip}}
+\renewcommand*{\subsectionformat}{\makebox[0pt][r]{\thesubsection\autodot\enskip}}
 
+% metrics
 \DeclareMathOperator{\tp}{tp}
 \DeclareMathOperator{\fp}{fp}
 \DeclareMathOperator{\fn}{fn}
@@ -48,10 +52,35 @@
 \DeclareMathOperator{\tpr}{tpr}
 \DeclareMathOperator{\fpr}{fpr}
 
-
+% common abbreviations
 \NewDocumentCommand \eg {} {e.\,g.\ }
-
+\NewDocumentCommand \ie {} {i.\,e.\ }
 
 % custom units
 \DeclareSIUnit\sigma{σ}
 \DeclareSIUnit\pe{\symup{p}.\symup{e}.}
+
+% custom physical quantities
+\NewDocumentCommand \Eref {o} {\ensuremath{{E_\text{ref}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \Emax {o} {\ensuremath{{E_\text{max}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \Emin {o} {\ensuremath{{E_\text{min}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \Eest {o} {\ensuremath{{E_\text{est}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \Etrue {o} {\ensuremath{{E_\text{true}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \tobs {o} {\ensuremath{{t_\text{obs}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \Rmax {o} {\ensuremath{{R_\text{max}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \Aeff {o} {\ensuremath{{A_\text{eff}\IfValueT{#1}{^{#1}}}}}
+\NewDocumentCommand \pii {o} {\ensuremath{\symup{π}}}
+
+% software names
+\NewDocumentCommand \ctapipe {} {\texttt{ctapipe}}
+\NewDocumentCommand \numpy {} {\texttt{numpy}}
+\NewDocumentCommand \astropy {} {\texttt{astropy}}
+\NewDocumentCommand \scipy {} {\texttt{scipy}}
+\NewDocumentCommand \sklearn {} {\texttt{sklearn}}
+
+% maths operators
+\let\textd\d
+\RenewDocumentCommand \d {m} {\TextOrMath{\textd{#1}}{\mathinner{\symup{d}#1}}}
+
+% often named glossary terms
+\NewDocumentCommand \cta {} {\gls{cta}}

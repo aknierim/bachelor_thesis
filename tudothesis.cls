@@ -21,6 +21,7 @@
 % Define our beloved tu colour:
 \RequirePackage{xcolor}
 \xdefinecolor{tugreen}{RGB}{132, 184, 25}
+\xdefinecolor{darkgray}{HTML}{3a3d41}
 
 \RequirePackage{caption}
 \RequirePackage{subcaption}
@@ -32,9 +33,9 @@
 \KOMAoption{headsepline}{0.5pt}
 \if@tucolor%
   \addtokomafont{title}{\color{tugreen}}          % title on titlepage
-  \addtokomafont{chapter}{\color{tugreen}}     % headlines of the chapters, sections etc.
+  \addtokomafont{chapter}{\color{darkgray}}     % headlines of the chapters, sections etc.
   % \addtokomafont{pagenumber}{\color{tugreen}}     % page number in the footer
-  \addtokomafont{chapterentry}{\color{tugreen}}   % chapters in the table of contents
+  \addtokomafont{chapterentry}{\color{darkgray}}   % chapters in the table of contents
   \setkomafont{headsepline}{\color{tugreen}}        % line between header and text body
   \DeclareCaptionFont{tugreen}{\color{tugreen}}
   \captionsetup{%
@@ -43,6 +44,10 @@
               width=0.9\textwidth,        % slightly smaller width than text
               font=small,                 % font slightly smaller than text
             }
+  \setkomafont{disposition}{\normalfont}
+  \setkomafont{chapter}{\normalfont\Huge}
+  \addtokomafont{chapterentry}{\bfseries}
+  \addtokomafont{partentry}{\bfseries}
 \else
   \captionsetup{%
               labelfont=bf,               % bold label
@@ -117,8 +122,8 @@
   \end{tabular}
   \vspace*{2cm}\\
   \small\noindent%
-  This thesis is set in Latin Modern (Serif, Sans and Math) and Fira Code\\
-  typeset using \LaTeX{} with Lua\TeX{} from \TeX-Live 2020.\\
+  This thesis is set in Libertinus (Serif, Sans and Math) and Fira Code\\
+  typeset using \LaTeX{} with Lua\TeX{} from \TeX Live 2021.\\
   Title graphic by \wip{TITLE GRAPHIC AUTHOR}.
   \newpage
 }

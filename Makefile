@@ -15,7 +15,15 @@ TIKZFILES := $(wildcard tikz/*.tex) # list of all TikZ files
 TIKZ_PDFS := $(subst tikz/,,$(TIKZFILES:.tex=)) # get names from TikZ files for .pdf output files
 
 
-all: clean tikz build/thesis.pdf
+# plots
+cosmic_flux=build/cosmic_flux.pgf
+crab_ssc=build/crab_ssc.pdf
+
+
+PLOTS := $(cosmic_flux) $(crab_ssc)
+
+
+all: clean $(PLOTS) tikz build/thesis.pdf
 
 
 TeXOptions = -lualatex \
@@ -41,6 +49,11 @@ tikz: FORCE tikz/ | build
 		rm build/$$name.aux build/$$name.fdb_latexmk build/$$name.fls build/$$name.log; \
 	done
 
+$(cosmic_flux): plots/cosmic_flux.py matplotlibrc | build
+	python plots/cosmic_flux.py
+
+$(crab_ssc): plots/crab_ssc.py matplotlibrc | build
+	python plots/crab_ssc.py
 
 FORCE:
 

@@ -1,13 +1,24 @@
+% colors
 \colorlet{darkRed}{red!80!black}
 \colorlet{darkBlue}{blue!70!black}
 
+% font settings
+\setmainfont{Libertinus Serif}
 
-\renewcommand*{\glstextformat}[1]{\textcolor{black!90}{#1}}
+\defaultfontfeatures{Ligatures=TeX}  % -- becomes en-dash etc.
+\setromanfont{Libertinus Serif}[Numbers={OldStyle}]
+\setsansfont{Libertinus Sans}
+\setmonofont{Fira Mono}[Scale=MatchLowercase]
 
+\newfontfamily\lining{Libertinus Serif}
+\newfontfamily\tablefont{Libertinus Serif}[Numbers={Monospaced}]
 
-% \renewcommand*{\chapterformat}{\fontsize{48}{48}\color{black}\selectfont\thechapter\autodot\enskip}
-% \renewcommand*{\sectionformat}{\makebox[0pt][r]{\thesection\autodot\enskip}}
-% \renewcommand*{\subsectionformat}{\makebox[0pt][r]{\thesubsection\autodot\enskip}}
+\setmathfont{Libertinus Math}
+\setmathfont{XITS Math}[range={scr, bfscr}]
+\setmathfont{XITS Math}[range={cal, bfcal}, StylisticSet=1]
+
+\newfontfamily{\lstsansserif}[Scale=0.9,LetterSpace=0.0]{Fira Code}
+
 
 % https://tex.stackexchange.com/questions/330243/chapter-heading-formatting-with-scrreprt
 % and from Max Nöthes Ph.D. thesis
@@ -25,6 +36,7 @@
 }
 \interfootnotelinepenalty=10000
 
+% hyperref settings
 \hypersetup{
   pdfa,
   unicode,
@@ -33,4 +45,19 @@
   linkcolor=tugreen!40!black,
   urlcolor=darkBlue,
   citecolor=black,
+}
+
+
+% yaml listing settings
+\lstdefinelanguage{yaml}{
+  keywords={true,false,null,y,n},
+  keywordstyle=\color{darkgray}\bfseries,
+  ndkeywordstyle=\color{black}\bfseries,
+  literate={*}{{\lstsansserif*}}1,
+  % identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{gray}\ttfamily,
+  moredelim=[l][\color{orange}]{\&},
+  % stringstyle=\color{blue}\ttfamily,
 }

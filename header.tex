@@ -1,104 +1,56 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%   Vorlage für eine Abschlussarbeit   %%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[a-3u]{pdfx}
+% for pdf/a compliance, see https://tex.stackexchange.com/a/474336/59716
+\pdfvariable omitcidset=1
 
-% Erstellt von Maximilian Nöthe, <maximilian.noethe@tu-dortmund.de>
-% ausgelegt für lualatex und Biblatex mit biber
-
-% Kompilieren mit
-% latexmk --lualatex --output-directory=build thesis.tex
-% oder einfach mit:
-% make
-
-\documentclass[
-  tucolor,       % remove for less green,
-  BCOR=12mm,     % 12mm binding corrections, adjust to fit your binding
-  parskip=half,  % new paragraphs start with half line vertical space
-  open=any,      % chapters start on both odd and even pages
-  cleardoublepage=plain,  % no header/footer on blank pages
-]{tudothesis}
-
-
-% Warning, if another latex run is needed
-\usepackage[aux]{rerunfilecheck}
-
-% just list chapters and sections in the toc, not subsections or smaller
 \setcounter{tocdepth}{1}
 
-%------------------------------------------------------------------------------
-%------------------------------ Fonts, Unicode, Language ----------------------
-%------------------------------------------------------------------------------
+% fonts
 \usepackage{fontspec}
-\defaultfontfeatures{Ligatures=TeX}  % -- becomes en-dash etc.
-\setmonofont{Fira Mono}[Scale=MatchLowercase]
-
-% load all used languages
-% and set the main language of this thesis
-% use this if this thesis is written in German:
-% \usepackage[english, ngerman]{babel}
-% use this if this thesis is written in English:
 \usepackage[ngerman, american]{babel}
-
-% intelligent quotation marks, language and nesting sensitive
 \usepackage[autostyle]{csquotes}
-
-% microtypographical features, makes the text look nicer on the small scale
 \usepackage{microtype}
+\usepackage{fontawesome}
+\usepackage{hepnicenames}
 
-%------------------------------------------------------------------------------
-%------------------------ Math Packages and settings --------------------------
-%------------------------------------------------------------------------------
-
+% math
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{mathtools}
+\usepackage{xfrac}
 
-% Enable Unicode-Math and follow the ISO-Standards for typesetting math
+
 \usepackage[
+  mathrm=sym,        % use math font for mathrm, not text font
   math-style=ISO,
   bold-style=ISO,
   sans-style=italic,
   nabla=upright,
   partial=upright,
+  warnings-off={
+    mathtools-colon,
+    mathtools-overbracket,
+  },
 ]{unicode-math}
-\setmathfont{Latin Modern Math}
-\setmathfont{XITS Math}[range={scr, bfscr}]
-\setmathfont{XITS Math}[range={cal, bfcal}, StylisticSet=1]
-
-% nice, small fracs for the text with \sfrac{}{}
-\usepackage{xfrac}
-
-
-%------------------------------------------------------------------------------
-%---------------------------- Numbers and Units -------------------------------
-%------------------------------------------------------------------------------
 
 \usepackage[
   separate-uncertainty=true,
   per-mode=symbol-or-fraction,
 ]{siunitx}
 \sisetup{math-micro=\text{µ},text-micro=µ}
+
 % automatically choose the right locale
 \addto\extrasngerman{\sisetup{locale = DE}}
 \addto\extrasenglish{\sisetup{locale = UK}}
+\addto\extrasamerican{\sisetup{locale = US}}
 
-%------------------------------------------------------------------------------
-%-------------------------------- tables  -------------------------------------
-%------------------------------------------------------------------------------
 
-\usepackage{booktabs}       % \toprule, \midrule, \bottomrule, etc
-
-%------------------------------------------------------------------------------
-%-------------------------------- graphics -------------------------------------
-%------------------------------------------------------------------------------
-
+\usepackage{enumitem}
 \usepackage{graphicx, eso-pic}
-% currently broken
-% \usepackage{grffile}
-% \usepackage{titlepic}
-
-% allow figures to be placed in the running text by default:
+\usepackage{booktabs}
+\usepackage[super]{nth}
 \usepackage{scrhack}
+
+
 \usepackage{float}
 \floatplacement{figure}{htbp}
 \floatplacement{table}{htbp}
@@ -106,50 +58,42 @@
 % keep figures and tables in the section
 \usepackage[section, below]{placeins}
 
+% tikz
 \usepackage{tikz}
 \usetikzlibrary{overlay-beamer-styles,calc,tikzmark,decorations.pathreplacing}
 \tikzset{fontscale/.style = {font=\relsize{#1}}}
 \usepackage{feynman-tikz}
 
 
-%------------------------------------------------------------------------------
-%---------------------- customize list environments ---------------------------
-%------------------------------------------------------------------------------
-
-\usepackage{enumitem}
-
-%------------------------------------------------------------------------------
-%------------------------------ bibliography ----------------------------------
-%------------------------------------------------------------------------------
-
+% bibliography
 \usepackage[
   backend=biber,
   giveninits=true, % abbreviate all first names for consistency
   urldate=iso,
   seconds=true,    % needed for urldate=ISO, silences warning
 ]{biblatex}
-\addbibresource{references.bib}  % the bib file to use
-% \DefineBibliographyStrings{german}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
+\addbibresource{references.bib}
 
 
 \usepackage{pdfpages}
 \usepackage{geometry}
 
-%------------------------------------------------------------------------------
-%------------------------------ Glossaries ------------------------------------
-%------------------------------------------------------------------------------
+\usepackage{xcolor}
+
+\usepackage{todonotes}
+\usepackage{listings}
+
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{pythonhighlight}
+\usepackage{mdframed}
+
+
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage[shortcuts]{extdash}
+
+% glossaries
 \usepackage[xindy, toc]{glossaries}
 \setacronymstyle{long-short}
 \makeglossaries
-
-
-
-%------------------------------------------------------------------------------
-
-\usepackage{todonotes}
-
-
-% Last packages: do not change order or insert new packages after these
-\usepackage[pdfusetitle, unicode, hidelinks]{hyperref}
-\usepackage{bookmark}
-\usepackage[shortcuts]{extdash}
