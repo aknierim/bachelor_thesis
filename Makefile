@@ -20,7 +20,7 @@ cosmic_flux=build/cosmic_flux.pgf
 crab_ssc=build/crab_ssc.pdf
 
 
-PLOTS := $(cosmic_flux) $(crab_ssc)
+# PLOTS := $(cosmic_flux) $(crab_ssc)
 
 
 all: clean $(PLOTS) tikz build/thesis.pdf
