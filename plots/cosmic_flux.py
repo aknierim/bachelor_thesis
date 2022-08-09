@@ -21,7 +21,7 @@ data = {
 
 cols = ['E', 'Flux', 'UncertLow', 'UncertHigh']
 power = 2.7
-# plt.figure(figsize=(14, 9))
+plt.figure(figsize=(9, 14))
 for file, (name, reference, marker) in data.items():
     m = np.genfromtxt(f'./plots/data/{file}', skip_header=7, delimiter=';')
     df = pd.DataFrame(data=m, columns=cols)

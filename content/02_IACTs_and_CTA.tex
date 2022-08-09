@@ -1,11 +1,22 @@
 \chapter{IACTs and the Cherenkov Telescope Array}
+\glsreset{iact}
 
-Most modern gamma-ray observations are performed with \glspl{iact}, which are ground-based telescopes
-or arrays of telescopes that use the Cherenkov light emitted by \gls{eas} in the atmosphere.
-Since they are ground-based, \glspl{iact} are taking advantage of the Earth's atmosphere to get a larger
-effective area than space-based instruments. This is especially true for energies above \SI{100}{\giga\eV},
-\todo{confirm values} where the gamma-ray flux is low compared to lower energies. The cosmic ray flux
-is shown in \autoref{fig:flux}.
+Most modern gamma-ray observations are performed with either space-based experiments or with
+\glspl{iact}, which are ground-based telescopes or arrays of telescopes that use the Cherenkov light
+emitted by \glspl{eas} in the atmosphere. In the following sections I will introduce \glspl{iact} and
+the \gls{cta} and explain the mechanisms that make it possible to observe gamma rays with these types
+of experiments.
+
+
+\section{Imaging Air Cherenkov Telescopes}
+
+Because of their ground-based setup, \glspl{iact} are taking advantage of the Earth's atmosphere to get a
+larger effective area than any space-based instrument. This is especially helpful for energies above
+\todo{confirm values and add source}\SI{100}{\giga\eV}, where the gamma-ray flux is low compared to lower energies
+that have higher fluxes. This means, that space-based experiments with their small effective area
+will see fewer high-energy events compared to ground-based experiments. The cosmic ray flux in
+\todo{add figure}\autoref{fig:flux} shows this well: The flux decreases rapidly with higher energies, with only one
+high-energy photon per day and square meter reaching Earth from the Crab Nebula \cite{noethe_thesis}.
 
 % \begin{figure}
 %     \centering
@@ -13,16 +24,102 @@ is shown in \autoref{fig:flux}.
 %     \caption{The cosmic ray flux as a function of energy. The flux is given in \si{\per\second\per\square\meter\per\steradian}.}
 %     \label{fig:flux}
 % \end{figure}
-% \todo{PLACEHOLDER, MAYBE USE A DIFFERENT PLOT?}
+% \todo{placeholder, maybe use a different plot?}
+
+For high-energy gamma rays, Earth's atmosphere is opaque, so ground-based experiments rely on
+cascades of sub-particles in so-called \glspl{eas}. For gamma-ray astronomy, the electromagnetic
+component of these \glspl{eas}, shown in \autoref{fig:heitler_model}, is more \todo{wording}relevant
+than the hadronic component. When a gamma ray interacts with Earth's atmosphere, it decays into an
+electron and a positron via pair production. These charged particles then emit more photons via
+bremsstrahlung. These photons, again, produce more charged particles, which in turn emit more
+photons. This process continues until any of these processes reaches energies below a certain
+threshold, \ie \SI{1022}{\kilo\eV} for the pair production process. For these processes to happen,
+the particles have to be in the fields of the atoms of the Earth's atmosphere. As the particles
+travel at speeds faster than light in the medium of the atmosphere, they emit Cherenkov light at
+a fixed angle \(\theta\) with respect to the refraction index \(n\) of the atmosphere and the
+factor \(\beta = \sfrac{v}{\symup{c}}\). The angle can be determined trigonometrically as
+\begin{equation}
+    \cos\theta = \frac{1}{\beta n},
+\end{equation}
+as can be seen in \autoref{fig:cherenkov}.
+
+
+
+\begin{figure}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/heitler_model.pdf}
+        \caption{Simplified Heitler model of the electromagnetic component of an extensive air shower.
+        A gamma ray induces an electron and a positron via pair production that then emit more photons
+        via bremsstrahlung.}
+        \label{fig:heitler_model}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/cherenkov_radiation.pdf}
+        \caption{Cherenkov radiation (outward-pointing arrows) from a charged particle traveling at
+        uniform velocity, faster than the speed of light in the medium. The dashed line shows the
+        path of the particle over time.}
+        \label{fig:cherenkov}
+    \end{subfigure}
+    \caption{The electromagnetic component of an extensive air shower (see \autoref{fig:heitler_model})
+    is induced by gamma rays that then decay into electrons and positrons via pair production.
+    These charged particles will emit more gamma rays via bremsstrahlung, which again will produce
+    new electrons and positrons. This will continue until \eg the energy of the gamma rays is below
+    the threshold of \SI{1022}{\kilo\eV} for pair production. Another process is the production of
+    Cherenkov light from the electrons and positrons, which is shown in \autoref{fig:cherenkov}.
+    The Cherenkov light is the result of the charged particles traveling faster than the speed of light
+    in the atmosphere, thus emitting photons in a fixed angle \(\theta\) \wrt the refraction index
+    \(n\) of the medium and the factor \(\beta\).}
+    \label{fig:cherenkov_heitler}
+\end{figure}
+
+Cherenkov light emitted by \glspl{eas} can then be collected by an IACT's mirrors and detected by
+its camera within a timeframe of an order of nanoseconds. The resulting image will show the shape
+of the impact of the air shower and can be used to determine the shower's primary particles' properties,
+and the type and reconstruct its origin. As the hadronic component of \glspl{eas} produce
+electromagnetic subshowers, \glspl{iact} have a dominant hadronic background, which has to be
+\todo{maybe write something about ML}separated from the gamma ray-induced showers.
+
+
+\section{The Cherenkov Telescope Array}
 
 The \cta{} is a new generation of \glspl{iact} that will consist of two sites,
-one of which will be built at the \gls{orm} on the Canarian island of La Palma while the other site
+one of which will be built at the \gls{orm} on the Canarian island of La Palma while the other
 will be built in the southern hemisphere at the \glspl{eso} Paranal Observatory in the Atacama desert
-of northern Chile.
+of northern Chile. In this work, I will focus on the northern array, also called \cta{} north,
+on La Palma.
+
+The \cta{} consists of three types of telescopes, each being sensitive to a different energy range:
+\begin{description}
+    \item [] \textbf{\gls{lst}}: The largest telescopes in the \cta{} have primary deflector diameter
+    of \SI{23}{\meter} with a field of view of \SI{4.3}{\deg} and are sensitive to energy
+    ranges from \(\SI{20}{\giga\eV}\) to \(\SI{150}{\giga\eV}\) \todo{add source}\cite{cta_specs}.
+    \item [] \textbf{\gls{mst}}: The \glspl{mst} have a primary deflector diameter of \SI{11.5}{\meter}
+    with a field of view of \SI{7.7}{\deg} for their NectarCam and are sensitive to energy ranges
+    from \(\SI{150}{\giga\eV}\) to \(\SI{5}{\tera\eV}\).
+    \item [] \textbf{\gls{sst}}: Being the smallest telescope type in the \cta{}, the \glspl{sst}
+    have a primary deflector diameter of \SI{4.3}{\meter}, a secondary deflector diameter of
+    \SI{1.8}{\meter} with a field of view of \SI{10.5}{\deg} and are sensitive to energy ranges
+    from \(\SI{5}{\tera\eV}\) to \(\SI{300}{\tera\eV}\).
+\end{description}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{graphics/cherenkov_radiation.pdf}
-    \caption{}
-    \label{fig:cherenkov}
+    \includegraphics[width=\textwidth]{graphics/cta_layout.png}
+    \caption{Full layout of the \cta{} north and south sites. \cta{} south would feature
+    \(\num{70}\) \glspl{sst}, \(\num{25}\) \glspl{mst} and \(\num{4}\) \glspl{lst}, while
+    \cta{} north would feature \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst} in its
+    full configuration \cite{cta_layout}.}
+    \label{fig:cta_layout}
 \end{figure}
+
+Since the southern hemisphere has more galactic high-energy sources than the northern hemisphere,
+only \cta{} south will feature the \glspl{sst} along the other two telescope types. \cta{} north
+will feature the \glspl{mst} and \glspl{lst}. \todo{decide on final figure}\autoref{fig:cta_layout} shows the
+planned full layout of both sites of the \cta{} where \cta{} south is displayed with its \(\num{70}\)
+\glspl{sst}, \(\num{25}\) \glspl{mst} and the \(\num{4}\) \glspl{lst} in the center. \cta{} north
+will feature \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst}. Due to the simulation data used,
+this work will focus on the reduced layout, also called \todo{check correct name} Prod5b alpha
+configuration, for the northern site, consisting of \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst}.
