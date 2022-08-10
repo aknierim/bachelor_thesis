@@ -9,22 +9,29 @@ of experiments.
 
 
 \section{Imaging Air Cherenkov Telescopes}
+\label{sec:iact}
 
 Because of their ground-based setup, \glspl{iact} are taking advantage of the Earth's atmosphere to get a
 larger effective area than any space-based instrument. This is especially helpful for energies above
-\todo{confirm values and add source}\SI{100}{\giga\eV}, where the gamma-ray flux is low compared to lower energies
-that have higher fluxes. This means, that space-based experiments with their small effective area
+\todo{confirm values and add source}\SI{100}{\giga\eV},
+\begin{wrapfigure}[24]{r}{0.48\textwidth}
+    \centering
+    \vspace*{-0.3cm}
+    \includegraphics[width=0.46\textwidth]{graphics/cr_spectrum.pdf}
+    \caption{The cosmic ray flux as a function of energy. For very high energies the flux becomes very
+    small with only \(\num{1}\) particle per square meter per year reaching Earth. For even higher
+    energies in the domain of \si{\exa\eV} this flux becomes \(\num{1}\) particle per square
+    kilometer per year \cite{carmelo_2020}.}
+    \label{fig:flux}
+\end{wrapfigure}
+where the gamma-ray flux is low compared to lower energies that have higher fluxes.
+This means, that space-based experiments with their small effective area
 will see fewer high-energy events compared to ground-based experiments. The cosmic ray flux in
-\todo{add figure}\autoref{fig:flux} shows this well: The flux decreases rapidly with higher energies, with only one
-high-energy photon per day and square meter reaching Earth from the Crab Nebula \cite{noethe_thesis}.
+\autoref{fig:flux} shows this well: The flux decreases rapidly with higher energies, with only one
+high-energy photon per day and square meter reaching Earth from the Crab Nebula \cite{noethe_thesis}
+and even fewer photons for energies in the \si{\exa\eV} domain, where only \(\num{1}\) particle per
+square kilometer per year reaches Earth.
 
-% \begin{figure}
-%     \centering
-%     \input{build/cosmic_rays.pgf}
-%     \caption{The cosmic ray flux as a function of energy. The flux is given in \si{\per\second\per\square\meter\per\steradian}.}
-%     \label{fig:flux}
-% \end{figure}
-% \todo{placeholder, maybe use a different plot?}
 
 For high-energy gamma rays, Earth's atmosphere is opaque, so ground-based experiments rely on
 cascades of sub-particles in so-called \glspl{eas}. For gamma-ray astronomy, the electromagnetic
@@ -43,12 +50,10 @@ factor \(\beta = \sfrac{v}{\symup{c}}\). The angle can be determined trigonometr
 \end{equation}
 as can be seen in \autoref{fig:cherenkov}.
 
-
-
 \begin{figure}
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{graphics/heitler_model.pdf}
+        \includegraphics[width=0.90\textwidth]{graphics/heitler_model.pdf}
         \caption{Simplified Heitler model of the electromagnetic component of an extensive air shower.
         A gamma ray induces an electron and a positron via pair production that then emit more photons
         via bremsstrahlung.}
@@ -57,7 +62,7 @@ as can be seen in \autoref{fig:cherenkov}.
     \hfill
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{graphics/cherenkov_radiation.pdf}
+        \includegraphics[width=0.90\textwidth]{graphics/cherenkov_radiation.pdf}
         \caption{Cherenkov radiation (outward-pointing arrows) from a charged particle traveling at
         uniform velocity, faster than the speed of light in the medium. The dashed line shows the
         path of the particle over time.}
@@ -73,7 +78,7 @@ as can be seen in \autoref{fig:cherenkov}.
     in the atmosphere, thus emitting photons in a fixed angle \(\theta\) \wrt the refraction index
     \(n\) of the medium and the factor \(\beta\).}
     \label{fig:cherenkov_heitler}
-\end{figure}
+\end{figure}\todo{Adjust figure size of \autoref{fig:cherenkov_heitler}}
 
 Cherenkov light emitted by \glspl{eas} can then be collected by an IACT's mirrors and detected by
 its camera within a timeframe of an order of nanoseconds. The resulting image will show the shape
@@ -84,6 +89,7 @@ electromagnetic subshowers, \glspl{iact} have a dominant hadronic background, wh
 
 
 \section{The Cherenkov Telescope Array}
+\label{sec:cta}
 
 The \cta{} is a new generation of \glspl{iact} that will consist of two sites,
 one of which will be built at the \gls{orm} on the Canarian island of La Palma while the other
@@ -91,11 +97,12 @@ will be built in the southern hemisphere at the \glspl{eso} Paranal Observatory 
 of northern Chile. In this work, I will focus on the northern array, also called \cta{} north,
 on La Palma.
 
-The \cta{} consists of three types of telescopes, each being sensitive to a different energy range:
+The \cta{} consists of three types of telescopes, shown in \autoref{fig:cta_telescopes}, each being
+sensitive to a different energy range \cite{cta_specs}:
 \begin{description}
     \item [] \textbf{\gls{lst}}: The largest telescopes in the \cta{} have primary deflector diameter
     of \SI{23}{\meter} with a field of view of \SI{4.3}{\deg} and are sensitive to energy
-    ranges from \(\SI{20}{\giga\eV}\) to \(\SI{150}{\giga\eV}\) \todo{add source}\cite{cta_specs}.
+    ranges from \(\SI{20}{\giga\eV}\) to \(\SI{150}{\giga\eV}\).
     \item [] \textbf{\gls{mst}}: The \glspl{mst} have a primary deflector diameter of \SI{11.5}{\meter}
     with a field of view of \SI{7.7}{\deg} for their NectarCam and are sensitive to energy ranges
     from \(\SI{150}{\giga\eV}\) to \(\SI{5}{\tera\eV}\).
@@ -107,12 +114,11 @@ The \cta{} consists of three types of telescopes, each being sensitive to a diff
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{graphics/cta_layout.png}
-    \caption{Full layout of the \cta{} north and south sites. \cta{} south would feature
-    \(\num{70}\) \glspl{sst}, \(\num{25}\) \glspl{mst} and \(\num{4}\) \glspl{lst}, while
-    \cta{} north would feature \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst} in its
-    full configuration \cite{cta_layout}.}
-    \label{fig:cta_layout}
+    \includegraphics[width=0.75\textwidth]{graphics/telescopes_render.jpg}
+    \caption{A rendered image of the 3 telescope prototypes in \cta{}. From left: The \gls{sst},
+    two types of \gls{mst} (SCT and MST) and the \gls{lst}. This work will not feature the SCT, as
+    the used simulation data contains only \gls{mst} data.}
+    \label{fig:cta_telescopes}
 \end{figure}
 
 Since the southern hemisphere has more galactic high-energy sources than the northern hemisphere,
@@ -123,3 +129,15 @@ planned full layout of both sites of the \cta{} where \cta{} south is displayed 
 will feature \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst}. Due to the simulation data used,
 this work will focus on the reduced layout, also called \todo{check correct name} Prod5b alpha
 configuration, for the northern site, consisting of \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst}.
+\todo{decide on \autoref{fig:cta_layout}}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{graphics/cta_layout.png}
+    \caption{Alpha Configuration layout of the \cta{} north and south sites. \cta{} south would feature
+    \(\num{70}\) \glspl{sst}, \(\num{25}\) \glspl{mst} and \(\num{4}\) \glspl{lst} \cite{cta_south_layout}, while
+    \cta{} north would feature \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst} \cite{cta_north_layout}.}
+    \label{fig:cta_layout}
+\end{figure}
+
+The \gls{mst}'s and \gls{lst}'s cameras are based on \gls{pmt} photodectors, while the \gls{sst}'s
+camera is based on a \gls{sipm} photodetector.

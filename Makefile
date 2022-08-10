@@ -64,3 +64,6 @@ clean:
 	rm -rf build
 
 .PHONY: all clean
+
+layout:
+	python plots/array_layout.py
