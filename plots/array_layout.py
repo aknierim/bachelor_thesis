@@ -71,7 +71,7 @@ ax1.set_ylim([-1200, 1400])
 ax1.set_facecolor('white')
 plt.tight_layout(pad=0, rect=(-0.05, 0, 1.044, 1))
 
-plt.savefig('plots/array_layout.pdf')
+plt.savefig('build/array_layout.pdf')
 
 # with open('build/num_mst_north.txt','w') as f:
 #     f.write(f'{len(df_lapalma[df_lapalma.type == "MST"])}')
