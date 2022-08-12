@@ -41,6 +41,3 @@ epstopdf-pkg
 grfext
 hyphen-german
 translations
-luatex85
-pdfx
-
