@@ -1,6 +1,13 @@
 \chapter{Finding Optimal Hyperparameters for the Cleaning Algorithms}
 \label{ch:finding-hyperparams}
 
+The aim of this work is to find optimal hyperparameters for the cleaning algorithms used in \ctapipe{}.
+Optimizing the cleaning step (see \autoref{sec:data-levels}) can most certainly lead to a better
+reconstruction of the events in a dataset. Therefore a tweaking of the available parameters of each
+cleaner is necessary. In this chapter, I will first introduce the cleaning algorithms and their parameters
+in \autoref{sec:cleaning-algorithms} and then describe the procedure to find optimal hyperparameters
+in \autoref{sec:hyperparameters}.
+
 \section{Cleaning Algorithms}
 \label{sec:cleaning-algorithms}
 
@@ -163,7 +170,7 @@ well as a \texttt{time\_limit\_boundary} for \todo{watch out for text boundaries
 \end{table}
 
 To find the optimal hyperparameters I used the \texttt{ParameterGrid} class from the
-\todo{citation for sklearn?}\texttt{sklearn.model\_selection} module. The \texttt{ParameterGrid} class is useful to create a
+\texttt{sklearn.model\_selection} module \cite{scikit-learn}. The \texttt{ParameterGrid} class is useful to create a
 dictionary of all possible combinations of a list of given parameters. These combinations are then
 written to a config file and processed with \ctapipe{}. The output is hundreds of datasets equal to
 the number of combinations of the given parameters, each with a different setting for the cleaning
@@ -174,9 +181,12 @@ for the parameter combinations.
 In this work, I chose to first look at the efficiency \(n_{\mathrm{reco}} / n_{\mathrm{total}}\), where
 \(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
 the total number of events in the dataset. By taking the mean of the efficiency, one can sort the
-datasets by setting upper and lower bounds for the efficiency. For each interval, the mean angular
-resolution is calculated. The dataset with the lowest mean angular resolution is the best performing
-for each interval.
+datasets by setting upper and lower bounds for the efficiency. The intervals lengths were chosen as
+\(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total of \(\num{20}\) intervals.
 
-The intervals were chosen as \(\num{0.05}\), \ie \(\SI{5}{\percent}\), intervals, resulting in a total
-of \(\num{20}\) intervals.
+For each interval, the mean angular resolution is calculated. The dataset with the lowest mean angular
+resolution is the best performing for each interval. Not all events will ever be properly reconstructed
+for any parameter combination, so there won't be a mean angular resolution for all intervals, but only
+a subset. Also, the mean angular resolution may be higher when more events were reconstructed.
+As a result, a trade-off between efficiency and angular resolution is necessary.
+

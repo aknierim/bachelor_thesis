@@ -3,19 +3,21 @@
 
 \begin{document}
 \begin{tikzpicture}[scale=0.750, every node/.style={scale=0.6}]
-    \node [draw, circle, minimum size=1, align=left] (A) at (0,0) {Simulation Data};
+    \node [draw, circle, minimum size=1, align=center] (A) at (0,0) {Simulation\\Data};
+    \node [draw] (sim_data) at (0,-1.5) {DL0 or DL1};
+    \draw [to path={-- (\tikztotarget)}] (sim_data) edge (A);
 
     \fill [rounded corners, color=tulightgreen, fill opacity=0.7] (1.5,3) rectangle (7.5, -3);
-    \node at (4.5,2) [above] {\includegraphics[width=3cm]{logos/ctapipe_logo.png}};
-    \node at (4.5,2) {\texttt{v0.15.1}}; %v0.15.1.dev166+gf26107f
+    \node at (4.5,1.74) [above] {\includegraphics[width=3.5cm]{logos/ctapipe_logo.png}};
+    \node at (4.5,1.74) {\texttt{v0.15.1}}; %v0.15.1.dev166+gf26107f
 
-    \node [draw, circle, minimum size=1] (B) at (3,0) {\texttt{ctapipe-process}};
+    \node [draw, circle, minimum size=1, align=center] (B) at (3,0) {\texttt{ctapipe-process}\\\&\\\texttt{ctapipe-merge}};
     \draw [->, >=latex, to path={-- (\tikztotarget)}] (A) edge (B);
 
     \node [above] at (4.5,-2) {Run with python scripts and configs};
     \node [draw, align=left] (BC) at (4.5,-2.5) {\texttt{cleaner\_config.yml}\\\texttt{prod5b\_lapalma\_alpha.yml}};
 
-    \node [draw, circle, minimum size=1] (C) at (6,0) {\texttt{ctapipe-merge}};
+    \node [draw, circle, minimum size=1, align=center] (C) at (6,0) {Re-Run for\\parameter\\combinations};
     \draw [->, >=latex, to path={-- (\tikztotarget)}] (B) edge (C);
 
     \fill [rounded corners, color=tublue, fill opacity=0.3] (7.7,3) rectangle (19, -3);
