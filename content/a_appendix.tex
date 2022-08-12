@@ -1,4 +1,45 @@
 \chapter{Appendix}
 
-Hier könnte ein Anhang stehen, falls Sie z.\,B.\ Code, Konstruktionszeichnungen oder Ähnliches mit in die Arbeit bringen wollen.
-Im Normalfall stehen jedoch alle Ihre Resultate im Hauptteil der Bachelorarbeit und ein Anhang ist überflüssig.
+\section{Configurations for \ctapipe{}}
+\label{ap:aict_config}
+
+The listings below show the contents of the default configuration files used for \ctapipe{}
+with for each cleaning algorithm respectively.
+
+\begin{description}
+    \item \textbf{\tailcuts{}}:\medskip
+    \begin{spacing}{0.5}
+        \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+        \lstinputlisting[basicstyle=\lstsansserif, language=yaml]{./configs/tailcuts_clean_config.yml}
+        \end{mdframed}
+    \end{spacing}
+
+    \item \textbf{\mars{}}:\medskip
+    \begin{spacing}{0.5}
+        \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+        \lstinputlisting[basicstyle=\lstsansserif, language=yaml]{./configs/mars_cleaning_1st_pass_config.yml}
+        \end{mdframed}
+    \end{spacing}
+
+    \item \textbf{\fact{}}:\medskip
+    \begin{spacing}{0.5}
+        \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+        \lstinputlisting[basicstyle=\lstsansserif, language=yaml]{./configs/fact_image_cleaning_config.yml}
+        \end{mdframed}
+    \end{spacing}
+
+    \item \textbf{\tcc{}}:\medskip
+    \begin{spacing}{0.5}
+        \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+        \lstinputlisting[basicstyle=\lstsansserif, language=yaml]{./configs/time_constrained_cleaning_config.yml}
+        \end{mdframed}
+    \end{spacing}
+\end{description}
+
+The following listing shows the contents of the \texttt{prod5b\_lapalma\_alpha.yml} configuration file,
+which is used to set the allowed telescope IDs for \ctapipe{}\texttt{-process}.
+\begin{spacing}{0.5}
+    \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+    \lstinputlisting[basicstyle=\lstsansserif, language=yaml]{./configs/prod5b_lapalma_alpha.yml}
+    \end{mdframed}
+\end{spacing}

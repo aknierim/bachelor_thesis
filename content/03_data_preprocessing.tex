@@ -5,7 +5,9 @@ The analysis in this work was done with the open-access low-level data processin
 \ctapipe{} \cite{ctapipe}. The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 henceforth shortened to version \texttt{0.15.1}. The goal of \ctapipe{} is to provide a complete analysis
 framework ranging from data calibration and image extraction to the reconstruction of events and the
-analysis of their properties.
+analysis of their properties. In this chapter, I will describe \ctapipe{} with its different data
+levels and the different analysis steps (\autoref{sec:data-levels}). In \autoref{sec:pipeline} I will
+explain the full pipeline created for this work.
 
 \section{Data Levels in \ctapipe{}}
 \label{sec:data-levels}
@@ -40,7 +42,7 @@ In this work, the data processing pipeline is as follows: First, several simulat
 selected and processed with \ctapipe{}. Then, the datasets are merged and serve as a basis for a re-run
 of the combined dataset with various parameter combinations described in \autoref{ch:finding-hyperparams}.
 Each resulting dataset can then be processed on an array- or telescope data level, resulting in
-\dloa{} image plots, angular resolution and effective area or efficiency as well as metrics for the
+\dloa{} image plots, angular resolution and effective area or \todo[color=blue!40]{find alternative wording}efficiency as well as metrics for the
 performance. An \todo{wording}in-detail description of how this helps to compare the performance of the different
 cleaning algorithms can be found in \autoref{sec:hyperparameters}. \autoref{fig:data-processing} shows
 a schematic overview of the data processing pipeline of this work.
@@ -55,44 +57,4 @@ a schematic overview of the data processing pipeline of this work.
     \label{fig:data-processing}
 \end{figure}
 
-\begin{minipage}{\textwidth}
-  \begin{mdframed}[backgroundcolor=white!20!black,leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
-  \begin{pythonlst}
-    def metrics(events, output_file_metrics, unique_file_id):
-        """Calculates the metrics for the given telescope type.
-
-        Parameters:
-        -----------
-        events: astropy.table.Table
-            The events table. Must contain the following columns:
-            - true_image: The true image of the event.
-            - image: The event image containing background noise.
-        output_file_metrics: pathlib.Path
-            The path to the output file for the metrics.
-        unique_file_id: int
-            The unique file id for the input file.
-        """
-
-        # initialize the metrics calculator
-        metrics_calc = TprFprCalculator(
-            true_image=events["true_image"],
-            image=events["image"],
-            clean_mask=events["image_mask"]
-        )
-
-        # calculate the metrics
-        metrics_data = metrics_calc.tpr_fpr()
-
-        # write metrics data to DataFrame and then to a file
-        metrics = pd.DataFrame(data=metrics_data)
-        metrics.insert(loc=0, column='unique_file_id', value=unique_file_id)
-        metrics.to_csv(
-            output_file_metrics,
-            index=False,
-            mode='a',
-            header=not output_file_metrics.exists()
-        )
-  \end{pythonlst}
-  \end{mdframed}
-\end{minipage}
-
+\todo{think about connections between \autoref{ch:finding-hyperparams} and \autoref{data-processing}}
