@@ -29,7 +29,7 @@ jobs:
         echo "$HOME/texlive/2021/bin/x86_64-linux" >> $GITHUB_PATH
     
     - name: Download the fonts
-      run: for i in LibertinusMono-Regular.otf, LibertinusSerifInitials-Regular.otf, LibertinusSerifDisplay-Regular.otf, LibertinusSerif-SemiboldItalic.otf, LibertinusSerif-Semibold.otf, LibertinusMath-Regular.otf, LibertinusSerif-Regular.otf, LibertinusSans-Bold.otf, LibertinusSans-Italic.otf, LibertinusSans-Regular.otf, LibertinusSerif-Bold.otf, LibertinusSerif-BoldItalic.otf, LibertinusSerif-Italic.otf; do curl -OL mirrors.ctan.org/fonts/libertinus-fonts/otf/$i; done
+      run: for i in LibertinusMono-Regular.otf, LibertinusSerifInitials-Regular.otf, LibertinusSerifDisplay-Regular.otf, LibertinusSerif-SemiboldItalic.otf, LibertinusSerif-Semibold.otf, LibertinusMath-Regular.otf, LibertinusSerif-Regular.otf, LibertinusSans-Bold.otf, LibertinusSans-Italic.otf, LibertinusSans-Regular.otf, LibertinusSerif-Bold.otf, LibertinusSerif-BoldItalic.otf, LibertinusSerif-Italic.otf; do curl -OL mirrors.ctan.org/fonts/libertinus-fonts/otf/$i > fonts/; done
     
     - name: Copy the fonts # In newer version of fontconfig, it reads $HOME/.local/share/fonts/ but not $HOME/.fonts
       run: mkdir -p ~/.local/share/fonts && cp -r fonts/* ~/.local/share/fonts/
