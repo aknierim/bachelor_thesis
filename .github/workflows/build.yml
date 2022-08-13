@@ -23,10 +23,7 @@ jobs:
         echo $CONDA/bin >> $GITHUB_PATH
 
     - name: Install texlive
-      run: |
-        pip install https://github.com/maxnoe/texlive-batch-installation/archive/refs/tags/v0.3.0.tar.gz
-        install_texlive -p $HOME/texlive -t 2021 --collections="-a" --package-file tex-packages.txt --update
-        echo "$HOME/texlive/2021/bin/x86_64-linux" >> $GITHUB_PATH
+      run: sudo apt install -y texlive-base texlive-luatex latexmk
     
     - name: Download the fonts
       run: for i in LibertinusMono-Regular.otf, LibertinusSerifInitials-Regular.otf, LibertinusSerifDisplay-Regular.otf, LibertinusSerif-SemiboldItalic.otf, LibertinusSerif-Semibold.otf, LibertinusMath-Regular.otf, LibertinusSerif-Regular.otf, LibertinusSans-Bold.otf, LibertinusSans-Italic.otf, LibertinusSans-Regular.otf, LibertinusSerif-Bold.otf, LibertinusSerif-BoldItalic.otf, LibertinusSerif-Italic.otf; do curl -OL mirrors.ctan.org/fonts/libertinus-fonts/otf/$i; done
