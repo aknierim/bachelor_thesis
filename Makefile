@@ -19,9 +19,10 @@ TIKZ_PDFS := $(subst tikz/,,$(TIKZFILES:.tex=)) # get names from TikZ files for 
 cosmic_flux=build/cosmic_flux.pgf
 crab_ssc=build/crab_ssc.pdf
 array_layout=build/array_layout.pgf
+fermi4fgl=build/fermi_catalog.pdf
 
 
-PLOTS := $(array_layout) #$(cosmic_flux) $(crab_ssc)
+PLOTS := $(array_layout) $(fermi4fgl) #$(cosmic_flux) $(crab_ssc)
 
 
 all: clean $(PLOTS) tikz build/thesis.pdf
@@ -58,6 +59,9 @@ $(crab_ssc): plots/crab_ssc.py matplotlibrc | build
 
 $(array_layout): plots/array_layout.py matplotlibrc | build
 	python plots/array_layout.py
+
+$(fermi4fgl): plots/fermi_catalog.py matplotlibrc | build
+	python plots/fermi_catalog.py
 
 FORCE:
 
