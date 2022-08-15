@@ -25,7 +25,7 @@ The parametrized events can then be reconstructed (\dlob{} \rightarrow \dlt{}) a
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{graphics/ctapipe.png}
+    \includegraphics[width=0.9\textwidth]{graphics/ctapipe.png}
     \caption{Data levels in \ctapipe{}. Raw data levels are denoted by a \textbf{R} and calibrated
     data levels by a \textbf{D}. The raw data first gets calibrated (\rzero{} \rightarrow \rone{})
     and then reduced in volume by selecting waveforms (\rone{} \rightarrow \dlz{}). From there the
@@ -44,8 +44,8 @@ of the combined dataset with various parameter combinations described in \autore
 Each resulting dataset can then be processed on an array- or telescope data level, resulting in
 \dloa{} image plots, angular resolution and effective area or \todo[color=blue!40]{find alternative wording}efficiency as well as metrics for the
 performance. An \todo{wording}in-detail description of how this helps to compare the performance of the different
-cleaning algorithms can be found in \autoref{sec:hyperparameters}. \autoref{fig:data-processing} shows
-a schematic overview of the data processing pipeline of this work.
+cleaning algorithms can be found in \autoref{sec:hyperparameters}. A schematic overview of the data
+processing pipeline of this work is shown in \autoref{fig:data-processing}.
 
 \begin{figure}
     \centering
@@ -53,8 +53,24 @@ a schematic overview of the data processing pipeline of this work.
     \caption{Schematic overview of the data pipeline used for this work. Single runs of the simulation
     data are processed with \ctapipe\texttt{-process} and then merged via \ctapipe\texttt{-merge}.
     The merged data is then processed on the array- or telescope data level resulting in scores for metrics
-    as well as \texttt{dl1 images} and plots for the angular resolution and the effective area.}
+    as well as \dlo{} \texttt{images} and plots for the angular resolution and the effective area.}
     \label{fig:data-processing}
 \end{figure}
 
-\todo{think about connections between \autoref{ch:finding-hyperparams} and \autoref{data-processing}}
+\todo{think about how to better connect \autoref{ch:finding-hyperparams} and \autoref{ch:data-processing}}
+
+\section{Data simulation}
+\label{sec:data-simulation}
+
+In its current under-development state, \ctapipe{} is used and tested with simulated data, as the software
+can only be sufficiently tested when the output is compared to truth data. This data is created with the help of
+\gls{mc} simulations. The software used for these simulations is called \gls{corsika} \cite{corsika} and
+allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
+a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}. The resulting so-called
+\texttt{simtel} data is used in \ctapipe{} and can be processed as described in \autoref{sec:data-levels}
+and \autoref{fig:ctapipe}.
+
+This data is the basis for the analysis in this work. A total of \todo{add the final number of runs}
+\(\num{20}\) \texttt{simtel} runs were used for the analysis. The individual runs were processed into \dlo{} files
+and merged before being processed for each cleaning setting.
+

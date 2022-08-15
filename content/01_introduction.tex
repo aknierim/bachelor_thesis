@@ -36,31 +36,43 @@ Therefore, in recent years, gamma-ray astronomy has become an important research
 The term gamma-rays is generally denoted as photons with energies above \SI{100}{\kilo\eV}
 \cite{funk}. Due to this high-energy nature, gamma rays pose some of the most powerful \gls{cr} in
 the universe and since photons at such energies cannot be produced by thermal processes, their origin
-can be described by higher order processes involving charged particles. Sources for gamma rays include
-\glspl{snr}, Pulsars, Blazars, \glspl{agn} or \glspl{grb}.
+can be described by higher order processes involving charged particles.
 
-\begin{description}
-    \item [\glspl{snr}] are the remnants of a supernova explosion.
-    \item [Pulsars] are rotating neutron stars that emit gamma rays in the form of pulsations.
-    \item [Blazars] are \glspl{agn} that are highly variable and emit gamma rays in the form of
-    flares.
-    \item [\glspl{agn}] are active galactic nuclei that emit gamma rays in the form of flares.
-    \item [\glspl{grb}] are gamma-ray bursts that are the most energetic explosions in the universe.
-\end{description}
+Some of the brightest sources of gamma rays in our galaxy are \glspl{snr} such as the Crab Nebular.
+The Crab Nebula, in particular, poses as a so-called standard candle with its constant flux of
+\gls{hegr}, allowing to test the performance of new experiments and telescopes. Other sources for
+gamma rays include \glspl{grb}, Pulsars and \glspl{agn}, the latter being one of the most common types
+of extragalactic gamma ray sources. \glspl{agn} accrete dust and matter in an accretion disk around the
+central black hole. The matter gets accelerated by the gravitational force of the black hole and heats
+up. While the exact process is not yet fully understood, some accretion disks form a relativistic jet
+which, aside from its maximum in the \todo{source}radio waveband, also emits gamma rays via synchrotron
+and inverse-Compton scattering processes. \glspl{agn} themselves can be classified depending on the existence
+of a relativistic jet, the viewing angle of the observer or how bright they are. \autoref{fig:agn}
+shows the different classifications of \glspl{agn}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{build/fermi_catalog.pdf}
-    \caption{Hammer projection of the Fermi-LAT 4FGL catalog data of gamma-ray sources. The skymap
-    shows the flux of gamma-ray sources in \(\si{\tera\eV\per\centi\meter\squared\per\second}\)
-    over a span of \(\num{10}\) years \cite{fermi4fgl}.}
-    \label{fig:fermilat}
+    \includegraphics[width=\textwidth]{graphics/agn.pdf}
+    \caption{Unified \gls{agn} model showing the different classifications for \glspl{agn}.
+    An \gls{agn} is classified by the existence of a relativistic jet, the viewing angle of the observer
+    or how bright it is \cite{agn_diagram}.}
+    \label{fig:agn}
 \end{figure}
+
 Gamma rays can be detected by a variety of experiments, either ground- or space-based. Space-based
 experiments like the \gls{fermilat} are usually more sensitive to lower energies, whereas ground-based experiments are more
 sensitive to higher energies. The \gls{fermilat} is a space-based gamma-ray observatory that was launched
 in 2008 and is still in operation today. \autoref{fig:fermilat} shows the gamma-ray sky as observed by the
 \gls{fermilat} over a span of \(\num{10}\) years.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{build/fermi_catalog.pdf}
+    \caption{Mollweide projection of the Fermi-LAT 4FGL catalog data of gamma-ray sources. The sky map
+    shows the flux of gamma-ray sources in \(\si{\tera\eV\per\centi\meter\squared\per\second}\)
+    observed over a span of \(\num{10}\) years \cite{fermi4fgl}.}
+    \label{fig:fermilat}
+\end{figure}
 
 For the past two decades, ground-based \gls{iact} experiments like the \gls{magic} telescopes, the
 \gls{veritas} and the \gls{hess} have been monitoring these \gls{vhegr} to gain an understanding of

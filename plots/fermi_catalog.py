@@ -21,7 +21,7 @@ y_coord = coords.galactic.b.rad
 
 colors = table['Energy_Flux100'].to('TeV/(cm2 s)')
 
-fig, ax = plt.subplots(1, 1, figsize=(8,4.5), subplot_kw=dict(projection='hammer'), constrained_layout=True)
+fig, ax = plt.subplots(1, 1, figsize=(8,4.5), subplot_kw=dict(projection='mollweide'), constrained_layout=True)
 sc = ax.scatter(x_coord, y_coord, c=colors, cmap='inferno', norm=LogNorm(), alpha=0.9, s=12, edgecolors='none')
 
 ax.set_facecolor('black')
