@@ -25,7 +25,7 @@ fermi4fgl=build/fermi_catalog.pdf
 PLOTS := $(array_layout) $(fermi4fgl) #$(cosmic_flux) $(crab_ssc)
 
 
-all: $(PLOTS) tikz build/thesis.pdf clean
+all: $(PLOTS) tikz build/thesis.pdf
 
 
 TeXOptions = -lualatex \
