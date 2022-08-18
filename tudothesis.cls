@@ -19,7 +19,7 @@
 
 
 % Define our beloved tu colour:
-\RequirePackage{xcolor}
+\RequirePackage[table, usenames,dvipsnames]{xcolor}
 \xdefinecolor{tugreen}{RGB}{132, 184, 25}
 \xdefinecolor{darkgray}{HTML}{3a3d41}
 

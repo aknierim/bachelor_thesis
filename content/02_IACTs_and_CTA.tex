@@ -78,7 +78,7 @@ as can be seen in \autoref{fig:cherenkov}.
     in the atmosphere, thus emitting photons in a fixed angle \(\theta\) \wrt the refraction index
     \(n\) of the medium and the factor \(\beta\).}
     \label{fig:cherenkov_heitler}
-\end{figure}\todo{Adjust figure size of \autoref{fig:cherenkov_heitler}}
+\end{figure}
 
 Cherenkov light emitted by \glspl{eas} can then be collected by an IACT's mirrors and detected by
 its camera within a timeframe of an order of nanoseconds. The resulting image will show the shape
@@ -114,7 +114,7 @@ sensitive to a different energy range \cite{cta_specs}:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{graphics/telescopes_render.jpg}
+    \includegraphics[width=0.7\textwidth]{graphics/telescopes_render.jpg}
     \caption{A rendered image of the 3 telescope prototypes in \cta{}. From left: The \gls{sst},
     two types of \gls{mst} (SCT and MST) and the \gls{lst}. This work will not feature the SCT, as
     the used simulation data contains only \gls{mst} and \gls{mst} data for the northern array.
@@ -124,25 +124,48 @@ sensitive to a different energy range \cite{cta_specs}:
 
 Since the southern hemisphere has more galactic high-energy sources than the northern hemisphere,
 only \cta{} south will feature the \glspl{sst} along the other two telescope types. \cta{} north
-will feature the \glspl{mst} and \glspl{lst}. \todo{decide on final figure, check source for south}\autoref{fig:cta_layout} shows the
-planned \todo[color=blue!40]{full or alpha}full layout of both sites of the \cta{} where \cta{} south is displayed with its \(\num{70}\)
+will feature the \glspl{mst} and \glspl{lst}. \autoref{fig:cta_layout} shows the planned Alpha
+Configuration layout of both sites of the \cta{} where \cta{} south is displayed with its \(\num{70}\)
 \glspl{sst}, \(\num{25}\) \glspl{mst} and the \(\num{4}\) \glspl{lst} in the center. \cta{} north
 will feature \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst}. Due to the simulation data used,
 this work will focus on the reduced layout, also called Alpha Configuration, for the northern site,
 consisting of \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst}.
-\todo[color=yellow]{decide on \autoref{fig:cta_layout}}
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{build/array_layout.pdf}
-    \caption{Alpha Configuration layout of the \cta{} north and full configuration of the \cta{}
-    south site. \cta{} south would feature \(\num{70}\) \glspl{sst}, \(\num{25}\) \glspl{mst} and
-    \(\num{4}\) \glspl{lst} \cite{cta_south_layout} its full configuration, while \cta{} north would
-    feature \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst} in it's Alpha Configuration \cite{cta_north_layout}.
-    This figure was adapted from a figure by Kai Br\"ugge in his Ph.D. thesis \cite{bruegge_thesis}.}
+    \includegraphics[width=0.75\textwidth]{graphics/cta_alpha_layout.pdf}
+    \caption{Alpha Configuration layout of the \cta{} north and \cta{}
+    south site. \cta{} south would feature \(\num{37}\) \glspl{sst}, \(\num{14}\) \glspl{mst} and
+    \(\num{4}\) \glspl{lst} \cite{cta_south_layout} in it's Alpha Configuration, while \cta{} north would
+    feature \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst} \cite{cta_north_layout}.
+    This figure was adapted from Kai Br\"ugge in his Ph.D. thesis \cite{bruegge_thesis}.}
     \label{fig:cta_layout}
 \end{figure}
 
-The \gls{mst}'s and \gls{lst}'s cameras are based on \todo[color=green]{write about camera tech}\gls{pmt} photodectors, while the \gls{sst}'s
-camera is based on a \gls{sipm} photodetector.
+The \gls{mst}'s and \gls{lst}'s cameras are based on \gls{pmt} photodetectors, while the \gls{sst}'s
+camera is based on a \gls{sipm} photodetector. Both detector types provide fast response times in the
+order of nanoseconds. \glspl{pmt} can detect small amounts of electromagnetic radiation due to their
+amplification process. However, this amplification process also amplifies the noise of the detector
+and also needs higher voltages than \glspl{sipm}. The latter, on the other hand, needs to be cooled,
+as \glspl{sipm} are prone to have a higher dark current at higher temperatures. The \gls{mst} and
+\gls{lst} will feature a camera with \(\num{1855}\) pixels.
 
-\todo[color=purple!40]{write about scientific goals for the cta}
+Together with gravitational wave and neutrino observatories as well as with other photon observatories,
+\cta{} will probe the universe in its \gls{he} domain, allowing to study a broad field of key questions
+in astrophysics. As such, \cta's scientific goals can be divided into three categories \cite{cta_scientific_goals}:
+\begin{description}
+    \item [Origin and Role of relativistic Cosmic Particles:] \cta{} will try to find the sources of
+    \gls{he} cosmic particle acceleration in the universe. This includes the search for the mechanisms
+    that accelerate cosmic particles. Also, \cta{} will try to answer what role these particles play
+    in feedback on star formation and galaxy evolution.
+    \item [Extreme Environments:] \cta{} aims to deepen our understanding of the processes that
+    are at work close to neutron stars and black holes, the characteristics of relativistic jets and
+    \gls{pwn}. Also, it will probe how intense radiation fields and magnetic fields are and how these
+    would evolve over cosmic time scales.
+    \item [Frontiers in Physics:] \cta{} will try to answer questions about the nature of dark matter
+    and its distribution in the universe. As such, the existence of axion-like particles will be
+    probed. Furthermore, \cta{} will search for quantum gravitational effects on photon propagation.
+\end{description}
+
+With \cta{} probing the \gls{vhe} gamma-ray sky and a resolution outperforming predecessors, like
+\gls{hess} or \gls{magic}, it will be able to observe a broad variety of sources, allowing insights
+into interaction processes of \gls{vhegr} as well as their origin.
