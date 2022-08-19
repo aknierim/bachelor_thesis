@@ -6,6 +6,11 @@ from astropy.coordinates import SkyCoord
 
 from collections import Counter
 
+from thesis_scripts.custom_cmap import custom_cmap
+
+
+cmap = custom_cmap(['#1a2bad', "#32a852", "#fffc5e", "#f7d200"])
+
 # not used, but nice to have for lookups etc
 """
 source_classes = {
@@ -50,15 +55,16 @@ agn = []
 snr = []
 pwn = []
 psr = []
+grb = []
 
-classes = []
+# classes = []
 
-for item in table["CLASS1"]:
-    if item != 5*" ":
-        classes.append(item)
+# for item in table["CLASS1"]:
+#     if item != 5*" ":
+#         classes.append(item)
 
-print(Counter(classes).keys()) # equals to list(set(words))
-print(Counter(classes).values())
+# print(Counter(classes).keys())
+# print(Counter(classes).values())
 
 # agn_classes = ["agn", "bcu", "bll", "css", "fsrq", "nlsy1", "sey", "ssrq"
 #                "AGN", "BCU", "BLL", "CSS", "FSRQ", "NLSY1", "SEY", "SSRQ"]
@@ -87,6 +93,13 @@ for idx, item in enumerate(table["CLASS1"]):
     if "PSR" in item:
         psr.append(idx)
 
+for idx, item in enumerate(table["CLASS1"]):
+    if "grb" in item:
+        grb.append(idx)
+    if "GRB" in item:
+        grb.append(idx)
+
+
 
 
 x_coord = -coords.galactic.l.wrap_at('180 deg').rad
@@ -97,10 +110,11 @@ colors = table['Energy_Flux100'].to('TeV/(cm2 s)')
 
 fig, ax = plt.subplots(1, 1, figsize=(8,4.5), subplot_kw=dict(projection='mollweide'), constrained_layout=True)
 
-sc = ax.scatter(x_coord, y_coord, c=colors, cmap='inferno', norm=LogNorm(), alpha=0.9, s=8, edgecolors='none')
-ax.scatter(x_coord[6630], y_coord[6630], marker='o', s=20, facecolors='none', edgecolors='#33ff3a', label='Crab Nebula') #'#fc0000'
-# ax.scatter(x_coord[agn], y_coord[agn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='AGN')
-ax.scatter(x_coord[snr], y_coord[snr], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='SNR')
+sc = ax.scatter(x_coord, y_coord, c=colors, cmap="inferno", norm=LogNorm(), alpha=0.9, s=8, edgecolors='none')
+ax.scatter(x_coord[6630], y_coord[6630], marker='o', s=20, facecolors='none', edgecolors='#fc0000', label='Crab Nebula') #'#fc0000'
+ax.scatter(x_coord[agn], y_coord[agn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='AGN')
+ax.scatter(x_coord[snr], y_coord[snr], marker='o', s=20, facecolors='none', edgecolors='#32a852', label='SNR')
+# ax.scatter(x_coord[grb], y_coord[grb], marker='o', s=20, facecolors='none', edgecolors='#fc0000', label='GRB')
 # ax.scatter(x_coord[pwn], y_coord[pwn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='PWN')
 # ax.scatter(x_coord[psr], y_coord[psr], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='Pulsar')
 
@@ -110,6 +124,7 @@ ax.set_xticklabels([])
 ax.set_yticklabels([])
 ax.grid(False)
 ax.legend()
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.025), ncol=3)
 
 ax.set_title('LAT 12-year Source Catalog (4FGL-DR3)')
 

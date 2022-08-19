@@ -1,4 +1,4 @@
-# telescope ids of the 4 LST + 9 LST La Palma alpha configuration in Prod5b
+# telescope ids of the 4 LST + 9 MST La Palma alpha configuration in Prod5b
 # (out of 84 telescopes total)
 EventSource:
   allowed_tels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 19, 35]

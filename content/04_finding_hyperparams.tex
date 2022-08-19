@@ -52,7 +52,9 @@ are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm
     \begin{subfigure}[t]{0.32\textwidth}
         \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_3.pdf}
     \end{subfigure}
-    \caption{Visualization of the \mars{} algorithm for a \gls{mst} NectarCam image.}
+    \caption{Visualization of the \mars{} algorithm for a \gls{mst} NectarCam image. The first two
+    steps are identical to the \tailcuts{} algorithm. The third step selects all neighbors of a neighbor of a
+    core pixel, if they are above the \texttt{boundary\_threshold}.}
     \label{fig:mars_cleaning}
 \end{figure}
 
@@ -90,7 +92,11 @@ with less than \(N\) neighbors are removed. The last step once again removes pix
     \begin{subfigure}[b]{0.32\textwidth}
         \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_6.pdf}
     \end{subfigure}
-    \caption{FACT cleaning steps}
+    \caption{Visualization of the \fact{} algorithm for a \gls{mst} NectarCam image. The first
+    step selects all pixels above the \texttt{core\_threshold}. The second step removes all pixels that have less than
+    \(N\) neighbors. The third step selects all pixels neighboring the remaining pixels that are above the
+    \texttt{boundary\_threshold}. The fourth step removes all pixels that have less than \(N\) neighbors,
+    that have arrived within a given timeframe. The fifth and sixth steps are analogous to steps two and four.}
     \label{fig:fact_cleaning}
 \end{figure}
 
@@ -123,7 +129,12 @@ parameter is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of 
     \begin{subfigure}[]{0.32\textwidth}
         \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_5.pdf}
     \end{subfigure}
-    \caption{TCC cleaning steps}
+    \caption{Visualization of the \tcc{} algorithm for a \gls{mst} NectarCam image. The first step
+    selects all pixels above the \texttt{core\_threshold}. The second step removes all pixels that have less than
+    \(N\) neighbors. The third step selects all pixels whose arrival times are within a given timeframe of the
+    \texttt{time\_limit\_core} parameter. The fourth step selects all pixels above the \texttt{boundary\_threshold}.
+    The fifth step removes all pixels with less than \(N\) neighbors, that have arrived within a given timeframe
+    of the \texttt{time\_limit\_boundary} parameter.}
     \label{fig:tcc_cleaning}
 \end{figure}
 
@@ -143,10 +154,11 @@ well as a \texttt{time\_limit\_boundary} for \todo{watch out for text boundaries
     one and two additional time-based parameters, respectively. This table shows the default values,
     as they are implemented in the \ctapipe{} source code for version \texttt{0.15.1}.}
     \label{tab:hyperparameters}
+    \rowcolors{0}{white!92!black}{}
     \begin{tabular}{l l l}
-        \toprule
+        \hiderowcolors
         \textbf{Cleaning Algorithm} & \textbf{Hyperparameter} & \textbf{Default Values} \\
-        \midrule
+        \showrowcolors
         \tailcuts{} & \texttt{picture\_threshold}               & \qquad\(\SI{7}{\pe}\) \\
                     & \texttt{boundary\_threshold}              & \qquad\(\SI{5}{\pe}\) \\
                     & \texttt{min\_number\_picture\_neighbors}  & \qquad\(\num{0}\) \\
@@ -165,7 +177,6 @@ well as a \texttt{time\_limit\_boundary} for \todo{watch out for text boundaries
                     & \texttt{time\_limit\_core}                & \qquad\(\SI{4.5}{\nano\second}\) \\
                     & \texttt{time\_limit\_boundary}            & \qquad\(\SI{1.5}{\nano\second}\) \\
                     & \texttt{min\_number\_picture\_neighbors}  & \qquad\(\num{1}\) \\
-        \bottomrule
   \end{tabular}
 \end{table}
 
@@ -174,12 +185,43 @@ To find the optimal hyperparameters I used the \texttt{ParameterGrid} class from
 dictionary of all possible combinations of a list of given parameters. These combinations are then
 written to a config file and processed with \ctapipe{}. The output is hundreds of datasets equal to
 the number of combinations of the given parameters, each with a different setting for the cleaning
-performed on the data. Since it's impossible to find the optimal settings just by looking at the
+performed on the data. The listing below shows the parameters fed into the \texttt{ParameterGrid}:
+
+\begin{minipage}{\textwidth}
+    \begin{mdframed}[backgroundcolor=white!20!black,leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+    \begin{pythonlst}
+        common_params = {
+            "picture_quantiles": (0.995, 0.999, 0.9992, 0.9995, 0.9997, 0.9999),
+            "boundary_threshold_ratio": (1/4, 1/3, 1/2, 2/3, 3/4),
+            "min_number_picture_neighbors": (1, 2, 3, 4, 5)
+        }
+
+        fact_params = {
+            "time_limit": (1.0, 2.0, 4.0, 5.0, 6.0, 10.0, 12.0)
+        }
+
+        tcc_params = {
+            "time_limit_core": (9.0, 12.0, 15.0, 18.0, 20.0),
+            "time_limit_boundary" = (4.5, 9.0, 12.0, 15.0)
+        }
+    \end{pythonlst}
+    \end{mdframed}
+  \end{minipage}
+
+The name \texttt{common\_params} is used here to refer to the dictionary of parameters that are common
+to all cleaning algorithms, while \texttt{fact\_params} and \texttt{tcc\_params} denote the additional
+hyperparameters exclusive to \fact{} and \tcc{}. This results in \(\num{150}\) combinations for
+\tailcuts{} and \mars{}, \(\num{1050}\) combinations for \fact{} and \(\num{3000}\) combinations for \tcc{}.
+
+Since it's impossible to find the optimal settings just by looking at the
 cleaned images of the datasets, a combined metric is necessary to evaluate each cleaner's performance
 for the parameter combinations.
 
-In this work, I chose to first look at the efficiency \(n_{\mathrm{reco}} / n_{\mathrm{total}}\), where
-\(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
+In this work, I chose to first look at the efficiency
+\begin{equation}
+    \eff =  \frac{n_{\mathrm{reco}}}{n_{\mathrm{total}}},
+\end{equation}
+where \(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
 the total number of events in the dataset. By taking the mean of the efficiency, one can sort the
 datasets by setting upper and lower bounds for the efficiency. The intervals lengths were chosen as
 \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total of \(\num{20}\) intervals.
