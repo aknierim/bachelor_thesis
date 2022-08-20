@@ -1,7 +1,0 @@
-numpy
-matplotlib
-astropy
-ctapipe
-pandas
-joblib
-colour
