@@ -1,5 +1,7 @@
 build/
 .vscode/
+thesis_scripts.egg-info/
+
 *.swp
 
 thesis.pdf
