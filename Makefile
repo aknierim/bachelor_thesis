@@ -20,12 +20,17 @@ cosmic_flux=build/cosmic_flux.pgf
 crab_ssc=build/crab_ssc.pdf
 array_layout=build/array_layout.pgf
 fermi4fgl=build/fermi_catalog.pdf
+ar_eff=plots/ar_eff.pdf
+ar_vs_eff=build/ar_vs_eff.pdf
+
+# tables
+tab_writer=build/tables.txt
+
+PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) #$(cosmic_flux) $(crab_ssc)
+TABLES := $(tab_writer)
 
 
-PLOTS := $(array_layout) $(fermi4fgl) #$(cosmic_flux) $(crab_ssc)
-
-
-all: $(PLOTS) tikz build/thesis.pdf
+all: $(PLOTS) $(TABLES) tikz build/thesis.pdf
 
 
 TeXOptions = -lualatex \
@@ -51,6 +56,8 @@ tikz: FORCE tikz/ | build
 		rm build/$$name.aux build/$$name.fdb_latexmk build/$$name.fls build/$$name.log; \
 	done
 
+
+# plots
 $(cosmic_flux): plots/cosmic_flux.py matplotlibrc | build
 	python plots/cosmic_flux.py
 
@@ -63,6 +70,18 @@ $(array_layout): plots/array_layout.py matplotlibrc | build
 $(fermi4fgl): plots/fermi_catalog.py matplotlibrc | build
 	python plots/fermi_catalog.py
 
+$(ar_aeff): plots/angres_aeff.py matplotlibrc | build
+	python plots/angres_aeff.py
+
+$(ar_vs_eff): plots/ar_vs_eff.py matplotlibrc | build
+	python plots/ar_vs_eff.py
+
+
+# tables
+$(tab_writer): thesis_scripts/table_writer.py | build
+	python thesis_scripts/table_writer.py
+
+
 FORCE:
 
 build:
@@ -72,3 +91,7 @@ clean:
 	rm -rf build
 
 .PHONY: all clean
+
+
+download_data:
+	python scripts/data_download.py --username=${USER} --hostname=${HOSTNAME}

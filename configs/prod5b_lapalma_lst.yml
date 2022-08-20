@@ -1,0 +1,4 @@
+# telescope ids of the 4 LST of the La Palma alpha configuration
+# in Prod5b
+EventSource:
+  allowed_tels: [1,2,3,4]

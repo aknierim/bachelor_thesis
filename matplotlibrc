@@ -31,13 +31,13 @@ axes.axisbelow: True       # grid/ticks are below elements (e.g., lines, text)
 xtick.labelsize: medium
 ytick.labelsize: medium
 
-axes.prop_cycle: cycler('color', ['E24A33', '348ABD', '988ED5', '777777', 'FBC15E', '8EBA42', 'FFB5B8'])
-                   #E24A33 : red
+axes.prop_cycle: cycler('color', ['348ABD', 'E24A33', '8EBA42', '988ED5', '777777', 'FBC15E', 'FFB5B8'])
                    #348ABD : blue
+                   #E24A33 : red
+                   #8EBA42 : green
                    #988ED5 : purple
                    #777777 : gray
                    #FBC15E : yellow
-                   #8EBA42 : green
                    #FFB5B8 : pink
 
 xtick.color: 222222
