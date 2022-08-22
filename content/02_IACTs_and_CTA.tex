@@ -13,10 +13,10 @@ of experiments.
 
 Because of their ground-based setup, \glspl{iact} are taking advantage of the Earth's atmosphere to get a
 larger effective area than any space-based instrument. This is especially helpful for energies above
-\todo{confirm values and add source}\SI{100}{\giga\eV},
+\SI{100}{\giga\eV},
 \begin{wrapfigure}[24]{r}{0.48\textwidth}
     \centering
-    \vspace*{-0.3cm}
+    \vspace*{-0.5cm}
     \includegraphics[width=0.46\textwidth]{graphics/cr_spectrum.pdf}
     \caption{The cosmic ray flux as a function of energy. For very high energies the flux becomes very
     small with only \(\num{1}\) particle per square meter per year reaching Earth. For even higher
@@ -24,7 +24,8 @@ larger effective area than any space-based instrument. This is especially helpfu
     kilometer per year \cite{carmelo_2020}.}
     \label{fig:flux}
 \end{wrapfigure}
-where the gamma-ray flux is low compared to lower energies that have higher fluxes.
+where the gamma-ray flux is low compared to lower energies that have higher fluxes and the effective
+collection area of even larger space-based instruments such as \gls{fermilat} is too small \cite[p.~256]{funk}.
 This means, that space-based experiments with their small effective area
 will see fewer high-energy events compared to ground-based experiments. The cosmic ray flux in
 \autoref{fig:flux} shows this well: The flux decreases rapidly with higher energies, with only one
@@ -32,11 +33,10 @@ high-energy photon per day and square meter reaching Earth from the Crab Nebula 
 and even fewer photons for energies in the \si{\exa\eV} domain, where only \(\num{1}\) particle per
 square kilometer per year reaches Earth.
 
-
 For high-energy gamma rays, Earth's atmosphere is opaque, so ground-based experiments rely on
 cascades of sub-particles in so-called \glspl{eas}. For gamma-ray astronomy, the electromagnetic
-component of these \glspl{eas}, shown in \autoref{fig:heitler_model}, is more \todo{wording}relevant
-than the hadronic component. When a gamma ray interacts with Earth's atmosphere, it decays into an
+component of these \glspl{eas}, shown in \autoref{fig:heitler_model}, is of interest, as these
+are produced by gamma rays. When a gamma ray interacts with Earth's atmosphere, it decays into an
 electron and a positron via pair production. These charged particles then emit more photons via
 bremsstrahlung. These photons, again, produce more charged particles, which in turn emit more
 photons. This process continues until any of these processes reaches energies below a certain
@@ -54,7 +54,7 @@ as can be seen in \autoref{fig:cherenkov}.
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[width=0.90\textwidth]{graphics/heitler_model.pdf}
-        \caption{Simplified Heitler model of the electromagnetic component of an extensive air shower.
+        \caption{Simplified first steps of the Heitler model of the electromagnetic component of an extensive air shower.
         A gamma ray induces an electron and a positron via pair production that then emit more photons
         via bremsstrahlung.}
         \label{fig:heitler_model}
@@ -85,7 +85,11 @@ its camera within a timeframe of an order of nanoseconds. The resulting image wi
 of the impact of the air shower and can be used to determine the shower's primary particles' properties,
 and the type and reconstruct its origin. As the hadronic component of \glspl{eas} produce
 electromagnetic subshowers, \glspl{iact} have a dominant hadronic background, which has to be
-\todo{maybe write something about ML}separated from the gamma ray-induced showers.
+separated from the gamma ray-induced showers, for example with
+machine learning algorithms. This work, however, does not focus on these algorithms, but instead
+on cleaning algorithms that are used to separate the signal from the electronic noise coming from the
+camera as well as from the \gls{nsb}. This is a vital step in the analysis of an event, as only a
+fraction of all pixels in the camera frame are part of the signal.
 
 
 \section{The Cherenkov Telescope Array}
@@ -117,7 +121,7 @@ sensitive to a different energy range \cite{cta_specs}:
     \includegraphics[width=0.7\textwidth]{graphics/telescopes_render.jpg}
     \caption{A rendered image of the 3 telescope prototypes in \cta{}. From left: The \gls{sst},
     two types of \gls{mst} (SCT and MST) and the \gls{lst}. This work will not feature the SCT, as
-    the used simulation data contains only \gls{mst} and \gls{mst} data for the northern array.
+    the used simulation data contains only \gls{lst} and \gls{mst} data for the northern array.
     Image credit: Gabriel Pérez Diaz, IAC \cite{cta_tech}.}
     \label{fig:cta_telescopes}
 \end{figure}

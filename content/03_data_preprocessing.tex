@@ -5,9 +5,10 @@ The analysis in this work was done with the open-access low-level data processin
 \ctapipe{} \cite{ctapipe}. The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 henceforth shortened to version \texttt{0.15.1}. The goal of \ctapipe{} is to provide a complete analysis
 framework ranging from data calibration and image extraction to the reconstruction of events and the
-analysis of their properties. In this chapter, I will describe \ctapipe{} with its different data
-levels and the different analysis steps (\autoref{sec:data-levels}). In \autoref{sec:pipeline} I will
+analysis of their properties. In this chapter's \autoref{sec:data-levels}, I will describe \ctapipe{} with its different data
+levels and the different analysis steps. In \autoref{sec:pipeline} I will
 explain the full pipeline created for this work.
+
 
 \section{Data simulation}
 \label{sec:data-simulation}
@@ -18,15 +19,34 @@ can only be sufficiently tested when the output is compared to truth data. This 
 allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
 a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}. The resulting so-called
 \texttt{simtel} data is used in \ctapipe{} and can be processed as described in \autoref{sec:data-levels}
-and \autoref{fig:ctapipe}.
+and \autoref{fig:ctapipe}. Some of the data properties are listed in \autoref{tab:simtel}.
 
-This data is the basis for the analysis in this work. A total of \todo{add the final number of runs}
-\(\num{20}\) \texttt{simtel} runs were used for the initial analysis, \ie{} the testing of different parameters
-as described in \autoref{sec:hyperparameters}. The individual runs were processed into \dlo{} files
-and merged before being processed for each cleaning setting.
+This data is the basis for the analysis in this work. A total of
+\(\num{20}\) \texttt{simtel} runs of diffuse gamma data were used for the initial analysis, \ie{} the
+testing of different parameters as described in \autoref{sec:hyperparameters}. The individual runs
+were processed into \dlo{} files and merged before being processed for each cleaning setting.
 
-Once promising settings are found, a larger dataset containing \(\num{987}\) is processed with these
+Once promising settings are found, a larger dataset containing \(\num{987}\) runs is processed with these
 selected settings, allowing for more statistics and a better comparison of the cleaning algorithms.
+
+\begin{table}
+    \centering
+    \caption{Simtel data properties of the \gls{corsika} simulation used for the datasets in this works
+    analysis.}
+    \label{tab:simtel}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{l r}
+        \hiderowcolors
+        & Diffuse Gamma data \\
+        \showrowcolors
+        {Energy range / \si{\tera\eV}} & \numrange[range-phrase={--}]{0.003}{330} \\
+        {Zenith angle / \si{\degree}} & \num{20} \\
+        {View cone angle / \si{\degree}} & \num{10} \\
+        {Number of showers} & \num{50000} \\
+        {Spectral index} & \num{-2.0} \\
+        {Maximum scatter range / \si{\meter}} & \num{1900} \\
+    \end{tabular}
+\end{table}
 
 
 \section{Data Levels in \ctapipe{}}
@@ -37,15 +57,17 @@ There are several data levels in \ctapipe{}, spanning from the raw data \rzero{}
 \autoref{fig:ctapipe} shows a simplified overview of the data levels and the analysis steps.
 The raw data level \rzero{} is the data that comes directly from the photodetectors. The time-resolved
 signal of the data is calibrated from \rzero{} to \rone{}. Then the data volume gets reduced
-(\rone{} \rightarrow \dlz{}) by a selection of waveforms. The \dlz{} data level is the first level being
-stored and also the first level to be processed from the simulation datasets used in this work.
-From \dlz{} to \dloa{}, the images of the data are extracted from the time pulses, which are then
-cleaned by a cleaning algorithm, allowing for parametrization of the events (\dloa{} \rightarrow \dlob{}).
-The parametrized events can then be reconstructed (\dlob{} \rightarrow \dlt{}) and stored on the \dlt{} data level.
+(\rone{} \rightarrow \dlz{}) by a selection of waveforms.
+
+The \dlz{} data level is the first level being stored and also the first level to be processed from
+the simulation datasets used in this work. From \dlz{} to \dloa{}, the images of the data are extracted
+from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
+of the events (\dloa{} \rightarrow \dlob{}). The parametrized events can then be reconstructed
+(\dlob{} \rightarrow \dlt{}) and stored on the \dlt{} data level.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.85\textwidth]{graphics/ctapipe.png}
+    \includegraphics[width=\textwidth]{graphics/ctapipe.png}
     \caption{Data levels in \ctapipe{}. Raw data levels are denoted by a \textbf{R} and calibrated
     data levels by a \textbf{D}. The raw data first gets calibrated (\rzero{} \rightarrow \rone{})
     and then reduced in volume by selecting waveforms (\rone{} \rightarrow \dlz{}). From there the
@@ -57,13 +79,13 @@ The parametrized events can then be reconstructed (\dlob{} \rightarrow \dlt{}) a
 
 \section{This work's data processing pipeline}
 \label{sec:pipeline}
-
+\todo{write some more about config file \rightarrow allowed telescopes configs}
 In this work, the data processing pipeline is as follows: First, several simulation data runs are
 selected and processed with \ctapipe{}. Then, the datasets are merged and serve as a basis for a re-run
 of the combined dataset with various parameter combinations described in \autoref{ch:finding-hyperparams}.
-Each resulting dataset can then be processed on an array- or telescope data level, resulting in
-\dloa{} image plots, angular resolution and effective area or \todo[color=blue!40]{find alternative wording}efficiency as well as metrics for the
-performance. An \todo{wording}in-detail description of how this helps to compare the performance of the different
+Each resulting dataset can then be processed on an array or telescope data level, resulting in
+\dloa{} image plots, values for the angular resolution and the efficiency as well as metrics for the
+performance. An in-detail description of how this helps to compare the performance of the different
 cleaning algorithms can be found in \autoref{sec:hyperparameters}. A schematic overview of the data
 processing pipeline of this work is shown in \autoref{fig:data-processing}.
 
@@ -77,5 +99,4 @@ processing pipeline of this work is shown in \autoref{fig:data-processing}.
     \label{fig:data-processing}
 \end{figure}
 
-\todo{think about how to better connect \autoref{ch:finding-hyperparams} and \autoref{ch:data-processing}}
 

@@ -1,7 +1,7 @@
 \chapter{Appendix}
 
 \section{Configurations for \ctapipe{}}
-\label{ap:aict_config}
+\label{ap:config_files}
 
 The listing below shows the configuration file used for preprocessing the datasets, \ie{} before the
 application of the different cleaning settings.
@@ -75,17 +75,18 @@ and \glspl{lst}, the following two listings show the contents of the \texttt{pro
 \section{Software used}
 
 This work was written and built with \LaTeX{} and Lua\TeX{} from \TeX Live 2021 on both Windows 10 and Ubuntu 18.04.
-Also, I relied heavily on the python programming language, of which the most important libraries are listed below.
+Also, I relied heavily on the python programming language, of which the most important libraries used
+for this work are listed below.
 \begin{itemize}
-    \item \texttt{numpy} ~\cite{numpy}
-    \item \texttt{pandas} ~\cite{pandas}
-    \item \texttt{matplotlib} ~\cite{matplotlib}
-    \item \texttt{astropy} ~\cite{astropy1, astropy2}
-    \item \texttt{pyirf} ~\cite{pyirf}
-    \item \texttt{scikit-learn} ~\cite{scikit-learn}
+    \item \numpy{}~\cite{numpy}
+    \item \pandas{}~\cite{pandas}
+    \item \matplotlib{}~\cite{matplotlib}
+    \item \astropy{}~\cite{astropy1, astropy2}
+    \item \pyirf{}~\cite{pyirf}
+    \item \sklearn{}~\cite{scikit-learn}
 \end{itemize}
 
-For the processing of the datasets, I used the development version of \texttt{ctapipe}, specifically version
+For the processing of the datasets, I used the development version of \texttt{ctapipe}, more specifically, version
 \texttt{0.15.1.dev166+gf26107f}. A complete listing of all used python libraries can be found below:
 \begin{spacing}{0.5}
     \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
