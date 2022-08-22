@@ -3,8 +3,16 @@
 \section{Configurations for \ctapipe{}}
 \label{ap:aict_config}
 
-The listings below show the contents of the default configuration files used for \ctapipe{}
-with for each cleaning algorithm respectively.
+The listing below shows the configuration file used for preprocessing the datasets, \ie{} before the
+application of the different cleaning settings.
+\begin{spacing}{0.5}
+    \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+    \lstinputlisting[basicstyle=\lstsansserif, language=yaml]{./configs/preprocessing.yml}
+    \end{mdframed}
+\end{spacing}
+
+The listings below show the contents of the default configuration files used with \ctapipe{}
+for each cleaning algorithm respectively.
 
 \begin{description}
     \item \textbf{\tailcuts{}}:\medskip
@@ -62,3 +70,25 @@ and \glspl{lst}, the following two listings show the contents of the \texttt{pro
         \end{mdframed}
     \end{spacing}
 \end{description}
+
+
+\section{Software used}
+
+This work was written and built with \LaTeX{} and Lua\TeX{} from \TeX Live 2021 on both Windows 10 and Ubuntu 18.04.
+Also, I relied heavily on the python programming language, of which the most important libraries are listed below.
+\begin{itemize}
+    \item \texttt{numpy} ~\cite{numpy}
+    \item \texttt{pandas} ~\cite{pandas}
+    \item \texttt{matplotlib} ~\cite{matplotlib}
+    \item \texttt{astropy} ~\cite{astropy1, astropy2}
+    \item \texttt{pyirf} ~\cite{pyirf}
+    \item \texttt{scikit-learn} ~\cite{scikit-learn}
+\end{itemize}
+
+For the processing of the datasets, I used the development version of \texttt{ctapipe}, specifically version
+\texttt{0.15.1.dev166+gf26107f}. A complete listing of all used python libraries can be found below:
+\begin{spacing}{0.5}
+    \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+    \lstinputlisting[basicstyle=\footnotesize\lstsansserif, multicols=2, language=yaml]{./configs/env.yml}
+    \end{mdframed}
+\end{spacing}

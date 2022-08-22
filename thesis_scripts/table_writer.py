@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 tables = [
     "efficiency",
@@ -18,11 +19,18 @@ def build_dataset_table(df):
 
 def combined_table(tab_name: str) -> str:
     combined_table = pd.read_csv("./plots/data/combined_table.csv")
-    combined_table = combined_table.dropna()
+    # combined_table = combined_table.dropna()
 
     table = combined_table[
         [f"{tab_name}_tail", f"{tab_name}_mars" , f"{tab_name}_fact", f"{tab_name}_tcc"]
-    ].astype(float).applymap('{:,.3f}'.format)
+    ]
+
+    first_valid_index = table.first_valid_index()
+    last_valid_index = table.last_valid_index()
+    table = table.loc[first_valid_index:last_valid_index]
+
+    table = table.astype(float).applymap('{:,.3f}'.format)
+    table = table.replace("nan", '', regex=True)
 
     table.insert(0, "n_lower", combined_table["n_lower"])
     table.insert(1, "n_upper", table["n_lower"] + 0.05)

@@ -58,16 +58,6 @@ are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm
     \label{fig:mars_cleaning}
 \end{figure}
 
-The \fact{} algorithm is a time-based cleaning algorithm that first selects all pixels that are above
-the \texttt{core\_threshold}. Then, all pixels that have less than \(N\) neighbors are removed. The
-\texttt{min\_number\_neighbors} parameter is set to \(\num{2}\) by default. For the third step, all pixels neighboring
-the remaining pixels that are above the \texttt{boundary\_threshold} are selected. After that, all
-pixels that have less than \(N\) neighbors and that have arrived within a given timeframe are removed.
-The \texttt{time\_limit} parameter is set to \(\SI{5}{\nano\second}\) by default. Again, all pixels
-with less than \(N\) neighbors are removed. The last step once again removes pixels with less than
-\(N\) neighbors, arriving within the given time limit. The visualization of the algorithm is shown in
-\autoref{fig:fact_cleaning} for the default values of the algorithm.
-
 \begin{figure}
     \centering
     \begin{subfigure}[t]{0.32\textwidth}
@@ -99,6 +89,16 @@ with less than \(N\) neighbors are removed. The last step once again removes pix
     that have arrived within a given timeframe. The fifth and sixth steps are analogous to steps two and four.}
     \label{fig:fact_cleaning}
 \end{figure}
+
+The \fact{} algorithm is a time-based cleaning algorithm that first selects all pixels that are above
+the \texttt{core\_threshold}. Then, all pixels that have less than \(N\) neighbors are removed. The
+\texttt{min\_number\_neighbors} parameter is set to \(\num{2}\) by default. For the third step, all pixels neighboring
+the remaining pixels that are above the \texttt{boundary\_threshold} are selected. After that, all
+pixels that have less than \(N\) neighbors and that have arrived within a given timeframe are removed.
+The \texttt{time\_limit} parameter is set to \(\SI{5}{\nano\second}\) by default. Again, all pixels
+with less than \(N\) neighbors are removed. The last step once again removes pixels with less than
+\(N\) neighbors, arriving within the given time limit. The visualization of the algorithm is shown in
+\autoref{fig:fact_cleaning} for the default values of the algorithm.
 
 The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration.
 It first selects all pixels that are above the \texttt{core\_threshold}. Then, all pixels that have
@@ -145,14 +145,15 @@ The hyperparameters of each cleaning algorithm are set in a specific \texttt{con
 the user can set and change the parameters, shown in \autoref{tab:hyperparameters}. \tailcuts{}
 and \mars{} can be set-up with only three parameters: the \texttt{picture\_threshold}, the
 \texttt{boundary\_threshold} and \texttt{min\_number\_picture\_neighbors}. The time-based algorithms
-have additional parameters: a \texttt{time\_limit} for \fact{} and a \texttt{time\_limit\_core} as
-well as a \texttt{time\_limit\_boundary} for \todo{watch out for text boundaries}\tcc{}.
+have additional parameters: First of all a \texttt{time\_limit} for \fact{} and then a \texttt{time\_limit\_core} as
+well as a \texttt{time\_limit\_boundary} for \tcc{}.
 \begin{table}
     \centering
     \caption{The four cleaning algorithms and their hyperparameters. Being the most basic algorithms,
     \tailcuts{} and \mars{} have only three parameters, while the \fact{} and \tcc{} algorithms have
-    one and two additional time-based parameters, respectively. This table shows the default values,
-    as they are implemented in the \ctapipe{} source code for version \texttt{0.15.1}.}
+    one and two additional time-based parameters, respectively. This table shows the default values
+    and, if the parameters have them, also their units, as they are implemented in the \ctapipe{}
+    source code for version \texttt{0.15.1}.}
     \label{tab:hyperparameters}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{l l l}
@@ -218,7 +219,7 @@ cleaned images of the datasets, a combined metric is necessary to evaluate each 
 for the parameter combinations.
 
 In this work, I chose to first look at the efficiency
-\begin{equation}
+\begin{equation}\label{eq:efficiency}
     \eff =  \frac{n_{\mathrm{reco}}}{n_{\mathrm{total}}},
 \end{equation}
 where \(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
@@ -226,8 +227,11 @@ the total number of events in the dataset. By taking the mean of the efficiency,
 datasets by setting upper and lower bounds for the efficiency. The intervals lengths were chosen as
 \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total of \(\num{20}\) intervals.
 
-For each interval, the mean angular resolution is calculated. The dataset with the lowest mean angular
-resolution is the best performing for each interval. Not all events will ever be properly reconstructed
+For each interval, the mean angular resolution is calculated. This is achieved by determining the
+\(\SI{68}{\percent}\) containment of the angular distance distribution, \ie{} the angular distance
+between the reconstructed angle and the true angle. This angular distance, or separation, is calculated
+with the \texttt{astropy.coordinates.angular\_separation} function from \texttt{astropy}. The dataset with the lowest
+mean angular resolution is the best performing for each interval. Not all events will ever be properly reconstructed
 for any parameter combination, so there won't be a mean angular resolution for all intervals, but only
 a subset. Also, the mean angular resolution may be higher when more events were reconstructed.
 As a result, a trade-off between efficiency and angular resolution is necessary.

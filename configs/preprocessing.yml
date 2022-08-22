@@ -1,0 +1,45 @@
+DataWriter:
+  transform_image: true
+  transform_peak_time: true
+  write_images: true
+  write_parameters: false
+  write_raw_waveforms: false
+  write_showers: true
+
+ProcessorTool:
+  progress_bar: true
+
+CameraCalibrator:
+  image_extractor_type: NeighborPeakWindowSum
+
+ImageProcessor:
+  image_cleaner_type: TailcutsImageCleaner
+
+  TailcutsImageCleaner:
+    picture_threshold_pe:
+      - [type, "LST*", 8.5]
+      - [type, "MST*NectarCam", 9.0]
+    boundary_threshold_pe:
+      - [type, "LST*", 4.75]
+      - [type, "MST*NectarCam", 4.5]
+    keep_isolated_pixels: false
+    min_picture_neighbors: 2
+
+  ImageQualityQuery:
+    quality_criteria:
+      - ["enough_pixels", "np.count_nonzero(image) > 2"]
+      - ["enough_charge", "image.sum() > 50"]
+
+ShowerProcessor:
+  reconstructor_type: HillasReconstructor
+  HillasReconstructor:
+    StereoQualityQuery:
+      quality_criteria:
+        - [enough intensity, "parameters.hillas.intensity > 50"]
+        - [Positive width, "parameters.hillas.width.value > 0"]
+        - [enough pixels, "parameters.morphology.num_pixels > 3"]
+        - [not clipped, "parameters.leakage.intensity_width_2 < 0.5"]
+
+SimTelEventSource:
+  focal_length_choice: effective
+  skip_calibration_events: true
