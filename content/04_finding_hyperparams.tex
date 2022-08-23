@@ -182,8 +182,8 @@ well as a \texttt{time\_limit\_boundary} for \tcc{}.
   \end{tabular}}
 \end{table}
 The full configuration files for the default settings of each cleaning algorithm are listed in
-\hyperref[ap:config_files]{appendix \ref{ap:config_files}}. There, one can also find the configuration files for the allowed telescopes
-as described in \todo{write about config files in sec 3.3}\autoref{sec:pipeline}.
+\hyperref[ap:config_files]{appendix \ref{ap:config_files}}. There, the configuration files for the allowed telescopes
+as described in \autoref{sec:pipeline} are shown, too.
 
 To find the optimal hyperparameters, I used the \texttt{ParameterGrid} class from the
 \texttt{sklearn.model\_selection} module in \sklearn{}~\cite{scikit-learn}. The \texttt{ParameterGrid} class is useful to create a
@@ -216,7 +216,7 @@ hyperparameters exclusive to \fact{} and \tcc{}. The \texttt{picture\_quantiles}
 how many percent of all pixels will be below the \texttt{picture\_threshold}. This is especially useful,
 as this results in a more precise value for the threshold\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
 The \texttt{boundary\_threshold\_ratio} sets
-the ratio of the \texttt{boundary\_threshold} \wrt{} the \texttt{picture\_threshold}. The other parameters,
+the ratio of the \texttt{boundary\_threshold} \wrt the \texttt{picture\_threshold}. The other parameters,
 \texttt{min\_number\_picture\_neighbors} and the time limits are the same as explained before and are,
 therefore, absolute values.
 
@@ -236,7 +236,7 @@ datasets by setting upper and lower bounds for the efficiency. The intervals len
 \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total of \(\num{20}\) intervals.
 
 For each interval, the mean angular resolution is calculated. This is achieved by determining the
-\(\SI{68}{\percent}\) containment of the angular distance distribution, \ie{} the angular distance
+\(\SI{68}{\percent}\) containment of the angular distance distribution, \ie the angular distance
 between the reconstructed angle and the true angle of the shower. This angular distance, or separation, is calculated
 with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}. The dataset with the lowest
 mean angular resolution is the best performing for each interval. Not all events will ever be properly reconstructed
@@ -245,24 +245,39 @@ a subset. Also, the mean angular resolution may be higher when more events were 
 As a result, a trade-off between efficiency and angular resolution is necessary.
 
 For the performance analysis of the algorithms, I calculated metrics such as, but not limited to, the \gls{tpr} or recall,
-the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used metrics can be seen in \todo{add table}
-\autoref{tab:metrics}.
+the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used metrics can be seen in \autoref{tab:metrics}.
 
 \begin{table}
-    \caption{Metrics}
+    \centering
+    \caption{The metrics used for this works analysis as well as their calculation. Right: Confusion
+    matrix for a binary (positive/negative) classification.}
     \label{tab:metrics}
     \glsreset{tpr}\glsreset{fpr}\glsreset{tnr}
-    \rowcolors{0}{white!92!black}{}
-    \centering\begin{tabular}{l c}
-        \hiderowcolors
-        {Metric} & {Calculation} \\
-        \showrowcolors
-        \gls{tpr} & ${\frac{\tp}{\tp + \fn}}$ \\
-        \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
-        \gls{tnr} & ${\frac{\tn}{\tn + \fp}}$ \\
-        \gls{fnr} & ${\frac{\fn}{\fn + \tp}}$ \\
-        \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
-        \gls{acc} & ${\frac{\tp + \tn}{\tp + \fp + \tn + \fn}}$ \\
-        \gls{ba} & ${\frac{\tpr + \tnr}{2}}$ \\
-    \end{tabular}
+    \begin{subtable}{0.48\textwidth}
+        \centering
+        \rowcolors{0}{white!92!black}{}
+        \adjustbox{varwidth=\linewidth,scale=0.9}{%
+        \begin{tabular}{l c}
+            \hiderowcolors
+            {Metric} & {Calculation} \\
+            \showrowcolors
+            \gls{tpr} & ${\frac{\tp}{\tp + \fn}}$ \\
+            \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
+            \gls{tnr} & ${\frac{\tn}{\tn + \fp}}$ \\
+            \gls{fnr} & ${\frac{\fn}{\fn + \tp}}$ \\
+            \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
+            \gls{acc} & ${\frac{\tp + \tn}{\tp + \fp + \tn + \fn}}$ \\
+            \gls{ba} & ${\frac{\tpr + \tnr}{2}}$ \\
+        \end{tabular}}
+    \end{subtable}%
+    \begin{subtable}{0.48\textwidth}
+        \centering
+        \adjustbox{varwidth=\linewidth,scale=0.9}{%
+        \begin{tabular}{r l c c}
+            & & \multicolumn{2}{c}{Prediction} \\
+            & & positive & negative \\
+            \parbox[t]{2mm}{\multirow{2}{*}{\rotatebox[origin=c]{90}{Label}}} &  pos. & \colorbox{white!92!black}{\gls{tp}} & \gls{fn} \\
+            & neg. & \gls{fp} & \colorbox{white!92!black}{\gls{tn}} \\
+        \end{tabular}}
+    \end{subtable}%
 \end{table}

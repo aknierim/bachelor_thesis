@@ -3,7 +3,7 @@
 
 In this chapter, the results of the analysis are presented. First I present the results of the
 efficiency analysis in \autoref{sec:efficiency_angres}. The initial tests of parameter combinations
-are based on a small dataset consisting of \(\num{20}\) runs, \ie{} \(\num{12668}\) events. This is
+are based on a small dataset consisting of \(\num{20}\) runs, \ie \(\num{12668}\) events. This is
 due to the number of parameter combinations that are tested, as more runs would increase the
 processing time immensely. Furthermore, I present the results of the angular resolution for a combined
 metric with the efficiency. Then, in \autoref{sec:metrics}, the metrics of each resulting combination
@@ -15,22 +15,22 @@ cleaning algorithms is presented in \autoref{sec:comparison}.
 \section{Analysis of the efficiency and the angular resolution}
 \label{sec:efficiency_angres}
 
-To determine the optimal hyperparameters, I first analyzed the efficiency of the different cleaning algorithms.
-The efficiency is determined by the number of events that are reconstructed after cleaning. For this work
-I chose \(\num{20}\) intervals within \(\num{0}\) and \(\num{1}\) with a step size of \(\num{0.05}\).
-The mean efficiency is then calculated as the mean of \autoref{eq:efficiency}.
-For each interval those datasets are selected, where the mean efficiency lies between the lower and upper
-bound of the interval. Then the minimum angular resolution is determined for each interval. The parameters
-of these datasets are then selected to be the optimal parameters for each cleaning algorithm. This not
-only allows for a comparison of the cleaners but also a decision on a trade-off between the efficiency
-and the angular resolution, namely having a better angular resolution, but a lower efficiency or
-a higher efficiency but a higher and therefore worse angular resolution.
-The results for the mean efficiency are listed in \autoref{tab:efficiency} and
+To narrow down possible candidates for the optimal hyperparameters, I first analyzed the efficiency
+of the different cleaning algorithms. The efficiency is determined by the number of events that are
+reconstructed after cleaning. For this work I chose \(\num{20}\) intervals within \(\num{0}\) and
+\(\num{1}\) with a step size of \(\num{0.05}\). The mean efficiency is then calculated as the mean
+of \autoref{eq:efficiency}. For each interval those datasets are selected, where the mean efficiency
+lies between the lower and upper bound of the interval. Then the minimum angular resolution is
+determined for each interval. The parameters of these datasets are then selected to be the optimal
+parameters for each cleaning algorithm. This not only allows for a comparison of the cleaners but also
+a decision on a trade-off between the efficiency and the angular resolution, namely having a better
+angular resolution, but a lower efficiency or a higher efficiency but a higher and therefore worse
+angular resolution. The results for the mean efficiency are listed in \autoref{tab:efficiency} and
 the results for the mean angular resolution in \autoref{tab:angres}.
 
 As one can see, not all cleaning algorithms have valid values for each interval, peaking at a maximum
 of around \(\SIrange{45}{50}{\percent}\) of successfully reconstructed events. This is because not
-all events are stereo events, \ie{} events, where two or more telescopes were triggered.
+all events are stereo events, \ie events, where two or more telescopes were triggered.
 The remaining events are therefore mono events and do not contribute to either the efficiency or the
 angular resolution. The efficiency would be higher, of course, for a full-array analysis, but that would
 mean also including \glspl{lst} data, which for this work would not help find the optimal
@@ -80,7 +80,7 @@ From the tables, one can see that there is a clear trade-off in choosing between
 As such, for further comparison of the cleaning algorithms, the corresponding datasets for the efficiency and
 the angular resolution are plotted in \autoref{fig:efficiency_angres} for the intervals
 \([\num{0.25}, \num{0.30}]\) and \([\num{0.45}, \num{0.50}]\). The reason for this is that these are
-the minimum and maximum intervals \wrt{} the efficiency, where all cleaners have valid values.
+the minimum and maximum intervals \wrt the efficiency, where all cleaners have valid values.
 
 \begin{figure}
     \centering

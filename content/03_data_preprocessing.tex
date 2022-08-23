@@ -5,8 +5,9 @@ The analysis in this work was done with the open-access low-level data processin
 \ctapipe{} \cite{ctapipe}. The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 henceforth shortened to version \texttt{0.15.1}. The goal of \ctapipe{} is to provide a complete analysis
 framework ranging from data calibration and image extraction to the reconstruction of events and the
-analysis of their properties. In this chapter's \autoref{sec:data-levels}, I will describe \ctapipe{} with its different data
-levels and the different analysis steps. In \autoref{sec:pipeline} I will
+analysis of their properties. In this chapter, I will first describe how the data
+were simulated in \autoref{sec:data-simulation} and then, in \autoref{sec:data-levels}, explain \ctapipe{}
+with its different data levels and the various analysis steps. In \autoref{sec:pipeline} I will
 explain the full pipeline created for this work.
 
 
@@ -22,7 +23,7 @@ a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}. The 
 and \autoref{fig:ctapipe}. Some of the data properties are listed in \autoref{tab:simtel}.
 
 This data is the basis for the analysis in this work. A total of
-\(\num{20}\) \texttt{simtel} runs of diffuse gamma data were used for the initial analysis, \ie{} the
+\(\num{20}\) \texttt{simtel} runs of diffuse gamma data were used for the initial analysis, \ie the
 testing of different parameters as described in \autoref{sec:hyperparameters}. The individual runs
 were processed into \dlo{} files and merged before being processed for each cleaning setting.
 
@@ -79,10 +80,21 @@ of the events (\dloa{} \rightarrow \dlob{}). The parametrized events can then be
 
 \section{This work's data processing pipeline}
 \label{sec:pipeline}
-\todo{write some more about config file \rightarrow allowed telescopes configs}
 In this work, the data processing pipeline is as follows: First, several simulation data runs are
 selected and processed with \ctapipe{}. Then, the datasets are merged and serve as a basis for a re-run
 of the combined dataset with various parameter combinations described in \autoref{ch:finding-hyperparams}.
+
+The settings for \ctapipe{} are saved in two configuration files: First, a file, that sets up the
+cleaning process and what data to write to the output file. For the preprocessing step of this work's
+pipeline, the cleaning settings are not relevant, as this step only serves to create a merged dataset.
+The second file contains a list of all the allowed telescope IDs. This allows a selection of the telescopes
+that are used in the analysis. This is especially helpful if one wants to only analyze \gls{mst}-related
+data, like in this work.
+
+For the re-run of the combined dataset, the cleaning settings are used\footnote{As opposed to the preprocessing step},
+however, as this step is the heart of this work's search for the optimal hyperparameters.
+The configuration files used are shown in \hyperref[ap:config_files]{appendix \ref{ap:config_files}}.
+
 Each resulting dataset can then be processed on an array or telescope data level, resulting in
 \dloa{} image plots, values for the angular resolution and the efficiency as well as metrics for the
 performance. An in-detail description of how this helps to compare the performance of the different
@@ -93,9 +105,9 @@ processing pipeline of this work is shown in \autoref{fig:data-processing}.
     \centering
     \includegraphics[width=\textwidth]{graphics/data_pipeline.pdf}
     \caption{Schematic overview of the data pipeline used for this work. Single runs of the simulation
-    data are processed with \ctapipe\texttt{-process} and then merged via \ctapipe\texttt{-merge}.
+    data are processed with \ctapipe\texttt{-process} and then merged via \ctapipe\texttt{-merge} (green shaded area).
     The merged data is then processed on the array- or telescope data level resulting in scores for metrics
-    as well as \dlo{} \texttt{images} and plots for the angular resolution and the effective area.}
+    as well as \dlo{} \texttt{images} and plots for the angular resolution and the effective area (blue shaded area).}
     \label{fig:data-processing}
 \end{figure}
 
