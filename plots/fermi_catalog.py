@@ -111,9 +111,9 @@ colors = table['Energy_Flux100'].to('TeV/(cm2 s)')
 fig, ax = plt.subplots(1, 1, figsize=(8,4.5), subplot_kw=dict(projection='mollweide'), constrained_layout=True)
 
 sc = ax.scatter(x_coord, y_coord, c=colors, cmap="inferno", norm=LogNorm(), alpha=0.9, s=8, edgecolors='none')
-ax.scatter(x_coord[6630], y_coord[6630], marker='o', s=20, facecolors='none', edgecolors='#fc0000', label='Crab Nebula') #'#fc0000'
-ax.scatter(x_coord[agn], y_coord[agn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='AGN')
-ax.scatter(x_coord[snr], y_coord[snr], marker='o', s=20, facecolors='none', edgecolors='#32a852', label='SNR')
+ax.scatter(x_coord[6630], y_coord[6630], marker='o', linewidths=1.3, s=20, facecolors='none', edgecolors='#00ff00', label='Crab Nebula') #'#fc0000'
+ax.scatter(x_coord[agn], y_coord[agn], marker='o', linewidths=1.2, s=20, facecolors='none', edgecolors='#0181F4', label='AGN') # 32a852
+ax.scatter(x_coord[snr], y_coord[snr], marker='o', linewidths=1.2, s=20, facecolors='none', edgecolors='#07ba9f', label='SNR')
 # ax.scatter(x_coord[grb], y_coord[grb], marker='o', s=20, facecolors='none', edgecolors='#fc0000', label='GRB')
 # ax.scatter(x_coord[pwn], y_coord[pwn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='PWN')
 # ax.scatter(x_coord[psr], y_coord[psr], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='Pulsar')

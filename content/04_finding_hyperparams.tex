@@ -2,8 +2,8 @@
 \label{ch:finding-hyperparams}
 
 This work aims to find optimal hyperparameters for the cleaning algorithms used in \ctapipe{}.
-Optimizing the cleaning step (see \autoref{sec:data-levels}) can most certainly lead to a better
-reconstruction of the events in a dataset. Therefore a tweaking of the available parameters of each
+Optimizing the cleaning step of the \dlo{} data level in \autoref{sec:data-levels} can most certainly lead to a better
+reconstruction of the events in a dataset. Therefore, a tweaking of the available parameters of each
 cleaner is necessary. In this chapter, I will first introduce the cleaning algorithms and their parameters
 in \autoref{sec:cleaning-algorithms} and then describe the procedure to find optimal hyperparameters
 in \autoref{sec:hyperparameters}.
@@ -182,7 +182,7 @@ well as a \texttt{time\_limit\_boundary} for \tcc{}.
   \end{tabular}}
 \end{table}
 The full configuration files for the default settings of each cleaning algorithm are listed in
-\todo{fix appendix ref}\autoref{ap:config_files}. There, one can also find the configuration files for the allowed telescopes
+\hyperref[ap:config_files]{appendix \ref{ap:config_files}}. There, one can also find the configuration files for the allowed telescopes
 as described in \todo{write about config files in sec 3.3}\autoref{sec:pipeline}.
 
 To find the optimal hyperparameters, I used the \texttt{ParameterGrid} class from the
@@ -212,9 +212,16 @@ performed on the data. The listing below shows the parameters fed into the \text
 
 The name \texttt{common\_params} is used here to refer to the dictionary of parameters that are common
 to all cleaning algorithms, while \texttt{fact\_params} and \texttt{tcc\_params} denote the additional
-hyperparameters exclusive to \fact{} and \tcc{}. \todo{explain params in listing, \ie{} picture quantiles} This results in \(\num{150}\) combinations for
-\tailcuts{} and \mars{}, \(\num{1050}\) combinations for \fact{} and \(\num{3000}\) combinations for \tcc{}.
+hyperparameters exclusive to \fact{} and \tcc{}. The \texttt{picture\_quantiles} parameter determines
+how many percent of all pixels will be below the \texttt{picture\_threshold}. This is especially useful,
+as this results in a more precise value for the threshold\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
+The \texttt{boundary\_threshold\_ratio} sets
+the ratio of the \texttt{boundary\_threshold} \wrt{} the \texttt{picture\_threshold}. The other parameters,
+\texttt{min\_number\_picture\_neighbors} and the time limits are the same as explained before and are,
+therefore, absolute values.
 
+The parameters result in \(\num{150}\) combinations for \tailcuts{} and \mars{} each, \(\num{1050}\) combinations for
+\fact{} and \(\num{3000}\) combinations for \tcc{}.
 Since it's impossible to find the optimal settings just by looking at the
 cleaned images of the datasets, a combined metric is necessary to evaluate each cleaner's performance
 for the parameter combinations.
@@ -237,25 +244,25 @@ for any parameter combination, so there won't be a mean angular resolution for a
 a subset. Also, the mean angular resolution may be higher when more events were reconstructed.
 As a result, a trade-off between efficiency and angular resolution is necessary.
 
-For the performance analysis of the algorithms, I calculated metrics such as the \gls{tpr} or recall,
+For the performance analysis of the algorithms, I calculated metrics such as, but not limited to, the \gls{tpr} or recall,
 the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used metrics can be seen in \todo{add table}
 \autoref{tab:metrics}.
 
-% \begin{table}
-%     \centering\begin{tabular}{l l}
-
-%     \end{tabular}
-%     \caption{<caption>}
-%     \label{<label>}
-% \end{table}
-            % "tp": [self.true_pos],
-            % "tn": [self.true_neg],
-            % "fp": [self.false_pos],
-            % "fn": [self.false_neg],
-            % "TPR": [tpr], # recall
-            % "FPR": [fpr], # fall-out
-            % "TNR": [tnr], # specificity
-            % "FNR": [fnr], # miss rate
-            % "PPV": [ppv], # precision
-            % "ACC": [acc],
-            % "BA": [ba]
+\begin{table}
+    \caption{Metrics}
+    \label{tab:metrics}
+    \glsreset{tpr}\glsreset{fpr}\glsreset{tnr}
+    \rowcolors{0}{white!92!black}{}
+    \centering\begin{tabular}{l c}
+        \hiderowcolors
+        {Metric} & {Calculation} \\
+        \showrowcolors
+        \gls{tpr} & ${\frac{\tp}{\tp + \fn}}$ \\
+        \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
+        \gls{tnr} & ${\frac{\tn}{\tn + \fp}}$ \\
+        \gls{fnr} & ${\frac{\fn}{\fn + \tp}}$ \\
+        \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
+        \gls{acc} & ${\frac{\tp + \tn}{\tp + \fp + \tn + \fn}}$ \\
+        \gls{ba} & ${\frac{\tpr + \tnr}{2}}$ \\
+    \end{tabular}
+\end{table}

@@ -35,7 +35,7 @@
         \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[opacity=0.3,inner sep=15pt] at (current page.center){\includegraphics[width=0.94\paperwidth,height=0.94\paperheight]{graphics/contours_lst.jpg}};}%
         \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[inner sep=15pt, anchor=north east] at (current page.north east){\hspace{-15em}\includegraphics[width=0.4\paperwidth]{logos/tu-logo.pdf}};}%
       \else
-        \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[opacity=0.3,inner sep=15pt] at (current page.center){\includegraphics[width=0.94\paperwidth,height=0.94\paperheight]{graphics/contours_mst.jpg}};}%
+        \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[opacity=0.25,inner sep=15pt] at (current page.center){\includegraphics[width=0.94\paperwidth,height=0.94\paperheight]{graphics/contours_mst.jpg}};}%
         \raisebox{\dimexpr\textheight-\height}{\tikz[remember picture,overlay] \node[inner sep=15pt, anchor=north west] at (current page.north west){\includegraphics[width=0.4\paperwidth]{logos/tu-logo.pdf}};}%
       \fi%
     }%
@@ -70,7 +70,7 @@
 \appendix
 \input{content/a_appendix.tex}
 
-% acknowledgements
+% acknowledgments
 \newgeometry{margin=3cm, bottom=5cm}
 \input{content/acknowledgements.tex}
 \restoregeometry

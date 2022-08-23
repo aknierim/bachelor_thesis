@@ -3,10 +3,10 @@
 
 Astronomy, being one of the oldest sciences, is a vast field of study dating back to the earliest
 days of civilization, where astronomers have been studying the stars and the planets to understand
-the universe. It, therefore, is no surprise that astronomy spawned a great number of discoveries
+the universe. It is, therefore, no surprise that astronomy spawned a great number of discoveries
 throughout the centuries. Whereas first observations were made by eye only, we now have access to a multitude
 of experiments and telescopes that deepen our understanding of the universe. With the discovery of
-\gls{cr} by Victor Hess in the early \nth{20} century, the new field of astroparticle physics was born \cite{longair1981}.
+\gls{cr} by Victor Hess in the early 20th century, the new field of astroparticle physics was born \cite{longair1981}.
 
 \begin{figure}
     \centering
@@ -16,7 +16,7 @@ of experiments and telescopes that deepen our understanding of the universe. Wit
     origin of photons and neutrinos can be reconstructed directly since they are uncharged particles
     and therefore travel in straight lines. However, photons can be absorbed or created in multiple
     mechanisms. Since neutrinos only rarely interact with matter via the weak force, their detection
-    is significantly harder than for photons \cite{fig5}.}
+    is significantly harder than that of photons \cite{fig5}.}
     \label{fig:fig5}
 \end{figure}
 
@@ -31,40 +31,56 @@ waves in 2015 \cite{grav_waves}.
 
 Cosmic messengers come in different types, that are either charged or uncharged, as shown in \autoref{fig:fig5}.
 \gls{cr} like electrons, protons or atomic nuclei are charged particles making it difficult to trace back their origin
-as they are deflected by the cosmic electromagnetic fields. Uncharged particles like photons or
+as they are deflected by cosmic electromagnetic fields. Uncharged particles like photons or
 neutrinos, however, travel in straight lines, making it easier to reconstruct their origins.
 
 While photons can be absorbed by dust clouds on their way to Earth, they are easier to detect than
-neutrinos, the latter interacting only weakly with matter due to their small cross-section.
+neutrinos, the latter having a very small cross-section and interacting only weakly with matter.
 This means that neutrino detectors and experiments, such as IceCube \cite{icecube_2006} or
-Super-Kamiokande \cite{kamiokande}, have to be large enough to detect the neutrinos in sufficient quantities.
+Super-Kamiokande \cite{kamiokande}, have to be large enough to detect neutrinos in sufficient quantities.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/fermi_catalog.pdf}
+    \caption{Mollweide projection of the \gls{fermilat} 4FGL-DR3 catalog data of gamma-ray sources. The sky map
+    shows the flux of gamma-ray sources in \(\si{\tera\eV\per\centi\meter\squared\per\second}\)
+    observed over a span of \(\num{12}\) years from the experiment's launch in 2008. Note the
+    concentration of \gls{he} gamma-ray sources around the galactic plane. Additionally,
+    the Crab Nebula (bright green circle, right hand side)---being a standard candle gamma-ray astronomy---is marked
+    along with \glspl{snr} (darker green/turquoise circles) and \glspl{agn} (blue circles) that \gls{fermilat}
+    observed \cite{fermi4fgl, fermi4fgldr3}. Notice, that the \glspl{agn} shown here are but a subset
+    of all \glspl{agn} observed by the experiment---the non-blazar active galaxies. They were chosen
+    to show at least some other sources alongside the \glspl{snr} without obstructing the plot too much.}
+    \label{fig:LAT}
+\end{figure}
 
 In recent years, gamma-ray astronomy has become an important research field in astroparticle physics.
 The term gamma ray is generally denoted as photons with energies above \SI{100}{\kilo\eV}
 \cite{funk}. Due to this high-energy nature, gamma rays pose some of the most powerful cosmic messengers in
 the universe and since photons at such energies cannot be produced by thermal processes, their origin
 has to be described by higher order processes involving charged particles.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{graphics/agn.pdf}
-    \caption{Unified \gls{agn} model showing the different classifications for \glspl{agn}.
-    An \gls{agn} is classified by the existence of a relativistic jet, the viewing angle of the observer
-    or how bright it is \cite{agn_diagram}.}
-    \label{fig:agn}
-\end{figure}\glsreset{agn}
-
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=\textwidth]{graphics/agn.pdf}
+%     \caption{Unified \gls{agn} model showing the different classifications for \glspl{agn}.
+%     An \gls{agn} is classified by the existence of a relativistic jet, the viewing angle of the observer
+%     or how bright it is \cite{agn_diagram}.}
+%     \label{fig:agn}
+% \end{figure}\glsreset{agn}
+\glsreset{agn}\glsreset{snr}
 Some of the brightest sources of gamma rays in our galaxy are \glspl{snr} such as the Crab Nebular.
 The Crab Nebula, in particular, poses as a so-called standard candle with its constant flux of
 \gls{hegr}, allowing to test the performance of new experiments and telescopes. Other sources for
 gamma rays include \glspl{grb}, Pulsars and \glspl{agn}, the latter being one of the most common types
-of extragalactic gamma-ray sources. \glspl{agn} accrete dust and matter in an accretion disk around the
-central black hole. The matter gets accelerated by the gravitational force of the black hole and heats
-up. While the exact process is not yet fully understood, some accretion disks form a relativistic jet
-which, aside from other wavebands, also emits gamma rays via synchrotron
-and inverse-Compton scattering processes. \glspl{agn} themselves can be classified depending on the existence
-of a relativistic jet, the viewing angle of the observer or how bright they are. \autoref{fig:agn}
-shows the different classifications of \glspl{agn}.
+of extragalactic gamma-ray sources.
+% \glspl{agn} accrete dust and matter in an accretion disk around the
+% central black hole. The matter gets accelerated by the gravitational force of the black hole and heats
+% up. While the exact process is not yet fully understood, some accretion disks form a relativistic jet
+% which, aside from other wavebands, also emits gamma rays via synchrotron
+% and inverse-Compton scattering processes.
+\glspl{agn} themselves can be classified further depending on the existence
+of a relativistic jet, the viewing angle of the observer or how bright they are.
+% \autoref{fig:agn} shows the different classifications of \glspl{agn}.
 
 Gamma rays can be detected by a variety of experiments, either ground- or space-based. Space-based
 experiments like the \gls{fermilat} are usually more sensitive to lower energies, but their performance
@@ -73,21 +89,6 @@ experiments, however, are more sensitive to higher energies, although they have 
 of secondary particles in \glspl{eas} induced by the primary particle in Earth's atmosphere.
 The gamma-ray sky as observed by \gls{fermilat} over a span of
 \(\num{12}\) years is shown in \autoref{fig:LAT}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{build/fermi_catalog.pdf}
-    \caption{Mollweide projection of the \gls{fermilat} 4FGL-DR3 catalog data of gamma-ray sources. The sky map
-    shows the flux of gamma-ray sources in \(\si{\tera\eV\per\centi\meter\squared\per\second}\)
-    observed over a span of \(\num{12}\) years from the experiment's launch in 2008. Note the
-    concentration of \gls{he} gamma-ray sources around the galactic plane. Additionally,
-    the Crab Nebula (red circle, right hand side) -- being a standard candle gamma-ray astronomy -- is marked
-    along with \glspl{snr} (green circles) and \glspl{agn} (blue circles) that \gls{fermilat}
-    observed \cite{fermi4fgl, fermi4fgldr3}. Notice, that the \glspl{agn} shown here are but a subset
-    of all \glspl{agn} observed by the experiment -- the non-blazar active galaxies. They were chosen
-    to show at least some other sources alongside the \glspl{snr} without obstructing the plot too much.}
-    \label{fig:LAT}
-\end{figure}
 
 For the past two decades, ground-based \gls{iact} experiments like the \gls{magic} telescopes, the
 \gls{veritas} and the \gls{hess} have been monitoring these \gls{vhegr} to gain an understanding of
