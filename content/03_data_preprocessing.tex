@@ -1,20 +1,20 @@
 \chapter{Data processing with \ctapipe{}}
 \label{ch:data-processing}
 
-The analysis in this work was done with the open-access low-level data processing software for \cta{},
+The analysis in this work was done with the open-source low-level data processing software for \cta{},
 \ctapipe{} \cite{ctapipe}. The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 henceforth shortened to version \texttt{0.15.1}. The goal of \ctapipe{} is to provide a complete analysis
 framework ranging from data calibration and image extraction to the reconstruction of events and the
 analysis of their properties. In this chapter, I will first describe how the data
-were simulated in \autoref{sec:data-simulation} and then, in \autoref{sec:data-levels}, explain \ctapipe{}
-with its different data levels and the various analysis steps. In \autoref{sec:pipeline} I will
+were simulated in \autoref{sec:data-simulation} and then, in \autoref{sec:data-levels}, explain the different
+data levels and \ctapipe{}'s various analysis steps. In \autoref{sec:pipeline} I will
 explain the full pipeline created for this work.
 
 
 \section{Data simulation}
 \label{sec:data-simulation}
 
-In its current under-development state, \ctapipe{} is used and tested with simulated data, as the software
+In its current in-development state, \ctapipe{} is used and tested with simulated data, as the software
 can only be sufficiently tested when the output is compared to truth data. This data is created with the help of
 \gls{mc} simulations. The software used for these simulations is called \gls{corsika} \cite{corsika} and
 allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
@@ -54,7 +54,7 @@ selected settings, allowing for more statistics and a better comparison of the c
 \label{sec:data-levels}
 
 There are several data levels in \ctapipe{}, spanning from the raw data \rzero{} to the reconstructed events
-\dlt{}, with the raw data levels being denoted by a \textbf{R} and the calibrated data levels by a \textbf{D}.
+\dlt{}, with the raw data levels being denoted by an \textbf{R} and the calibrated data levels by a \textbf{D}.
 \autoref{fig:ctapipe} shows a simplified overview of the data levels and the analysis steps.
 The raw data level \rzero{} is the data that comes directly from the photodetectors. The time-resolved
 signal of the data is calibrated from \rzero{} to \rone{}. Then the data volume gets reduced
@@ -69,7 +69,7 @@ of the events (\dloa{} \rightarrow \dlob{}). The parametrized events can then be
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{graphics/ctapipe.png}
-    \caption{Data levels in \ctapipe{}. Raw data levels are denoted by a \textbf{R} and calibrated
+    \caption{Data levels in \ctapipe{}. Raw data levels are denoted by an \textbf{R} and calibrated
     data levels by a \textbf{D}. The raw data first gets calibrated (\rzero{} \rightarrow \rone{})
     and then reduced in volume by selecting waveforms (\rone{} \rightarrow \dlz{}). From there the
     images are extracted (\dlz{} \rightarrow \dloa{}) and cleaned with a cleaning algorithm. This
@@ -105,8 +105,8 @@ processing pipeline of this work is shown in \autoref{fig:data-processing}.
     \centering
     \includegraphics[width=\textwidth]{graphics/data_pipeline.pdf}
     \caption{Schematic overview of the data pipeline used for this work. Single runs of the simulation
-    data are processed with \ctapipe\texttt{-process} and then merged via \ctapipe\texttt{-merge} (green shaded area).
-    The merged data is then processed on the array- or telescope data level resulting in scores for metrics
+    data are processed with \ctapipe\texttt{-process} and then merged via the tool \ctapipe\texttt{-merge} (green shaded area).
+    The merged data is then processed on the array or telescope data level resulting in scores for metrics
     as well as \dlo{} \texttt{images} and plots for the angular resolution and the effective area (blue shaded area).}
     \label{fig:data-processing}
 \end{figure}

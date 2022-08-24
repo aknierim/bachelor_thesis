@@ -14,44 +14,46 @@ in \autoref{sec:hyperparameters}.
 Version \texttt{0.15.1} of \ctapipe{} features four cleaning algorithms, two of which are time-based.
 The \tailcuts{} algorithm is the most basic algorithm of the four and serves as a good
 starting point for the development of new cleaning algorithms. Its first step is to select all
-pixels that are above a certain threshold, the \texttt{picture} or \texttt{core\_threshold}. These
+pixels that are above a certain threshold, the core threshold \(Q_c\). These
 pixels are the core part of the signal and are the brightest. The \tailcuts{} algorithm
-then selects all pixels that are above the so-called \texttt{boundary\_threshold} and are neighboring
+then selects all pixels that are above the boundary threshold \(Q_b\) and are neighboring
 the core pixels. A visualization of the algorithm is shown in \autoref{fig:tailcuts_clean} for the
 default values of the algorithm.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{0.33\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tail_1.pdf}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.33\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tail_2.pdf}
-    \end{subfigure}
+    % \begin{subfigure}[t]{0.33\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tail_1.pdf}
+    % \end{subfigure}
+    % \begin{subfigure}[t]{0.33\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tail_2.pdf}
+    % \end{subfigure}
+    \includegraphics[height=4cm]{plots/cleaner_steps/tailcuts.pdf}
     \caption{Visualization of the \tailcuts{} algorithm for a \gls{mst} NectarCam image. First, all
-    pixels above the \texttt{core\_threshold} are selected. Then, all pixels neighboring the core
-    pixels that are above the \texttt{boundary\_threshold} are selected.}
+    pixels above the core threshold are selected. Then, all pixels neighboring the core
+    pixels that are above the boundary threshold are selected.}
     \label{fig:tailcuts_clean}
 \end{figure}
 
-The \mars{} algorithm is very much based on the \tailcuts{}
+The \mars{} algorithm \cite{mars} is very much based on the \tailcuts{}
 algorithm and features an additional step, in that it also selects all neighbors of a neighbor of a
-core pixel, if they are above the \texttt{boundary\_threshold}. The three steps for the \mars{} algorithm
+core pixel, if they are above the boundary threshold. The three steps for the \mars{} algorithm
 are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_1.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_2.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_3.pdf}
-    \end{subfigure}
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_1.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_2.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/mars_3.pdf}
+    % \end{subfigure}
+    \includegraphics[height=4cm]{plots/cleaner_steps/mars.pdf}
     \caption{Visualization of the \mars{} algorithm for a \gls{mst} NectarCam image. The first two
     steps are identical to the \tailcuts{} algorithm. The third step selects all neighbors of a neighbor of a
     core pixel, if they are above the \texttt{boundary\_threshold}.}
@@ -60,29 +62,30 @@ are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm
 
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_1.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_2.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_3.pdf}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_4.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_5.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_6.pdf}
-    \end{subfigure}
-    \caption{Visualization of the \fact{} algorithm for a \gls{mst} NectarCam image. The first
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_1.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_2.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_3.pdf}
+    % \end{subfigure}
+    % \begin{subfigure}[b]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_4.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[b]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_5.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[b]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_6.pdf}
+    % \end{subfigure}
+    \includegraphics[height=8cm]{plots/cleaner_steps/fact.pdf}
+    \caption{Visualization of the \fact{} algorithm \cite{fact} for a \gls{mst} NectarCam image. The first
     step selects all pixels above the \texttt{core\_threshold}. The second step removes all pixels that have less than
     \(N\) neighbors. The third step selects all pixels neighboring the remaining pixels that are above the
     \texttt{boundary\_threshold}. The fourth step removes all pixels that have less than \(N\) neighbors,
@@ -101,7 +104,7 @@ with less than \(N\) neighbors are removed. The last step once again removes pix
 \autoref{fig:fact_cleaning} for the default values of the algorithm.
 
 The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration.
-It first selects all pixels that are above the \texttt{core\_threshold}. Then, all pixels that have
+It first selects all pixels that are above the \texttt{core\_threshold} \cite{tcc}. Then, all pixels that have
 less than \(N\) neighbors are removed. The \texttt{min\_number\_neighbors} parameter is set to \(\num{1}\) by default.
 After that, all core pixels whose arrival times are within a given timeframe of the average arrival time.
 This \texttt{time\_limit\_core} parameter is set to \(\SI{4.5}{\nano\second}\) by default. As a fourth step,
@@ -112,23 +115,24 @@ parameter is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of 
 
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_1.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_2.pdf}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_3.pdf}
-    \end{subfigure}
-    \begin{subfigure}[]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_4.pdf}
-    \end{subfigure}
-    \begin{subfigure}[]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_5.pdf}
-    \end{subfigure}
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_1.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_2.pdf}
+    % \end{subfigure}
+    % \hfill
+    % \begin{subfigure}[t]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_3.pdf}
+    % \end{subfigure}
+    % \begin{subfigure}[]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_4.pdf}
+    % \end{subfigure}
+    % \begin{subfigure}[]{0.32\textwidth}
+    %     \includegraphics[width=\textwidth]{plots/cleaner_steps/tcc_5.pdf}
+    % \end{subfigure}
+    \includegraphics[height=8cm]{plots/cleaner_steps/tcc.pdf}
     \caption{Visualization of the \tcc{} algorithm for a \gls{mst} NectarCam image. The first step
     selects all pixels above the \texttt{core\_threshold}. The second step removes all pixels that have less than
     \(N\) neighbors. The third step selects all pixels whose arrival times are within a given timeframe of the
@@ -231,13 +235,14 @@ In this work, I chose to first look at the efficiency
     \eff =  \frac{n_{\mathrm{reco}}}{n_{\mathrm{total}}},
 \end{equation}
 where \(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
-the total number of events in the dataset. By taking the mean of the efficiency, one can sort the
-datasets by setting upper and lower bounds for the efficiency. The intervals lengths were chosen as
-\(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total of \(\num{20}\) intervals.
+the total number of events in the dataset. By taking the mean of the efficiency over all energy bins
+of the whole dataset, one can sort the datasets by setting upper and lower bounds for the efficiency.
+The intervals lengths were chosen as \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total
+of \(\num{20}\) intervals.
 
 For each interval, the mean angular resolution is calculated. This is achieved by determining the
 \(\SI{68}{\percent}\) containment of the angular distance distribution, \ie the angular distance
-between the reconstructed angle and the true angle of the shower. This angular distance, or separation, is calculated
+between the reconstructed origin and the true origin of the shower. This angular distance, or separation, is calculated
 with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}. The dataset with the lowest
 mean angular resolution is the best performing for each interval. Not all events will ever be properly reconstructed
 for any parameter combination, so there won't be a mean angular resolution for all intervals, but only
