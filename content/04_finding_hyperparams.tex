@@ -38,7 +38,7 @@ default values of the algorithm.
 The \mars{} algorithm \cite{mars} is very much based on the \tailcuts{}
 algorithm and features an additional step, in that it also selects all neighbors of a neighbor of a
 core pixel, if they are above the boundary threshold. The three steps for the \mars{} algorithm
-are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm.
+are shown in \autoref{fig:mars_cleaning} for its default values.
 
 \begin{figure}
     \centering
@@ -56,7 +56,7 @@ are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm
     \includegraphics[height=4cm]{plots/cleaner_steps/mars.pdf}
     \caption{Visualization of the \mars{} algorithm for a \gls{mst} NectarCam image. The first two
     steps are identical to the \tailcuts{} algorithm. The third step selects all neighbors of a neighbor of a
-    core pixel, if they are above the \texttt{boundary\_threshold}.}
+    core pixel if they are above the boundary threshold \(Q_b\).}
     \label{fig:mars_cleaning}
 \end{figure}
 
@@ -85,32 +85,34 @@ are shown in \autoref{fig:mars_cleaning} for the default values of the algorithm
     %     \includegraphics[width=\textwidth]{plots/cleaner_steps/fact_6.pdf}
     % \end{subfigure}
     \includegraphics[height=8cm]{plots/cleaner_steps/fact.pdf}
-    \caption{Visualization of the \fact{} algorithm \cite{fact} for a \gls{mst} NectarCam image. The first
-    step selects all pixels above the \texttt{core\_threshold}. The second step removes all pixels that have less than
+    \caption{Visualization of the \fact{} algorithm for a \gls{mst} NectarCam image. The first
+    step selects all pixels above the core threshold \(Q_c\). The second step removes all pixels that have less than
     \(N\) neighbors. The third step selects all pixels neighboring the remaining pixels that are above the
-    \texttt{boundary\_threshold}. The fourth step removes all pixels that have less than \(N\) neighbors,
-    that have arrived within a given timeframe. The fifth and sixth steps are analogous to steps two and four.}
+    boundary threshold \(Q_b\). The fourth step removes all pixels that have less than \(N\) neighbors,
+    that have arrived within a given timeframe. The fifth and sixth steps are analogous to steps two and four respectively.
+    Notice, that---per default in \ctapipe---the values for \(Q_c\) and \(Q_b\) are lower than for the other cleaners
+    (see \autoref{tab:hyperparameters}), hence more individual pixels are selected in the first step.}
     \label{fig:fact_cleaning}
 \end{figure}
 
-The \fact{} algorithm is a time-based cleaning algorithm that first selects all pixels that are above
-the \texttt{core\_threshold}. Then, all pixels that have less than \(N\) neighbors are removed. The
-\texttt{min\_number\_neighbors} parameter is set to \(\num{2}\) by default. For the third step, all pixels neighboring
-the remaining pixels that are above the \texttt{boundary\_threshold} are selected. After that, all
+The \fact{} algorithm \cite{temme_thesis, temme_diploma} is a time-based cleaning algorithm that first selects all pixels that are above
+\(Q_c\). Then, all pixels that have less than \(N\) neighbors are removed. Per default, the algorithm
+looks for a minimum of at least \(\num{2}\) neighbors. For the third step, all pixels neighboring
+the remaining pixels that are above \(Q_b\) are selected. After that, all
 pixels that have less than \(N\) neighbors and that have arrived within a given timeframe are removed.
-The \texttt{time\_limit} parameter is set to \(\SI{5}{\nano\second}\) by default. Again, all pixels
+This timeframe is set to \(\SI{5}{\nano\second}\) by default. Again, all pixels
 with less than \(N\) neighbors are removed. The last step once again removes pixels with less than
 \(N\) neighbors, arriving within the given time limit. The visualization of the algorithm is shown in
 \autoref{fig:fact_cleaning} for the default values of the algorithm.
 
-The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration.
-It first selects all pixels that are above the \texttt{core\_threshold} \cite{tcc}. Then, all pixels that have
-less than \(N\) neighbors are removed. The \texttt{min\_number\_neighbors} parameter is set to \(\num{1}\) by default.
-After that, all core pixels whose arrival times are within a given timeframe of the average arrival time.
-This \texttt{time\_limit\_core} parameter is set to \(\SI{4.5}{\nano\second}\) by default. As a fourth step,
-the \tcc{} algorithm finds all pixels above the \texttt{boundary\_threshold}. Then, all pixels with
-less than \(N\) neighbors arriving within a given timeframe are removed. This \texttt{time\_limit\_boundary}
-parameter is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of the algorithm is shown in
+The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration \cite{tcc}.
+It first selects all pixels that are above \(Q_c\). Then, all pixels that have
+less than \(N\) neighbors are removed. A minimum of \(\num{1}\) neighboring pixel is needed in the default
+settings. After that, all core pixels whose arrival times are within a given timeframe of the average arrival time.
+This core time limit \(t_c\) is set to \(\SI{4.5}{\nano\second}\) by default. As a fourth step,
+the \tcc{} algorithm finds all pixels above \(Q_b\). Then, all pixels with
+less than \(N\) neighbors arriving within a given timeframe are removed. This boundary time limit
+is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of the algorithm is shown in
 \autoref{fig:tcc_cleaning} for the default values of the algorithm.
 
 \begin{figure}
@@ -134,14 +136,15 @@ parameter is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of 
     % \end{subfigure}
     \includegraphics[height=8cm]{plots/cleaner_steps/tcc.pdf}
     \caption{Visualization of the \tcc{} algorithm for a \gls{mst} NectarCam image. The first step
-    selects all pixels above the \texttt{core\_threshold}. The second step removes all pixels that have less than
+    selects all pixels above the core threshold \(Q_c\). The second step removes all pixels that have less than
     \(N\) neighbors. The third step selects all pixels whose arrival times are within a given timeframe of the
-    \texttt{time\_limit\_core} parameter. The fourth step selects all pixels above the \texttt{boundary\_threshold}.
+    core time limit \(t_c\). The fourth step selects all pixels above the boundary threshold \(Q_b\).
     The fifth step removes all pixels with less than \(N\) neighbors, that have arrived within a given timeframe
-    of the \texttt{time\_limit\_boundary} parameter.}
+    of the boundary time limit \(t_b\).}
     \label{fig:tcc_cleaning}
 \end{figure}
 \vspace{-0.5cm}
+
 \section{Hyperparameters}
 \label{sec:hyperparameters}
 

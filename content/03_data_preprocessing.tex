@@ -2,7 +2,7 @@
 \label{ch:data-processing}
 
 The analysis in this work was done with the open-source low-level data processing software for \cta{},
-\ctapipe{} \cite{ctapipe}, specifically version \texttt{0.15.1}.
+\ctapipe{} \cite{ctapipe}, more specifically, version \texttt{0.15.1}.
 % The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 % henceforth shortened to version \texttt{0.15.1}.
 The goal of \ctapipe{} is to provide a complete analysis
@@ -20,16 +20,20 @@ In its current in-development state, \ctapipe{} is used and tested with simulate
 can only be sufficiently tested when the output is compared to truth data. This data is created with the help of
 \gls{mc} simulations. The software used for these simulations is called \gls{corsika} \cite{corsika} and
 allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
-a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}. The resulting so-called
+a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}, that allows simulating the optics
+of various mirror and camera geometries via ray-tracing of incoming photons. This also includes
+simulations of imperfections or misalignments of the mirrors of each telescope. The resulting so-called
 \texttt{simtel} data is used in \ctapipe{} and can be processed as described in \autoref{sec:data-levels}
 and \autoref{fig:ctapipe}. Some of the data properties are listed in \autoref{tab:simtel}.
 
-This data is the basis for the analysis in this work. A total of
-\(\num{20}\) \texttt{simtel} runs of diffuse gamma data were used for the initial analysis, \ie the
-testing of different parameters as described in \autoref{sec:hyperparameters}. The individual runs
-were processed into \dlo{} files and merged before being processed for each cleaning setting.
+This data is the basis for the analysis in this work. A total of \(\num{27353}\) telescope events
+(\(\num{12668}\) array events) throughout \(\num{20}\) \texttt{simtel} runs of diffuse gamma data
+were used for the initial analysis, \ie the testing of different parameters as described in
+\autoref{sec:hyperparameters}. After processing the individual runs and merging them into one large
+file, this file is being processed for the aforementioned parameters.
 
-Once promising settings are found, a larger dataset containing \(\num{987}\) runs is processed with these
+Once promising parameters are found, a larger dataset, containing \(\num{1331328}\) telescope events
+(\(\num{621848}\) array events) throughout \(987\) runs, is processed with these
 selected settings, allowing for more statistics and a better comparison of the cleaning algorithms.
 
 \begin{table}
@@ -60,14 +64,8 @@ There are several data levels in \ctapipe{}, spanning from the raw data \rzero{}
 \autoref{fig:ctapipe} shows a simplified overview of the data levels and the analysis steps.
 The raw data level \rzero{} is the data that comes directly from the photodetectors. The time-resolved
 signal of the data is calibrated from \rzero{} to \rone{}. Then the data volume gets reduced
-(\rone{} \rightarrow \dlz{}) by a selection of waveforms.
-
-The \dlz{} data level is the first level being stored and also the first level to be processed from
-the simulation datasets used in this work. From \dlz{} to \dloa{}, the images of the data are extracted
-from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
-of the events (\dloa{} \rightarrow \dlob{}). The parametrized events can then be reconstructed
-(\dlob{} \rightarrow \dlt{}) and stored on the \dlt{} data level.
-
+(\rone{} \rightarrow \dlz{}) by a selection of waveforms. This is achieved by detecting the waveform
+peak and then integrating it.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{graphics/ctapipe.png}
@@ -79,6 +77,23 @@ of the events (\dloa{} \rightarrow \dlob{}). The parametrized events can then be
     can then be reconstructed (\dlob{} \rightarrow \dlt{}) \cite{noethe_thesis, hackfeld}.}
     \label{fig:ctapipe}
 \end{figure}
+
+The \dlz{} data level is the first level being stored and also the first level to be processed from
+the simulation datasets used in this work. From \dlz{} to \dloa{}, the images of the data are extracted
+from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
+of the events (\dloa{} \rightarrow \dlob{}). The cleaning is a necessary step, especially for
+low-energy events, where the actual signal is harder to distinguish from the \gls{nsb}. The cleaning algorithms
+of \ctapipe{} are introduced in \autoref{sec:cleaning-algorithms} and can be roughly categorized into
+time-based and non-time-based algorithms.
+
+While the latter are selecting pixels based on charge thresholds which
+subsequently might lead to the need for a higher threshold, the former also takes the arrival times of
+pixels in the camera frame into account, allowing for a lower charge threshold.
+
+The advantage of a lower charge threshold allows the selection of more of the signal at lower energies.
+Once the events are cleaned and parametrized, they can then be reconstructed (\dlob{} \rightarrow \dlt{})
+and stored on the \dlt{} data level.
+
 
 \section{This work's data processing pipeline}
 \label{sec:pipeline}
@@ -94,7 +109,7 @@ that are used in the analysis. This is especially helpful if one wants to only a
 data, like in this work.
 
 For the re-run of the combined dataset, the cleaning settings are used\footnote{As opposed to the preprocessing step},
-however, as this step is the heart of this work's search for the optimal hyperparameters.
+however, since this step is the heart of this work's search for the optimal hyperparameters.
 The configuration files used are shown in \hyperref[ap:config_files]{appendix \ref{ap:config_files}}.
 
 Each resulting dataset can then be processed on an array or telescope data level, resulting in
