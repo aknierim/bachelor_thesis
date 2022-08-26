@@ -188,47 +188,70 @@ well as a \texttt{time\_limit\_boundary} for \tcc{}.
                     & \texttt{min\_number\_picture\_neighbors}  & \qquad\(\num{1}\) \\
   \end{tabular}}
 \end{table}
+
 The full configuration files for the default settings of each cleaning algorithm are listed in
 \hyperref[ap:config_files]{appendix \ref{ap:config_files}}. There, the configuration files for the allowed telescopes
 as described in \autoref{sec:pipeline} are shown, too.
 
-To find the optimal hyperparameters, I used the \texttt{ParameterGrid} class from the
-\texttt{sklearn.model\_selection} module in \sklearn{}~\cite{scikit-learn}. The \texttt{ParameterGrid} class is useful to create a
-dictionary of all possible combinations of a list of given parameters. These combinations are then
-written to a config file and processed with \ctapipe{}. The output is hundreds of datasets equal to
-the number of combinations of the given parameters, each with a different setting for the cleaning
-performed on the data. The listing below shows the parameters fed into the \texttt{ParameterGrid}:
-% \enlargethispage{1\baselineskip}
-\begin{mdframed}[backgroundcolor=white!20!black,leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
-    \adjustbox{varwidth=\linewidth,scale=0.7}{%
-    \begin{pythonlst}
-        common_params = {
-            "picture_quantiles": (0.995, 0.999, 0.9992, 0.9995, 0.9997, 0.9999),
-            "boundary_threshold_ratio": (1/4, 1/3, 1/2, 2/3, 3/4),
-            "min_number_picture_neighbors": (1, 2, 3, 4, 5)
-        }
-        fact_params = {
-            "time_limit": (1.0, 2.0, 4.0, 5.0, 6.0, 10.0, 12.0)
-        }
-        tcc_params = {
-            "time_limit_core": (9.0, 12.0, 15.0, 18.0, 20.0),
-            "time_limit_boundary" = (4.5, 9.0, 12.0, 15.0)
-        }
-    \end{pythonlst}}
-\end{mdframed}
+To find the optimal hyperparameters I utilized \sklearn{}~\cite{scikit-learn} for a grid search. This
+allows one to manually set subsets of hyperparameters and search for the best combination of these.
+\autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix \ref{ap:hyperparameters}} shows
+the subsets of hyperparameters used in this work.
 
-The name \texttt{common\_params} is used here to refer to the dictionary of parameters that are common
-to all cleaning algorithms, while \texttt{fact\_params} and \texttt{tcc\_params} denote the additional
-hyperparameters exclusive to \fact{} and \tcc{}. The \texttt{picture\_quantiles} parameter determines
-how many percent of all pixels will be below the \texttt{picture\_threshold}. This is especially useful,
-as this results in a more precise value for the threshold\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
-The \texttt{boundary\_threshold\_ratio} sets
-the ratio of the \texttt{boundary\_threshold} \wrt the \texttt{picture\_threshold}. The other parameters,
-\texttt{min\_number\_picture\_neighbors} and the time limits are the same as explained before and are,
-therefore, absolute values.
+I used noise quantiles to determine what percentage of all pixels would fall under a certain threshold. This threshold would
+then serve as the core threshold \(Q_b\). The quantiles are calculated directly from the images by
+discriminating the noise pixels from the image with the help of the true image. This approach has the
+advantage, that the resulting thresholds are more precisely optimized\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
+Since the boundary thresholds are calculated as a quotient of \(Q_c\), this benefits here as well.
+The quantiles used in this work are shown in \autoref{fig:quantiles}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{build/quantiles_plot.pdf}
+    \caption{Picture noise quantiles for a \gls{mst} NectarCam dataset. The quantiles are calculated
+    as the percentage of noise pixels in the image. The resulting threshold can then be used as a
+    candidate for the core threshold \(Q_c\) in a grid search.}
+    % This method is more precise than selecting
+    % the thresholds by hand, as they are calculated directly from the image.}
+    \label{fig:quantiles}
+    \vspace{-0.5cm}
+\end{figure}
+% To find the optimal hyperparameters, I used the \texttt{ParameterGrid} class from the
+% \texttt{sklearn.model\_selection} module in \sklearn{}~\cite{scikit-learn}. The \texttt{ParameterGrid} class is useful to create a
+% dictionary of all possible combinations of a list of given parameters. These combinations are then
+% written to a config file and processed with \ctapipe{}. The output is hundreds of datasets equal to
+% the number of combinations of the given parameters, each with a different setting for the cleaning
+% performed on the data. The listing below shows the parameters fed into the \texttt{ParameterGrid}:
+% % \enlargethispage{1\baselineskip}
+% \begin{mdframed}[backgroundcolor=white!20!black,leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
+%     \adjustbox{varwidth=\linewidth,scale=0.7}{%
+%     \begin{pythonlst}
+%         common_params = {
+%             "picture_quantiles": (0.995, 0.999, 0.9992, 0.9995, 0.9997, 0.9999),
+%             "boundary_threshold_ratio": (1/4, 1/3, 1/2, 2/3, 3/4),
+%             "min_number_picture_neighbors": (1, 2, 3, 4, 5)
+%         }
+%         fact_params = {
+%             "time_limit": (1.0, 2.0, 4.0, 5.0, 6.0, 10.0, 12.0)
+%         }
+%         tcc_params = {
+%             "time_limit_core": (9.0, 12.0, 15.0, 18.0, 20.0),
+%             "time_limit_boundary" = (4.5, 9.0, 12.0, 15.0)
+%         }
+%     \end{pythonlst}}
+% \end{mdframed}
 
-The parameters result in \(\num{150}\) combinations for \tailcuts{} and \mars{} each, \(\num{1050}\) combinations for
-\fact{} and \(\num{3000}\) combinations for \tcc{}.
+% The name \texttt{common\_params} is used here to refer to the dictionary of parameters that are common
+% to all cleaning algorithms, while \texttt{fact\_params} and \texttt{tcc\_params} denote the additional
+% hyperparameters exclusive to \fact{} and \tcc{}. The \texttt{picture\_quantiles} parameter determines
+% how many percent of all pixels will be below the \texttt{picture\_threshold}. This is especially useful,
+% as this results in a more precise value for the threshold\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
+% The \texttt{boundary\_threshold\_ratio} sets
+% the ratio of the \texttt{boundary\_threshold} \wrt the \texttt{picture\_threshold}. The other parameters,
+% \texttt{min\_number\_picture\_neighbors} and the time limits are the same as explained before and are,
+% therefore, absolute values.
+
+The grid search results in \(\num{150}\) parameter combinations for \tailcuts{} and \mars{} each,
+as well as another \(\num{1050}\) combinations for \fact{} and further \(\num{3000}\) combinations for \tcc{}.
 Since it's impossible to find the optimal settings just by looking at the
 cleaned images of the datasets, a combined metric is necessary to evaluate each cleaner's performance
 for the parameter combinations.
@@ -238,18 +261,21 @@ In this work, I chose to first look at the efficiency
     \eff =  \frac{n_{\mathrm{reco}}}{n_{\mathrm{total}}},
 \end{equation}
 where \(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
-the total number of events in the dataset. By taking the mean of the efficiency over all energy bins
-of the whole dataset, one can sort the datasets by setting upper and lower bounds for the efficiency.
-The intervals lengths were chosen as \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total
+the total number of events in the dataset. By first binning the efficiency per energy and then
+taking the mean, one can sort the datasets by setting upper and lower bounds for the efficiency.
+The intervals' lengths were chosen as \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total
 of \(\num{20}\) intervals.
 
-For each interval, the mean angular resolution is calculated. This is achieved by determining the
+For each interval, the mean angular resolution is calculated by determining the
 \(\SI{68}{\percent}\) containment of the angular distance distribution, \ie the angular distance
-between the reconstructed origin and the true origin of the shower. This angular distance, or separation, is calculated
-with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}. The dataset with the lowest
-mean angular resolution is the best performing for each interval. Not all events will ever be properly reconstructed
-for any parameter combination, so there won't be a mean angular resolution for all intervals, but only
-a subset. Also, the mean angular resolution may be higher when more events were reconstructed.
+between the reconstructed origin and the true origin of the shower.
+% This angular distance, or separation, is calculated with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}.
+The dataset with the lowest mean angular resolution is the best performing for each interval.
+If more low-energy events are reconstructed, the efficiency will be lower, but the angular resolution
+may be higher, as those events are more likely to include pixels that are part of the background.
+% Not all events will ever be properly reconstructed for any parameter combination, so there won't be
+% a mean angular resolution for all intervals, but only a subset.
+% Also, the mean angular resolution may be higher when more events were reconstructed.
 As a result, a trade-off between efficiency and angular resolution is necessary.
 
 For the performance analysis of the algorithms, I calculated metrics such as, but not limited to, the \gls{tpr} or recall,
@@ -264,7 +290,7 @@ the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used m
     \begin{subtable}{0.48\textwidth}
         \centering
         \rowcolors{0}{white!92!black}{}
-        \adjustbox{varwidth=\linewidth,scale=0.9}{%
+        \adjustbox{varwidth=\linewidth,scale=0.85}{%
         \begin{tabular}{l c}
             \hiderowcolors
             {Metric} & {Calculation} \\

@@ -27,6 +27,14 @@ parser.add_argument('--tel_type',
                     help="Telescope type. Default: '%(default)s'."
 )
 
+parser.add_argument('--mode',
+                    default='angres',
+                    nargs='?',
+                    type=str,
+                    choices=['angres', 'quantiles'],
+                    help="Telescope type. Default: '%(default)s'."
+)
+
 
 def downloader(
     username: str,
@@ -41,20 +49,20 @@ def downloader(
     if cleaner == "tail":
         cleaner = "tailcuts"
 
-    # dl1_base = Path(f"/cephfs/users/aknierim/Prod5/{cleaner}/{tel_type}/")
+    # dl1_base = Path(f"/cephfs/users/{username}/Prod5/{cleaner}/{tel_type}/")
     # dl1_file = list(dl1_base.glob(f"*_{file_id}.h5"))[0]
     # print(dl1_file)
 
     if tel_type == "mst":
         dl1_out = Path("./plots/data/mst")
-        processed_base = Path(f"/cephfs/users/aknierim/Prod5/processed_data/{cleaner}/gamma-diffuse/MST_MST_NectarCam")
+        processed_base = Path(f"/cephfs/users/{username}/Prod5/processed_data/{cleaner}/gamma-diffuse/MST_MST_NectarCam")
         processed_out = Path(f"./plots/data/processed/MST_MST_NectarCam")
         angres_file = f"ang_res_MST_MST_NectarCam_id_{file_id}.csv"
         theta_file = f"theta_MST_MST_NectarCam_id_{file_id}.csv"
 
     elif tel_type == "lst":
         dl1_out = Path("./plots/data/lst")
-        processed_base = Path(f"/cephfs/users/aknierim/Prod5/processed_data/{cleaner}/gamma-diffuse/LST_LST_LSTCam")
+        processed_base = Path(f"/cephfs/users/{username}/Prod5/processed_data/{cleaner}/gamma-diffuse/LST_LST_LSTCam")
         processed_out = Path(f"./plots/data/processed/LST_LST_LSTCam")
         angres_file = f"ang_res_LST_LST_LSTCam_id_{file_id}.csv"
         theta_file = f"theta_LST_LST_LSTCam_id_{file_id}.csv"
@@ -86,6 +94,26 @@ def downloader(
     ], check=True)
 
 
+def quantile_data_dl(
+    username: str,
+    hostname: str
+):
+    """
+    Download the quantile data.
+    """
+
+    quantiles_data = Path("gamma-diffuse_run_980_to_999_dark_cone10_merged.dl1.h5")
+    quantiles_out = Path("plots/data/quantiles")
+    quantiles_out.mkdir(exist_ok=True, parents=True)
+    quantiles_out = quantiles_out / quantiles_data
+
+    sp.run([
+        "scp",
+        f"{username}@{hostname}:/cephfs/users/{username}/Prod5/merged_data/{quantiles_data}",
+        f"{quantiles_out}"
+    ], check=True)
+
+
 
 if __name__ == "__main__":
 
@@ -105,9 +133,13 @@ if __name__ == "__main__":
     cleaners = ["tail", "mars", "fact", "tcc"]
     tel_type = args.tel_type
 
-    for cleaner in cleaners:
-        for index in combined_table[f"index_{cleaner}"].dropna().astype(int).values:
-            print(f"{cleaner}: {index}")
-            downloader(username, hostname, index, cleaner, tel_type)
+    if args.mode == "angres":
+        for cleaner in cleaners:
+            for index in combined_table[f"index_{cleaner}"].dropna().astype(int).values:
+                print(f"{cleaner}: {index}")
+                downloader(username, hostname, index, cleaner, tel_type)
+
+    elif args.mode == "quantiles":
+        quantile_data_dl(username, hostname)
 
 

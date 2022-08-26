@@ -5,3 +5,4 @@ thesis_scripts.egg-info/
 *.swp
 
 thesis.pdf
+*.h5

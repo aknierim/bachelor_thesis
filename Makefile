@@ -22,15 +22,16 @@ array_layout=build/array_layout.pgf
 fermi4fgl=build/fermi_catalog.pdf
 ar_eff=plots/ar_eff.pdf
 ar_vs_eff=build/ar_vs_eff.pdf
+quantiles=build/quantiles_plot.pdf
 
 # tables
 tab_writer=build/tables.txt
 
-PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) #$(cosmic_flux) $(crab_ssc)
+PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) ${quantiles} #$(cosmic_flux) $(crab_ssc)
 TABLES := $(tab_writer)
 
 
-all: $(PLOTS) $(TABLES) tikz build/thesis.pdf
+all: download_quantiles $(PLOTS) $(TABLES) tikz build/thesis.pdf
 
 
 TeXOptions = -lualatex \
@@ -76,6 +77,9 @@ $(ar_aeff): plots/angres_aeff.py matplotlibrc | build
 $(ar_vs_eff): plots/ar_vs_eff.py matplotlibrc | build
 	python plots/ar_vs_eff.py
 
+$(quantiles): plots/quantiles_plot.py matplotlibrc | build
+	python plots/quantiles_plot.py
+
 
 # tables
 $(tab_writer): thesis_scripts/table_writer.py | build
@@ -94,4 +98,7 @@ clean:
 
 
 download_data:
-	python scripts/data_download.py --username=${USER} --hostname=${HOSTNAME}
+	python thesis_scripts/data_download.py --username ${USER} --hostname ${HOSTNAME} --mode angres
+
+download_quantiles:
+	python thesis_scripts/data_download.py --username ${USER} --hostname ${HOSTNAME} --mode quantiles

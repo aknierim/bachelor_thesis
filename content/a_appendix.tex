@@ -74,6 +74,40 @@ and \glspl{lst}, the following two listings show the contents of the \texttt{pro
 \end{description}
 
 
+\section{Hyperparameters}
+\label{ap:hyperparameters}
+
+The following table shows the subsets of hyperparameters used in the grid search:
+
+\begin{table}
+    \centering
+    \caption{Hyperparameters for the cleaning algorithms used in the grid search. The picture quantiles
+    determine what percent of all pixels per event will be below the core threshold \(Q_c\).
+    The boundary threshold is calculated by multiplying the core threshold by the boundary threshold ratio.
+    The time limit \(t\) is the parameter for \fact, while the time limits \(t_c\) and \(t_b\) are
+    the time limits for \tcc.}
+    \label{tab:hyperparameters_gridsearch}
+    \rowcolors{0}{white!92!black}{}
+    \adjustbox{varwidth=\linewidth,scale=0.9}{%
+    \begin{tabular}{
+        S[table-format=1.4] S[table-format=1.2] S[table-format=1.0]
+        S[table-format=2.1] S[table-format=2.1] S[table-format=2.1]}
+        \hiderowcolors
+        {Picture Quantiles} & {Boundary Threshold Ratio} & {Minimum Neighbors} &
+        {\(t\;/\;\si{\nano\second}\)} & {\(t_c\;/\;\si{\nano\second}\)} & {\(t_b\;/\;\si{\nano\second}\)} \\
+        \showrowcolors
+        0.995  & 0.25 & 1 &  1.0 &  9.0 &  4.5 \\
+        0.999  & 0.33 & 2 &  2.0 & 12.0 &  9.0 \\
+        0.9992 & 0.5  & 3 &  4.0 & 15.0 & 12.0 \\
+        0.9995 & 0.66 & 4 &  5.0 & 18.0 & 15.0 \\
+        0.9997 & 0.75 & 5 &  6.0 & 20.0 & \\
+        0.9999 &      &   & 10.0 &      & \\
+               &      &   & 12.0 &      & \\
+    \end{tabular}}
+\end{table}
+
+
+
 \section{Software used}
 
 This work was written and built with \LaTeX{} and Lua\TeX{} from \TeX Live 2021 on both Windows 10 and Ubuntu 20.04.

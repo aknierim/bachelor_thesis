@@ -109,7 +109,15 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 
 \section{Metrics of the cleaning algorithms}
 \label{sec:metrics}
+\glsreset{tp}\glsreset{fp}\glsreset{fn}\glsreset{tn}
+Concerning the metrics, I first analyzed the parameter combinations of each cleaning algorithm. First,
+the number of the \gls{tp}, \gls{fp}, \gls{fn} and \gls{tn} values is calculated per event. Then,
+those values are summed up for each cleaning algorithm and the metrics are calculated as shown in
+\autoref{tab:metrics}.
 
+The metrics for each parameter combination are first compared for each cleaning algorithm respectively,
+to determine the best setting within a set of parameter combinations. The results are then plotted in
+\todo{create plots}\Autoref{fig:metrics_tail, fig:metrics_mars, fig:metrics_fact, fig:metrics_tcc}.
 
 
 
