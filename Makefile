@@ -31,7 +31,7 @@ PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) ${quantiles} #$(co
 TABLES := $(tab_writer)
 
 
-all: download_quantiles $(PLOTS) $(TABLES) tikz build/thesis.pdf
+all: $(PLOTS) $(TABLES) tikz build/thesis.pdf
 
 
 TeXOptions = -lualatex \
@@ -98,7 +98,7 @@ clean:
 
 
 download_data:
-	python thesis_scripts/data_download.py --username ${USER} --hostname ${HOSTNAME} --mode angres
+	python thesis_scripts/data_download.py --username ${USER} --hostname ${HOSTNAME} --mode $(MODE)
 
 download_quantiles:
 	python thesis_scripts/data_download.py --username ${USER} --hostname ${HOSTNAME} --mode quantiles

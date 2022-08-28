@@ -1,0 +1,51 @@
+CameraCalibrator:
+  image_extractor_type: NeighborPeakWindowSum
+DataWriter:
+  Contact:
+    email: anno.knierim@tu-dortmund.de
+    name: Anno Knierim
+    organization: TU Dortmund university
+  transform_image: true
+  transform_peak_time: true
+  write_images: true
+  write_parameters: true
+  write_raw_waveforms: false
+  write_showers: true
+ImageProcessor:
+  FACTImageCleaner:
+    boundary_threshold_pe:
+    - - type
+      - MST*NectarCam
+      - 1.05
+    keep_isolated_pixels: false
+    min_picture_neighbors: 5
+    picture_threshold_pe:
+    - - type
+      - MST*NectarCam
+      - 4.2
+    time_limit_ns: 2.0
+  ImageQualityQuery:
+    quality_criteria:
+    - - enough_pixels
+      - np.count_nonzero(image) > 2
+    - - enough_charge
+      - image.sum() > 50
+  image_cleaner_type: FACTImageCleaner
+ProcessorTool:
+  progress_bar: true
+ShowerProcessor:
+  HillasReconstructor:
+    StereoQualityQuery:
+      quality_criteria:
+      - - enough intensity
+        - parameters.hillas.intensity > 50
+      - - Positive width
+        - parameters.hillas.width.value > 0
+      - - enough pixels
+        - parameters.morphology.num_pixels > 3
+      - - not clipped
+        - parameters.leakage.intensity_width_2 < 0.5
+  reconstructor_type: HillasReconstructor
+SimTelEventSource:
+  focal_length_choice: effective
+  skip_calibration_events: true
