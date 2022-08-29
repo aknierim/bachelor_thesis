@@ -69,7 +69,7 @@ is, that optimizing the telescopes by type would lead to better results for the 
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r r r r r r}
         \hiderowcolors
-        & & \multicolumn{4}{c}{Mean Angular Resolution / \si{\degree}} \\
+        & & \multicolumn{4}{c}{Mean Angular Resolution \(\Theta_{\SI{68}{\percent}} \;/\; \si{\degree}\)} \\
         {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {\texttt{tailcuts}} & {\texttt{mars}} & {\texttt{fact}} & {\texttt{tcc}} \\
         \addlinespace[0.5em]
         \showrowcolors
@@ -93,7 +93,9 @@ the minimum and maximum intervals \wrt the efficiency, where all cleaners have v
         \centering
         \includegraphics[width=\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.45_0.50.pdf}
     \end{subfigure}
-    \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. }
+    \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. Notice
+    the decrease in the scattering of the mean angular resolution at medium to
+    medium-high energies at higher efficiencies in the right plots.}
     \label{fig:efficiency_angres}
 \end{figure}
 
@@ -102,7 +104,7 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/ar_vs_eff.pdf}
-    \caption{Angular resolution against efficiency.}
+    \caption{Angular resolution plotted against the efficiency.}
     \label{fig:ar_vs_eff}
 \end{figure}
 
@@ -119,9 +121,10 @@ The metrics for each parameter combination are first compared for each cleaning 
 to determine the best setting within a set of parameter combinations. The results are then plotted in
 \todo{think about better labels in plots}\Autoref{fig:metrics_tail, fig:metrics_mars, fig:metrics_fact, fig:metrics_tcc}
 and are shown with specific IDs they were given when the datasets were processed with \ctapipe.
-This improves readability as opposed to writing out the full settings.
+This improves readability as opposed to writing out the full settings. The hyperparameters for the best performing
+IDs of all algorithms are listed in \autoref{tab:best_parameters}.
 
-While all settings perform well \wrt\!, for example, the \gls{tnr}, one can see from the results, that for all cleaning
+While all settings perform well w.\,r.\,t., for example, the \gls{tnr}, one can see from the results, that for all cleaning
 algorithms---except for \mars{}---, the best parameter combination is the one where the \gls{tpr}, the \gls{acc} and the \gls{ba}
 are the highest. These settings are the ones that correspond to the highest efficiency. While this is true
 for \tailcuts{}, \fact{} and \tcc{}, the metrics for \mars{} are an exception. The reason for that is, that when
@@ -130,21 +133,21 @@ looking at the corresponding mean angular resolution for the highest performing 
 comparison, I, therefore, choose the second highest performing setting (ID~15) with a mean angular
 resolution of \(\SI{0.395}{\degree}\) to be the best candidate for further analysis.
 The values for each respective metric and cleaning algorithm are listed in
-\Autoref{tab:metrics_tail, tab:metrics_mars, tab:metrics_fact, tab:metrics_tcc} respectively.
-
-A comparison of the cleaners against each other is shown in \autoref{fig:metrics_comparison} of \autoref{sec:comparison}.
+\Autoref{tab:metrics_tail, tab:metrics_mars, tab:metrics_fact, tab:metrics_tcc} respectively, while
+a comparison of the cleaners against each other is shown in \autoref{sec:comparison}.
 \begin{table}
     \centering
     \caption{Results for the metrics of \tailcuts{}. One can see, that the best results are obtained
     for the settings with ID~47.}
     \label{tab:metrics_tail}
     \rowcolors{0}{white!92!black}{}
-    \begin{tabular}{r s s s s s s s}
+    % \adjustbox{varwidth=\linewidth,scale=0.95}{%
+    \begin{tabular}{r r r r r r r r}
         \hiderowcolors
         ID & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} & {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
         \showrowcolors
         \input{build/metrics_tail.txt}
-    \end{tabular}
+    \end{tabular}%}
 \end{table}
 
 \begin{figure}
@@ -160,7 +163,7 @@ A comparison of the cleaners against each other is shown in \autoref{fig:metrics
     \centering
     \caption{Results for the metrics of \mars{}. The last row (ID~10) shows some increase in the \gls{fpr}
     and therefore some decrease in \gls{tnr} and a more significant decrease in the \gls{ppv} value. Since
-    This specific parameter combination also corresponds to a mean angular resolution an order higher
+    this specific parameter combination also corresponds to a mean angular resolution an order higher
     than the rest, I chose to select the second highest performing setting (ID~15) for further analysis
     instead.}
     \label{tab:metrics_mars}
@@ -176,9 +179,9 @@ A comparison of the cleaners against each other is shown in \autoref{fig:metrics
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_mars.pdf}
-    \caption{Metrics for \mars{}. One can see that the cleaning setting with \wip{ID 10} performs
-    best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
-    setting of the six parameter combinations \wrt the metrics.}
+    \caption{Metrics for \mars{}. While ID~10 arguably performs best at first glance---albeit with a not
+    insignificant decrease in the \gls{ppv} value---, I chose ID~15
+    for further analysis, as its mean angular resolution is an order of magnitude better.}
     \label{fig:metrics_mars}
 \end{figure}
 
@@ -228,11 +231,35 @@ A comparison of the cleaners against each other is shown in \autoref{fig:metrics
     \label{fig:metrics_tcc}
 \end{figure}
 
-
+\begin{table}
+    \centering
+    \caption{Best performing IDs and the corresponding hyperparameters for each respective cleaner.
+    Note, that, as discussed above, the best performing ID for \mars{} is, in fact, not the best \wrt
+    the metrics, but the second best. This is because the mean angular resolution is
+    an order of magnitude better for ID~15 than the one for ID~10. For better readability, the names
+    of the algorithms are shortened. Listed are the core threshold \(Q_c\), the boundary threshold \(Q_b\),
+    the minimum number of neighbors and where applicable the time limit \(t\) and core and boundary time limits
+    \(t_c\) and \(t_b\).}
+    \label{tab:best_parameters}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{c S[table-format=2.0] S[table-format=1.3]
+        S[table-format=1.3] S[table-format=1.0] S[table-format=2.1] S[table-format=2.1] S[table-format=2.1]}
+        \hiderowcolors
+        {Cleaning Algorithm} & {ID} & {\(Q_c \;/\; \si{\pe}\)} & {\(Q_b \;/\; \si{\pe}\)} & {Min. Neigh.} &
+        {\(t \;/\; \si{\nano\second}\)} & {\(t_c \;/\; \si{\nano\second}\)} & {\(t_b \;/\; \si{\nano\second}\)} \\
+        \showrowcolors
+        Tailcuts &  47 & 6.200 & 4.650 & 2 &      &      &      \\
+        MARS     &  15 & 6.700 & 4.467 & 1 &      &      &      \\
+        FACT     & 503 & 6.700 & 3.350 & 1 & 12.0 &      &      \\
+        TCC      & 807 & 6.700 & 4.467 & 1 &      & 15.0 & 12.0 \\
+    \end{tabular}
+\end{table}
 
 \section{Performance compared to the default settings}
 \label{sec:performance}
 
+Now, with the best performing settings for each cleaner, we can compare the performance \wrt the default
+settings, that are implemented in the \ctapipe{} source code.
 
 \section{Comparison of the cleaning algorithms}
 \label{sec:comparison}

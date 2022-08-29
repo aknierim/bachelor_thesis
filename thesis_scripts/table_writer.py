@@ -15,7 +15,7 @@ def build_dataset_table(df):
     table = ""
     for n, series in df.iterrows():
         v = [str(s) for s in series.values]
-        s = " & ".join(v) + r"\\"
+        s = " & ".join(v) + r" \\ "
         table += s
         print(v)
 
