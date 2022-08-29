@@ -26,16 +26,16 @@ simulations of imperfections or misalignments of the mirrors of each telescope. 
 \texttt{simtel} data is used in \ctapipe{} and can be processed as described in \autoref{sec:data-levels}
 and \autoref{fig:ctapipe}. Some of the data properties are listed in \autoref{tab:simtel}.
 
-This data is the basis for the analysis in this work. A total of \(\num{27353}\) telescope events
-(\(\num{12668}\) array events) throughout \(\num{20}\) \texttt{simtel} runs of diffuse gamma data
+This data is the basis for the analysis in this work. A total of around \(\num{27}\)\,k telescope events
+(\sim\(\num{12}\)\,k array events) throughout \(\num{20}\) \texttt{simtel} runs of diffuse gamma data
 were used for the initial analysis, \ie the testing of different parameters as described in
 \autoref{sec:hyperparameters}. After processing the individual runs and merging them into one large
-file, this file is being processed for the aforementioned parameters.
+file, this file is being processed for the aforementioned parameters. %  \(\num{27353}\) \(\num{12668}\)
 
-Once promising parameters are found, a larger dataset, containing \(\num{1331328}\) telescope events
-(\(\num{621848}\) array events) throughout \(987\) runs, is processed with these
+Once promising parameters are found, a larger dataset, containing around \(\num{1.3}\)\,M telescope events
+(\sim\(\num{620}\)\,k array events) throughout \(987\) runs, is processed with these
 selected settings, allowing for more statistics and a better comparison of the cleaning algorithms.
-
+%\(\num{1331328}\) \(\num{621848}\)
 \begin{table}
     \centering
     \caption{Simtel data properties of the \gls{corsika} simulation used for the datasets in this works
@@ -78,9 +78,14 @@ signal of the data is calibrated from \rzero{} to \rone{}. The data volume gets 
 \end{figure}
 
 The \dlz{} data level is the first level being stored and also the first level to be processed from
-the simulation datasets used in this work. From \dlz{} to \dloa{}, the images of the data are extracted
-from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
-of the events (\dloa{} \rightarrow \dlob{}). The cleaning is a necessary step, especially for
+the simulation datasets used in this work. From \dlz{} to \dloa{}, the photon images are extracted
+by integrating the waveform peaks of each pixel, whilst the time ("peak times", compare \autoref{fig:ctapipe})
+are extracted by finding the rising edge of the pulse. The resulting images are cleaned by cleaning algorithms,
+which, in turn, allows for a parametrization of the events from \dloa{} to \dlob{}.
+% From \dlz{} to \dloa{}, the images of the data are extracted
+% from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
+% of the events (\dloa{} \rightarrow \dlob{}).
+The cleaning is a necessary step, especially for
 low-energy events, where the actual signal is harder to distinguish from the \gls{nsb}. The cleaning algorithms
 of \ctapipe{} are introduced in \autoref{sec:cleaning-algorithms} and can be roughly categorized into
 time-based and non-time-based algorithms.
@@ -91,7 +96,8 @@ pixels in the camera frame into account, allowing for a lower charge threshold.
 
 The advantage of a lower charge threshold allows the selection of more of the signal at lower energies.
 Once the events are cleaned and parametrized, they can then be reconstructed (\dlob{} \rightarrow \dlt{})
-and stored on the \dlt{} data level.
+and stored on the \dlt{} data level, which consists of an event list with reconstructed gammaness---a value
+that predicates how likely an event was produced by a gamma---, direction and energy.
 
 
 \section{This work's data processing pipeline}

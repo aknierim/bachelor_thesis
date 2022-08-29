@@ -127,7 +127,7 @@
   \ifx#2@\autoref{#1}\let\@nextref\@gobble% only one ref, revert to normal \autoref
   \else%
     \@set@refname{#1}%  set \@refname to autoref name
-    \@refname~\ref{#1}% add autoefname and first reference
+    \textcolor{tugreen!40!black}{\@refname}~\ref{#1}% add autoefname and first reference
     \let\@nextref\@next@ref% push processing to \@next@ref
   \fi%
   \@nextref#2%

@@ -3,7 +3,11 @@ import numpy as np
 
 tables = [
     "efficiency",
-    "angular_resolution"
+    "angular_resolution",
+    "metrics_tail",
+    "metrics_mars",
+    "metrics_fact",
+    "metrics_tcc",
 ]
 
 def build_dataset_table(df):
@@ -11,8 +15,9 @@ def build_dataset_table(df):
     table = ""
     for n, series in df.iterrows():
         v = [str(s) for s in series.values]
-        s = " & ".join(v) + "\\\\ "
+        s = " & ".join(v) + r"\\"
         table += s
+        print(v)
 
     return table[:-3]
 
@@ -42,6 +47,23 @@ def combined_table(tab_name: str) -> str:
     return table_out
 
 
+def metrics_table(tab_name):
+    cleaner = tab_name.split("_")[1]
+    if cleaner == "tail":
+        cleaner = "tailcuts"
+
+    table = pd.read_csv(f"./plots/data/metrics/metrics_{cleaner}_MST_MST_NectarCam.csv")
+    ids = table["unique_file_id"]
+
+    table = table.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
+    table = table.astype(float).applymap('{:,.4f}'.format)
+    table.insert(loc=0, column="unique_file_id", value=ids)
+
+    table_out = build_dataset_table(table)
+
+    return table_out
+
+
 
 if __name__ == "__main__":
 
@@ -50,8 +72,12 @@ if __name__ == "__main__":
 
         if name == "efficiency":
             table_out = combined_table("ratio")
-        if name == "angular_resolution":
+
+        elif name == "angular_resolution":
             table_out = combined_table("angres")
+
+        elif "metrics" in name:
+            table_out = metrics_table(name)
 
         with open(outfile, "w") as f:
             f.write(table_out)

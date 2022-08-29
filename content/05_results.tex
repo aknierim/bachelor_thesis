@@ -69,7 +69,7 @@ is, that optimizing the telescopes by type would lead to better results for the 
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r r r r r r}
         \hiderowcolors
-        & & \multicolumn{4}{c}{Mean Angular Resolution} \\
+        & & \multicolumn{4}{c}{Mean Angular Resolution / \si{\degree}} \\
         {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {\texttt{tailcuts}} & {\texttt{mars}} & {\texttt{fact}} & {\texttt{tcc}} \\
         \addlinespace[0.5em]
         \showrowcolors
@@ -101,7 +101,7 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{build/ar_vs_eff.pdf}
+    \includegraphics[width=\textwidth]{build/ar_vs_eff.pdf}
     \caption{Angular resolution against efficiency.}
     \label{fig:ar_vs_eff}
 \end{figure}
@@ -117,7 +117,116 @@ those values are summed up for each cleaning algorithm and the metrics are calcu
 
 The metrics for each parameter combination are first compared for each cleaning algorithm respectively,
 to determine the best setting within a set of parameter combinations. The results are then plotted in
-\todo{create plots}\Autoref{fig:metrics_tail, fig:metrics_mars, fig:metrics_fact, fig:metrics_tcc}.
+\todo{think about better labels in plots}\Autoref{fig:metrics_tail, fig:metrics_mars, fig:metrics_fact, fig:metrics_tcc}
+and are shown with specific IDs they were given when the datasets were processed with \ctapipe.
+This improves readability as opposed to writing out the full settings.
+
+While all settings perform well \wrt\!, for example, the \gls{tnr}, one can see from the results, that for all cleaning
+algorithms---except for \mars{}---, the best parameter combination is the one where the \gls{tpr}, the \gls{acc} and the \gls{ba}
+are the highest. These settings are the ones that correspond to the highest efficiency. While this is true
+for \tailcuts{}, \fact{} and \tcc{}, the metrics for \mars{} are an exception. The reason for that is, that when
+looking at the corresponding mean angular resolution for the highest performing setting (ID~10), the value is
+\(\SI{1.301}{\degree}\) (see \autoref{tab:angres}) and therefore an order of magnitude worse than the other algorithms. For better
+comparison, I, therefore, choose the second highest performing setting (ID~15) with a mean angular
+resolution of \(\SI{0.395}{\degree}\) to be the best candidate for further analysis.
+The values for each respective metric and cleaning algorithm are listed in
+\Autoref{tab:metrics_tail, tab:metrics_mars, tab:metrics_fact, tab:metrics_tcc} respectively.
+
+A comparison of the cleaners against each other is shown in \autoref{fig:metrics_comparison} of \autoref{sec:comparison}.
+\begin{table}
+    \centering
+    \caption{Results for the metrics of \tailcuts{}. One can see, that the best results are obtained
+    for the settings with ID~47.}
+    \label{tab:metrics_tail}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{r s s s s s s s}
+        \hiderowcolors
+        ID & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} & {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
+        \showrowcolors
+        \input{build/metrics_tail.txt}
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_tailcuts.pdf}
+    \caption{Metrics for \tailcuts{}. One can see that the cleaning setting with \wip{ID 47} performs
+    best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
+    setting of the five parameter combinations.}
+    \label{fig:metrics_tail}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Results for the metrics of \mars{}. The last row (ID~10) shows some increase in the \gls{fpr}
+    and therefore some decrease in \gls{tnr} and a more significant decrease in the \gls{ppv} value. Since
+    This specific parameter combination also corresponds to a mean angular resolution an order higher
+    than the rest, I chose to select the second highest performing setting (ID~15) for further analysis
+    instead.}
+    \label{tab:metrics_mars}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{r r r r r r r r}
+        \hiderowcolors
+        ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \showrowcolors
+        \input{build/metrics_mars.txt}
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_mars.pdf}
+    \caption{Metrics for \mars{}. One can see that the cleaning setting with \wip{ID 10} performs
+    best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
+    setting of the six parameter combinations \wrt the metrics.}
+    \label{fig:metrics_mars}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Results for the metrics of \fact{}. One can see, that the best results are obtained
+    for the settings with ID~503.}
+    \label{tab:metrics_fact}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{r r r r r r r r}
+        \hiderowcolors
+        ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \showrowcolors
+        \input{build/metrics_fact.txt}
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_fact.pdf}
+    \caption{Metrics for \fact{}. One can see that the cleaning setting with \wip{ID 503} performs
+    best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
+    setting of the ten parameter combinations.}
+    \label{fig:metrics_fact}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Results for the metrics of \tcc{}. One can see, that the best results are obtained
+    for the settings with ID~807.}
+    \label{tab:metrics_tcc}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{r r r r r r r r}
+        \hiderowcolors
+        ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \showrowcolors
+        \input{build/metrics_tcc.txt}
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_tcc.pdf}
+    \caption{Metrics for the \tcc{}. One can see that the cleaning setting with \wip{ID 807} performs
+    best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
+    setting of the six parameter combinations.}
+    \label{fig:metrics_tcc}
+\end{figure}
 
 
 

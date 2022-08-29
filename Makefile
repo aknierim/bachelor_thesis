@@ -23,11 +23,12 @@ fermi4fgl=build/fermi_catalog.pdf
 ar_eff=plots/ar_eff.pdf
 ar_vs_eff=build/ar_vs_eff.pdf
 quantiles=build/quantiles_plot.pdf
+metrics=build/metrics.pdf
 
 # tables
 tab_writer=build/tables.txt
 
-PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) ${quantiles} #$(cosmic_flux) $(crab_ssc)
+PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) $(quantiles) $(metrics) #$(cosmic_flux) $(crab_ssc)
 TABLES := $(tab_writer)
 
 
@@ -43,12 +44,10 @@ TeXOptions = -lualatex \
 build/thesis.pdf: FORCE | build
 	@TEXINPUTS="$$(pwd):" latexmk $(TeXOptions) thesis.tex 1> build/log || cat build/log
 	@mv build/thesis.pdf thesis.pdf
-	@echo ${GREENB}${BACKGR}Success!${RESET}
 
 # currently not working
 lst: FORCE | build
 	@TEXINPUTS="$$(pwd):" latexmk $(TeXOptions) "\def\lsttitle{1} \input{thesis.tex}" 1> build/log || cat build/log
-	@echo ${GREENB}${BACKGR}Success!${RESET}
 
 tikz: FORCE tikz/ | build
 	@TEXINPUTS="$$(pwd):" latexmk $(TeXOptions) $(TIKZFILES) 1> build/tikz_log || cat build/tikz_log
@@ -79,6 +78,9 @@ $(ar_vs_eff): plots/ar_vs_eff.py matplotlibrc | build
 
 $(quantiles): plots/quantiles_plot.py matplotlibrc | build
 	python plots/quantiles_plot.py
+
+$(metrics): plots/metrics.py matplotlibrc | build
+	python plots/metrics.py
 
 
 # tables
