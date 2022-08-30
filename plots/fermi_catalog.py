@@ -1,3 +1,6 @@
+"""
+Basic idea adapted from Kai Bruegge's PhD thesis
+"""
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
@@ -98,8 +101,6 @@ for idx, item in enumerate(table["CLASS1"]):
         grb.append(idx)
     if "GRB" in item:
         grb.append(idx)
-
-
 
 
 x_coord = -coords.galactic.l.wrap_at('180 deg').rad

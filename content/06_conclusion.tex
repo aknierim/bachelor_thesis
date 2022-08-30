@@ -1,1 +1,36 @@
 \chapter{Conclusions and Outlook}
+\label{ch:conclusions}
+
+In the scope of this work, the hyperparameters for each of the four currently (as of writing this thesis)
+implemented cleaning algorithms were searched via a grid search. The resulting hyperparameters were then
+probed \wrt a combined metric of the angular resolution and the efficiency. These results led to a subset
+consisting of the best-performing hyperparameters for each cleaning algorithm. Furthermore, a comparison between the
+optimized algorithms and the default algorithms, as well as a comparison between each respective
+cleaner was performed.
+
+Most of the data (pre-)processing in this work was done with \gls{cta}'s open-source low-level data processing pipeline
+software \ctapipe{}, version \texttt{0.15.1}. The data used was PROD5 \gls{mc} data consisting of
+\(\num{1.3}\)\,M telescope events (\sim\(\num{620}\)\,k array events) throughout \(987\) runs. The data
+was processed from raw \texttt{simtel} data (\rzero) up to cleaned (\dloa) and parametrized (\dlob) levels
+for the metrics as well as reconstructed (\dlt) data for the efficiency and angular resolution.
+Further high-level processing was done with this works pipeline as described in \autoref{sec:pipeline}.
+
+The four implemented cleaning algorithms can be roughly categorized into time-based (\fact{} and \tcc) and non-time-based
+algorithms (\tailcuts{} and \mars{}). While the non-time-based algorithms only take thresholds of the photon count of each pixel
+into account, the time-based algorithms also set limits on the arrival time of each pixel. This allows
+for a lower core threshold \(Q_c\) for the photon count per pixel, which in turn can lead to better
+results from the cleaning process. A good cleaning not only reduces data size---as a majority of the
+pixels in the image are made up by \gls{nsb}---but it also allows for a better parameterization and in turn
+a better reconstruction of the events.
+
+The main results of this thesis are the hyperparameters for the cleaning algorithms.
+Due to the long runtimes of the grid searches and the time limit of this thesis, however, the cleaning
+algorithms so far. The optimal hyperparameters of each cleaning algorithm for
+the \glspl{mst} are listed in \autoref{tab:best_parameters}. A further grid search with only \gls{lst}
+data would be necessary to find the remaining core and boundary thresholds \(Q_c\) and \(Q_b\).
+\todo{how did it perform against the default parameters?}
+
+Additionally, a comparison between the optimized algorithms themselves was performed. This led to \fact{}
+being the best performing algorithm overall \wrt the metrics, albeit only a slight advantage over the
+other algorithms.
+

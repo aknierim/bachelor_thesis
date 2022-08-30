@@ -28,7 +28,7 @@ metrics=build/metrics.pdf
 # tables
 tab_writer=build/tables.txt
 
-PLOTS := $(array_layout) $(fermi4fgl) $(ar_aeff) $(ar_vs_eff) $(quantiles) $(metrics) #$(cosmic_flux) $(crab_ssc)
+PLOTS := $(fermi4fgl) $(ar_eff) $(ar_vs_eff) $(quantiles) $(metrics) #$(cosmic_flux) $(crab_ssc) $(array_layout)
 TABLES := $(tab_writer)
 
 
@@ -70,7 +70,7 @@ $(array_layout): plots/array_layout.py matplotlibrc | build
 $(fermi4fgl): plots/fermi_catalog.py matplotlibrc | build
 	python plots/fermi_catalog.py
 
-$(ar_aeff): plots/angres_aeff.py matplotlibrc | build
+$(ar_eff): plots/angres_aeff.py matplotlibrc | build
 	python plots/angres_aeff.py
 
 $(ar_vs_eff): plots/ar_vs_eff.py matplotlibrc | build

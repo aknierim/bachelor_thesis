@@ -72,4 +72,4 @@ for i, seed, ls in zip(
 ax.set_ylim(1e-12, 1e-7)
 ax.legend(loc="upper right", frameon=False)
 figure.tight_layout()
-figure.savefig("./plots/CrabNebula_SynSSC.pdf", dpi=300)
+figure.savefig("./build/CrabNebula_SynSSC.pdf", dpi=300)

@@ -48,13 +48,24 @@ is, that optimizing the telescopes by type would lead to better results for the 
     interval. Notice how not all cleaning algorithms have valid results for all efficiency intervals.}
     \label{tab:efficiency}
     \rowcolors{0}{white!92!black}{}
-    \begin{tabular}{r r r r r r}
+    \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
         \hiderowcolors
         & & \multicolumn{4}{c}{Mean Efficiency} \\
-        {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {\texttt{tailcuts}} & {\texttt{mars}} & {\texttt{fact}} & {\texttt{tcc}} \\
+        {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {Tailcuts} & {MARS} & {FACT} & {TCC} \\
         \addlinespace[0.5em]
         \showrowcolors
-        \input{build/efficiency.txt}
+        % \input{build/efficiency.txt}
+        0.00 & 0.05 &  &  & 0.034 &  \\
+        0.05 & 0.10 &  &  & 0.051 &  \\
+        0.10 & 0.15 &  &  & 0.117 &  \\
+        0.15 & 0.20 &  &  & 0.163 &  \\
+        0.20 & 0.25 &  &  & 0.218 & 0.211 \\
+        0.25 & 0.30 & 0.263 & 0.265 & 0.287 & 0.273 \\
+        0.30 & 0.35 & 0.313 & 0.315 & 0.321 & 0.316 \\
+        0.35 & 0.40 & 0.362 & 0.364 & 0.369 & 0.390 \\
+        0.40 & 0.45 & 0.402 & 0.403 & 0.426 & 0.426 \\
+        0.45 & 0.50 & 0.451 & 0.463 & 0.466 & 0.455 \\
+        0.50 & 0.55 &  & 0.501 &  &  \\
     \end{tabular}
 \end{table}
 
@@ -67,13 +78,24 @@ is, that optimizing the telescopes by type would lead to better results for the 
     for all efficiency intervals.}
     \label{tab:angres}
     \rowcolors{0}{white!92!black}{}
-    \begin{tabular}{r r r r r r}
+    \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
         \hiderowcolors
         & & \multicolumn{4}{c}{Mean Angular Resolution \(\Theta_{\SI{68}{\percent}} \;/\; \si{\degree}\)} \\
-        {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {\texttt{tailcuts}} & {\texttt{mars}} & {\texttt{fact}} & {\texttt{tcc}} \\
+        {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {Tailcuts} & {MARS} & {FACT} & {TCC} \\
         \addlinespace[0.5em]
         \showrowcolors
-        \input{build/angular_resolution.txt}
+        % \input{build/angular_resolution.tex}
+        0.00 & 0.05 &  &  & 0.244 &  \\
+        0.05 & 0.10 &  &  & 0.297 &  \\
+        0.10 & 0.15 &  &  & 0.420 &  \\
+        0.15 & 0.20 &  &  & 0.428 &  \\
+        0.20 & 0.25 &  &  & 0.477 & 0.413 \\
+        0.25 & 0.30 & 0.358 & 0.291 & 0.415 & 0.396 \\
+        0.30 & 0.35 & 0.308 & 0.282 & 0.367 & 0.340 \\
+        0.35 & 0.40 & 0.334 & 0.332 & 0.366 & 0.386 \\
+        0.40 & 0.45 & 0.357 & 0.343 & 0.365 & 0.383 \\
+        0.45 & 0.50 & 0.395 & 0.395 & 0.404 & 0.390 \\
+        0.50 & 0.55 &  & 1.301 &  &  \\
     \end{tabular}
 \end{table}
 From the tables, one can see that there is a clear trade-off in choosing between efficiency and angular resolution.
@@ -119,7 +141,7 @@ those values are summed up for each cleaning algorithm and the metrics are calcu
 
 The metrics for each parameter combination are first compared for each cleaning algorithm respectively,
 to determine the best setting within a set of parameter combinations. The results are then plotted in
-\todo{think about better labels in plots}\Autoref{fig:metrics_tail, fig:metrics_mars, fig:metrics_fact, fig:metrics_tcc}
+\Autoref{fig:metrics_tail, fig:metrics_mars, fig:metrics_fact, fig:metrics_tcc}
 and are shown with specific IDs they were given when the datasets were processed with \ctapipe.
 This improves readability as opposed to writing out the full settings. The hyperparameters for the best performing
 IDs of all algorithms are listed in \autoref{tab:best_parameters}.
@@ -141,13 +163,18 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     for the settings with ID~47.}
     \label{tab:metrics_tail}
     \rowcolors{0}{white!92!black}{}
-    % \adjustbox{varwidth=\linewidth,scale=0.95}{%
-    \begin{tabular}{r r r r r r r r}
+    \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        ID & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} & {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
+        {ID} & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \addlinespace[0.5em]
         \showrowcolors
-        \input{build/metrics_tail.txt}
-    \end{tabular}%}
+        % \input{build/metrics_tail.txt} %% kinda broken atm
+        118 & 0.0972 & 0.0000 & 1.0000 & 0.9028 & 1.0000 & 0.9256 & 0.5486 \\
+        51 & 0.1231 & 0.0000 & 1.0000 & 0.8769 & 1.0000 & 0.9256 & 0.5615 \\
+        140 & 0.1460 & 0.0000 & 1.0000 & 0.8540 & 1.0000 & 0.9256 & 0.5730 \\
+        81 & 0.1854 & 0.0000 & 1.0000 & 0.8146 & 0.9997 & 0.9288 & 0.5927 \\
+        47 & 0.2268 & 0.0000 & 1.0000 & 0.7732 & 0.9994 & 0.9332 & 0.6134 \\
+    \end{tabular}
 \end{table}
 
 \begin{figure}
@@ -168,11 +195,12 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     instead.}
     \label{tab:metrics_mars}
     \rowcolors{0}{white!92!black}{}
-    \begin{tabular}{r r r r r r r r}
+    \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
         ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \addlinespace[0.5em]
         \showrowcolors
-        \input{build/metrics_mars.txt}
+        \input{build/metrics_mars.txt}\\
     \end{tabular}
 \end{table}
 
@@ -191,11 +219,12 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     for the settings with ID~503.}
     \label{tab:metrics_fact}
     \rowcolors{0}{white!92!black}{}
-    \begin{tabular}{r r r r r r r r}
+    \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
         ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \addlinespace[0.5em]
         \showrowcolors
-        \input{build/metrics_fact.txt}
+        \input{build/metrics_fact.txt}\\
     \end{tabular}
 \end{table}
 
@@ -214,11 +243,12 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     for the settings with ID~807.}
     \label{tab:metrics_tcc}
     \rowcolors{0}{white!92!black}{}
-    \begin{tabular}{r r r r r r r r}
+    \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] }
         \hiderowcolors
         ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        \addlinespace[0.5em]
         \showrowcolors
-        \input{build/metrics_tcc.txt}
+        \input{build/metrics_tcc.txt}\\
     \end{tabular}
 \end{table}
 
@@ -234,8 +264,8 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{table}
     \centering
     \caption{Best performing IDs and the corresponding hyperparameters for each respective cleaner.
-    Note, that, as discussed above, the best performing ID for \mars{} is, in fact, not the best \wrt
-    the metrics, but the second best. This is because the mean angular resolution is
+    Note, that, as discussed above, the best performing ID \wrt
+    the metrics for \mars{} is, in fact, not the best, but the second best. This is because the mean angular resolution is
     an order of magnitude better for ID~15 than the one for ID~10. For better readability, the names
     of the algorithms are shortened. Listed are the core threshold \(Q_c\), the boundary threshold \(Q_b\),
     the minimum number of neighbors and where applicable the time limit \(t\) and core and boundary time limits
@@ -247,6 +277,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         \hiderowcolors
         {Cleaning Algorithm} & {ID} & {\(Q_c \;/\; \si{\pe}\)} & {\(Q_b \;/\; \si{\pe}\)} & {Min. Neigh.} &
         {\(t \;/\; \si{\nano\second}\)} & {\(t_c \;/\; \si{\nano\second}\)} & {\(t_b \;/\; \si{\nano\second}\)} \\
+        \addlinespace[0.5em]
         \showrowcolors
         Tailcuts &  47 & 6.200 & 4.650 & 2 &      &      &      \\
         MARS     &  15 & 6.700 & 4.467 & 1 &      &      &      \\
@@ -258,8 +289,49 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \section{Performance compared to the default settings}
 \label{sec:performance}
 
-Now, with the best performing settings for each cleaner, we can compare the performance \wrt the default
-settings, that are implemented in the \ctapipe{} source code.
+Now, with the best performing settings for each cleaner, it is resonable to compare
+the performance to the default settings, that are implemented in the \ctapipe{} source code.
 
 \section{Comparison of the cleaning algorithms}
 \label{sec:comparison}
+
+Because the cleaning algorithms in this work are the only ones that are implemented in the \ctapipe{}
+source code as of writing this thesis, a comparison of the algorithms against each other seems to be
+another feasible option. I once again decided to use the best-performing setting of each algorithm
+and look at the metrics. The metrics of all four algorithms are shown in \autoref{fig:metrics_all}.
+The corresponding values are listed in \autoref{tab:metrics_all}.
+
+One can see, that \fact{} performs best in terms of \gls{tpr} and \gls{ba}, while \mars{} and
+\tailcuts{} perform well on \gls{acc} and \gls{ppv} respectively. Overall, however, \fact{} seems
+to be a good choice for cleaning since it performs reasonably well even on \gls{acc} and \gls{ppv}.
+
+
+\begin{table}
+    \centering
+    \caption{Metrics for the best-performing settings of each cleaning algorithm. Out of these
+    four algorithms, \fact{} performs best in terms of \gls{tpr} and \gls{ba}, while \mars{} and
+    \tailcuts{} perform well on \gls{acc} and \gls{ppv} respectively. \fact{}, however, performs
+    reasonably well in the scope of the resulting metrics of this work and is, therefore, a good
+    overall choice for cleaning.}
+    \label{tab:metrics_all}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{c S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]
+        S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
+        \hiderowcolors
+        {Cleaning Algorithm} & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} &
+        {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
+        \addlinespace[0.5em]
+        \showrowcolors
+        Tailcuts & 0.2268 & 0.0000 & 1.0000 & 0.7732 & 0.9994 & 0.9332 & 0.6134 \\
+        MARS     & 0.2433 & 0.0000 & 1.0000 & 0.7567 & 0.9985 & 0.9380 & 0.6216 \\
+        FACT     & 0.2655 & 0.0000 & 1.0000 & 0.7345 & 0.9968 & 0.9369 & 0.6327 \\
+        TCC      & 0.2314 & 0.0000 & 1.0000 & 0.7686 & 0.9989 & 0.9364 & 0.6157 \\
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_all.pdf}
+    \caption{Bar plot visualizing the metrics for the best-performing settings of all four cleaning algorithms.}
+    \label{fig:metrics_all}
+\end{figure}

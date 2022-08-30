@@ -84,7 +84,7 @@ def metrics_bar_plot_all(
     tcc = tcc.iloc[[row_idx],:]
 
     df = pd.concat([tail, mars, fact, tcc])
-    print(df)
+    # print(df)
 
     df = df.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
     labels = [metrics_dict[k] for k in df.keys()]
@@ -134,4 +134,3 @@ if __name__ == "__main__":
     # print(settings.values())
 
     metrics_bar_plot_all(row_idx=-1)
-

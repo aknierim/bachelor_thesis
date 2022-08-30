@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
 
 import matplotlib
 import matplotlib.pyplot as plt
 
+plt.rc('axes', labelsize=16)
 
 INPUT_BASE = "./plots/data/processed"
 
@@ -64,7 +64,7 @@ def plot_eff_area(
     )
     ax.set_ylabel(r"Efficiency $n_\mathrm{reco} \;/\; n_\mathrm{total}$")
 
-    ax.legend()
+    ax.legend(fontsize=12)
 
 
 def plot_ang_res(
@@ -104,11 +104,11 @@ def plot_ang_res(
         label=rf"TCC, $\mathrm{{Mean Ang.Res.}} = {np.mean(tcc['angular_resolution']):.3f}$"
     )
 
-    ax.set_ylabel(r'Angular Resolution$\;/\; \mathrm{deg}$')
+    ax.set_ylabel(r'Angular Resolution $\theta_{68\%} \,\, / \,\, \mathrm{deg}$')
     ax.set_xlabel(r'$E_{\mathrm{true}} \,\,/\,\, \mathrm{TeV}$')
     ax.set_xscale('log')
 
-    ax.legend()
+    ax.legend(fontsize=12)
 
     return ax
 

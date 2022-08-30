@@ -17,13 +17,14 @@ ImageProcessor:
 
   FACTImageCleaner:
     picture_threshold_pe:
-      - [type, "LST*", 8.5]
-      - [type, "MST*NectarCam", 9.0]
+      - [type, "LST*", 7.0]
+      - [type, "MST*NectarCam", 7.0]
     boundary_threshold_pe:
-      - [type, "LST*", 4.75]
-      - [type, "MST*NectarCam", 4.5]
+      - [type, "LST*", 5.0]
+      - [type, "MST*NectarCam", 5.0]
     keep_isolated_pixels: false
     min_picture_neighbors: 2
+    time_limit_ns: 5.0
 
   ImageQualityQuery:
     quality_criteria:

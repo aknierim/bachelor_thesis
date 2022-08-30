@@ -124,7 +124,7 @@
   \small\noindent%
   This thesis is set in Libertinus (Serif, Sans and Math) and Fira Code\\
   typeset using \LaTeX{} with Lua\TeX{} from \TeX Live 2021.\\
-  Title graphic by Kai Br\"ugge~\cite{bruegge_thesis}.
+  Title graphic by Kai Br\"ugge.
   \newpage
 }
 

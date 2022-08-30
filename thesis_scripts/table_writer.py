@@ -17,9 +17,8 @@ def build_dataset_table(df):
         v = [str(s) for s in series.values]
         s = " & ".join(v) + r" \\ "
         table += s
-        print(v)
 
-    return table[:-3]
+    return table
 
 
 def combined_table(tab_name: str) -> str:
