@@ -29,7 +29,7 @@ baseline=build/baseline.pdf
 # tables
 tab_writer=build/tables.txt
 
-PLOTS := $(fermi4fgl) $(ar_eff) $(ar_vs_eff) $(quantiles) $(metrics) $(baseline) #$(cosmic_flux) $(crab_ssc) $(array_layout)
+PLOTS := $(fermi4fgl) $(ar_eff) $(ar_vs_eff) $(metrics) $(baseline) $(quantiles)  #$(cosmic_flux) $(crab_ssc) $(array_layout)
 TABLES := $(tab_writer)
 
 
