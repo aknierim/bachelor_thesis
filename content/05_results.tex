@@ -80,7 +80,7 @@ is, that optimizing the telescopes by type would lead to better results for the 
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
         \hiderowcolors
-        & & \multicolumn{4}{c}{Mean Angular Resolution \(\Theta_{\SI{68}{\percent}} \;/\; \si{\degree}\)} \\
+        & & \multicolumn{4}{c}{Mean Angular Resolution \(\theta_{\SI{68}{\percent}} \;/\; \si{\degree}\)} \\
         {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {Tailcuts} & {MARS} & {FACT} & {TCC} \\
         \addlinespace[0.5em]
         \showrowcolors
@@ -180,7 +180,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_tailcuts.pdf}
-    \caption{Metrics for \tailcuts{}. One can see that the cleaning setting with \wip{ID 47} performs
+    \caption{Metrics for \tailcuts{}. One can see that the cleaning setting with ID 47 performs
     best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
     setting of the five parameter combinations.}
     \label{fig:metrics_tail}
@@ -231,7 +231,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_fact.pdf}
-    \caption{Metrics for \fact{}. One can see that the cleaning setting with \wip{ID 503} performs
+    \caption{Metrics for \fact{}. One can see that the cleaning setting with ID 503 performs
     best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
     setting of the ten parameter combinations.}
     \label{fig:metrics_fact}
@@ -255,7 +255,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_tcc.pdf}
-    \caption{Metrics for the \tcc{}. One can see that the cleaning setting with \wip{ID 807} performs
+    \caption{Metrics for the \tcc{}. One can see that the cleaning setting with ID 807 performs
     best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
     setting of the six parameter combinations.}
     \label{fig:metrics_tcc}
@@ -289,8 +289,74 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \section{Performance compared to the default settings}
 \label{sec:performance}
 
-Now, with the best performing settings for each cleaner, it is resonable to compare
-the performance to the default settings, that are implemented in the \ctapipe{} source code.
+Now, with the best-performing settings for each cleaner, it is reasonable to compare
+the performance to the default settings, that are implemented in the \ctapipe{} source code
+(see \autoref{tab:hyperparameters}). First, the relative angular resolution
+\begin{equation}
+    \theta_\text{rel} = \frac{\theta_{\SI{68}{\percent}}}{\theta_\text{base}}
+\end{equation}
+is computed for the default settings and the best-performing settings for each cleaner.
+The results are shown in \autoref{fig:rel_angres} for the same efficiency intervals
+as in \autoref{fig:efficiency_angres}. One can see, that especially for the interval
+\([0.45, 0.5)\) and at medium to high energies, \tcc{} performs fairly well compared to the default settings.
+The other algorithms perform only slightly better than the default settings at a performance gain
+of about \(\SI{10}{\percent}\).
+
+Furthermore, the metrics of the hyperparameters determined in this work can be compared to the
+metrics of the default settings. The results are shown in \autoref{fig:metrics_comparison} with the
+values of the metrics being listed in \autoref{tab:metrics_default}. The values for the best-performing
+settings in this work are listed in \autoref{tab:metrics_all}.
+\fact{} performs worse than its default setting \wrt the metrics, especially in terms of
+\gls{tpr} and \gls{ba}. This might be due to the higher core and boundary thresholds compared to the
+default values, as lower values would allow selecting more pixels. \tcc{}, however, performs
+significantly better than the default settings, especially in terms of \gls{tpr} and \gls{ba}, but
+also slightly better in terms of the \gls{acc} metric.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_baseline.pdf}
+    \caption{Metrics for the default (baseline) settings compared to the settings determined in this work.
+    One can see that an improvement was reached for \tcc, especially in terms of \gls{tpr} and \gls{ba}, while
+    \fact{} performs worse than its default implementation.}
+    \label{fig:metrics_comparison}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{plots/ar_aeff/Rel_AR_0.25_0.30_base.pdf}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{plots/ar_aeff/Rel_AR_0.45_0.50_base.pdf}
+    \end{subfigure}
+    \caption{Relative angular resolution for the default settings and the best-performing settings for each cleaner.
+    \tcc{} outperforms the default values with the new settings, while the other algorithms improve only slightly.}
+    \label{fig:rel_angres}
+\end{figure}
+
+\begin{table}
+    \centering
+    \caption{Metrics for the default (baseline) settings. The metrics show that \fact{}
+    performs well even in its default settings and also better than with the hyperparameters
+    determined in this work. \tcc{}, however, performs better with the hyperparameters listed in
+    \autoref{tab:best_parameters} \wrt{} to the metrics.}
+    \label{tab:metrics_default}
+    \rowcolors{0}{white!92!black}{}
+    \begin{tabular}{c S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]
+        S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
+        \hiderowcolors
+        {Cleaning Algorithm} & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} &
+        {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
+        \addlinespace[0.5em]
+        \showrowcolors
+        Tailcuts & 0.2316 & 0.0000 & 1.0000 & 0.7684 & 0.9971 & 0.9358 & 0.6158 \\
+        MARS     & 0.2346 & 0.0000 & 1.0000 & 0.7654 & 0.9970 & 0.9358 & 0.6173 \\
+        FACT     & 0.3261 & 0.0002 & 0.9998 & 0.6739 & 0.9864 & 0.9429 & 0.6629 \\
+        TCC      & 0.1790 & 0.0000 & 1.0000 & 0.8210 & 0.9995 & 0.9299 & 0.5895 \\
+
+    \end{tabular}
+\end{table}
 
 \section{Comparison of the cleaning algorithms}
 \label{sec:comparison}

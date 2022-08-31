@@ -91,7 +91,8 @@ are shown in \autoref{fig:mars_cleaning} for its default values.
     boundary threshold \(Q_b\). The fourth step removes all pixels that have less than \(N\) neighbors,
     that have arrived within a given timeframe. The fifth and sixth steps are analogous to steps two and four respectively.
     Notice, that---per default in \ctapipe---the values for \(Q_c\) and \(Q_b\) are lower than for the other cleaners
-    (see \autoref{tab:hyperparameters}), hence more individual pixels are selected in the first step.}
+    (see \autoref{tab:hyperparameters}), and hence together with the time limit more individual pixels than in the
+    other cleaning algorithms are selected in the first step.}
     \label{fig:fact_cleaning}
 \end{figure}
 
@@ -140,7 +141,8 @@ is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of the algori
     \(N\) neighbors. The third step selects all pixels whose arrival times are within a given timeframe of the
     core time limit \(t_c\). The fourth step selects all pixels above the boundary threshold \(Q_b\).
     The fifth step removes all pixels with less than \(N\) neighbors, that have arrived within a given timeframe
-    of the boundary time limit \(t_b\).}
+    of the boundary time limit \(t_b\). Notice, that with the default values \tcc{} tends to select fewer pixels
+    than the other algorithms.}
     \label{fig:tcc_cleaning}
 \end{figure}
 \vspace{-0.5cm}

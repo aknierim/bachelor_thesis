@@ -28,9 +28,18 @@ Due to the long runtimes of the grid searches and the time limit of this thesis,
 algorithms so far. The optimal hyperparameters of each cleaning algorithm for
 the \glspl{mst} are listed in \autoref{tab:best_parameters}. A further grid search with only \gls{lst}
 data would be necessary to find the remaining core and boundary thresholds \(Q_c\) and \(Q_b\).
-\todo{how did it perform against the default parameters?}
 
-Additionally, a comparison between the optimized algorithms themselves was performed. This led to \fact{}
+The comparison of the performance of the optimized algorithms with the default algorithms has shown that
+the optimized algorithms performed better than the default algorithms \wrt the angular resolution. This
+means that the found hyperparameters could help with origin reconstructions. When looking at the metrics,
+however, only \tcc{} really improved, while \fact{} even performed worse than its default implementation.
+The reason might be, that the higher core threshold \(Q_c\)---compared to the default value---would
+select fewer pixels. Additionally, a comparison between the optimized algorithms themselves was performed. This led to \fact{}
 being the best performing algorithm overall \wrt the metrics, albeit only a slight advantage over the
 other algorithms.
+
+All in all, one can say, that a higher efficiency returns better results, albeit resulting in a higher angular resolution.
+This is due to the fact that a higher efficiency means that more events got reconstructed and therefore
+better overall statistics. Nevertheless, further analysis and a broader grid search might be necessary to find better hyperparameters
+and therefore better the performance of all algorithms. This will also be necessary for the \gls{lst} data.
 

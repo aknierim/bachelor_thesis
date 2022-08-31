@@ -1,7 +1,46 @@
 \thispagestyle{plain}
 
 \section*{Abstract}
-\includegraphics[width=\textwidth]{example-image-duck}%
+In recent years, gamma astronomy has become a vastly studied field of astrophysics.
+Since then many \gls{iact} experiments have been producing many insights into sources of
+high-energy gamma-rays. Continuing this trend, the \gls{cta}, a next-generation \gls{iact},
+will provide new data at some of the highest energies of the gamma-ray spectrum.
+
+In this thesis, I take a look at the four cleaning algorithms implemented in the low-level data processing software \ctapipe{},
+currently developed for \gls{cta}. Furthermore, I will determine optimized hyperparameters for each algorithm
+with the aim of improving the performance of the cleaning algorithms. This is achieved with a grid search
+over a range of reasonable hyperparameters. The data used in this work is diffuse gamma \gls{mc} data for
+the \glspl{mst} at the northern site of \cta{} on the Canarian island of La Palma.
+
+The \tcc{} algorithm in \ctapipe{} was improved over its default implementation \wrt to the angular
+resolution, while the other algorithms were only slightly improved or at least returned similar results.
+In terms of metrics, the \tcc{} algorithm only improved slightly compared to its default, while \fact{}
+performed worse than its default implementation. Overall, however, \fact{} performed better than the other
+algorithms.
 
 
-\listoftodos
+\section*{Kurzfassung}
+\begin{otherlanguage}{ngerman}
+In den vergangenen Jahrzehnten hat sich die Gammaastronomie zu einem viel erforschten Bereich der
+Astrophysik entwickelt. Seitdem haben bildgebende, atmosphärische Tscherenkow-Teleskope (\gls{iact})
+viele neue Erkenntnisse im Bereich der hochenergetischen Gammastrahlen und deren Quellen geliefert.
+Mit \gls{cta}, einem \gls{iact} der nächsten Generation, werden neue Daten in einigen der höchsten
+Energiebereiche der Gammastrahlen erwartet.
+
+In dieser Arbeit schaue ich mir die vier Bildreinigungsalgorithmen an, die in der sich zur Zeit für \cta{}
+in Entwicklung befindlichen Software \ctapipe{} implementiert sind. Zudem bestimme ich optimierte
+Hyperparameter für jeden Algorithmus mit dem Ziel, die Leitung der Bildreinigungsalgorithmen zu verbessern.
+Dies wird mittels einer Grid-Search über eine Auswahl von Hyperparametern durchgeführt. Die Daten, die zu diesem
+Zweck verwendet werden, bestehen aus diffusen Gammadaten, die mittels einer \gls{mc}-Simulation für die
+\glspl{mst} des nördlichen Standorts \gls{cta}s auf der Kanarischen Insel La Palma erzeugt wurden.
+
+Die Ergebnisse zeigen, dass eine Verbesserung des \tcc{}-Algorithmus über dessen Standardimplementierung
+in Bezug auf die Winkelauflösung erreicht werden konnte, während die anderen Algorithmen nur ein wenig
+verbessert wurden oder etwa gleiche Ergebnisse lieferten. In Bezug auf die Metriken, hat sich gezeigt,
+dass der \tcc{}-Algorithmus nur ein wenig verbessert wurde, während der \fact{}-Algorithmus schlechter war als
+seine Standardimplementierung. Insgesamt lieferte \fact{} allerdings bessere Ergebnisse als die anderen Algorithmen.
+
+
+\end{otherlanguage}
+\glsresetall
+% \listoftodos

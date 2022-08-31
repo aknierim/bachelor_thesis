@@ -78,7 +78,6 @@ def metrics_bar_plot_all(
     tcc = pd.read_csv('plots/data/metrics/metrics_tcc_MST_MST_NectarCam.csv')
 
     tail = tail.iloc[[row_idx],:]
-
     mars = mars.iloc[[row_idx - 1],:]
     fact = fact.iloc[[row_idx],:]
     tcc = tcc.iloc[[row_idx],:]

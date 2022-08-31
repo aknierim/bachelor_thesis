@@ -24,11 +24,12 @@ ar_eff=plots/ar_eff.pdf
 ar_vs_eff=build/ar_vs_eff.pdf
 quantiles=build/quantiles_plot.pdf
 metrics=build/metrics.pdf
+baseline=build/baseline.pdf
 
 # tables
 tab_writer=build/tables.txt
 
-PLOTS := $(fermi4fgl) $(ar_eff) $(ar_vs_eff) $(quantiles) $(metrics) #$(cosmic_flux) $(crab_ssc) $(array_layout)
+PLOTS := $(fermi4fgl) $(ar_eff) $(ar_vs_eff) $(quantiles) $(metrics) $(baseline) #$(cosmic_flux) $(crab_ssc) $(array_layout)
 TABLES := $(tab_writer)
 
 
@@ -71,7 +72,7 @@ $(fermi4fgl): plots/fermi_catalog.py matplotlibrc | build
 	python plots/fermi_catalog.py
 
 $(ar_eff): plots/angres_aeff.py matplotlibrc | build
-	python plots/angres_aeff.py
+	python -W ignore plots/angres_aeff.py
 
 $(ar_vs_eff): plots/ar_vs_eff.py matplotlibrc | build
 	python plots/ar_vs_eff.py
@@ -81,6 +82,9 @@ $(quantiles): plots/quantiles_plot.py matplotlibrc | build
 
 $(metrics): plots/metrics.py matplotlibrc | build
 	python plots/metrics.py
+
+$(baseline): plots/baseline.py matplotlibrc | build
+	python -W ignore plots/baseline.py
 
 
 # tables
