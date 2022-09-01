@@ -15,7 +15,7 @@ from thesis_scripts.shifted_colormap import shiftedColorMap
 
 
 orig_cmap = matplotlib.cm.inferno
-cmap = shiftedColorMap(orig_cmap, midpoint=0.3, name='shiftedcmap')
+cmap = shiftedColorMap(orig_cmap, midpoint=0.35, name='shiftedcmap')
 
 # not used, but nice to have for lookups etc
 """
@@ -116,8 +116,8 @@ fig, ax = plt.subplots(1, 1, figsize=(8,4.5), subplot_kw=dict(projection='mollwe
 
 sc = ax.scatter(x_coord, y_coord, c=colors, cmap=cmap, norm=LogNorm(), alpha=0.9, s=8, edgecolors='none')
 ax.scatter(x_coord[6630], y_coord[6630], marker='o', linewidths=1.3, s=20, facecolors='none', edgecolors='#00ff00', label='Crab Nebula') #'#fc0000'
-ax.scatter(x_coord[agn], y_coord[agn], marker='o', linewidths=1, s=20, facecolors='none', edgecolors='#0181F4', label='AGN') # 32a852
-ax.scatter(x_coord[snr], y_coord[snr], marker='o', linewidths=1, s=20, facecolors='none', edgecolors='#c0f2fa', label='SNR') # 07ba9f
+ax.scatter(x_coord[agn], y_coord[agn], marker='o', linewidths=1, s=20, alpha=0.95, facecolors='none', edgecolors='#0181F4', label='AGN') # 32a852
+ax.scatter(x_coord[snr], y_coord[snr], marker='o', linewidths=1, s=17, alpha=0.95, facecolors='none', edgecolors='#c0f2fa', label='SNR') # 07ba9f
 # ax.scatter(x_coord[grb], y_coord[grb], marker='o', s=20, facecolors='none', edgecolors='#fc0000', label='GRB')
 # ax.scatter(x_coord[pwn], y_coord[pwn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='PWN')
 # ax.scatter(x_coord[psr], y_coord[psr], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='Pulsar')

@@ -123,7 +123,9 @@
   \vspace*{2cm}\\
   \small\noindent%
   This thesis is set in Libertinus (Serif, Sans and Math) and Fira Code\\
-  typeset using \LaTeX{} with Lua\TeX{} from \TeX Live 2021.\\
+  typeset using \LaTeX{} with Lua\TeX{} from \TeX Live 2021. The template\\
+  for this thesis is an adapted version of Max Nöthes' \texttt{tudothesis}\footnote{https://github.com/maxnoe/tudothesis}
+  template.\\
   Title graphic by Kai Br\"ugge.
   \newpage
 }

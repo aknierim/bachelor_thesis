@@ -209,8 +209,9 @@ allows one to manually set subsets of hyperparameters and search for the best co
 \autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix \ref{ap:hyperparameters}} shows
 the subsets of hyperparameters used in this work.
 
-I used \todo{explain noise quantiles}noise quantiles to determine what percentage of all pixels would fall under a certain threshold. This threshold would
-then serve as the core threshold \(Q_b\). The quantiles are calculated directly from the images by
+I used noise quantiles to determine what percentage of all pixels would fall under a certain threshold.
+The noise quantiles here mean all pixels that are not part of the true signal.
+The resulting threshold would then serve as the core threshold \(Q_b\). The quantiles are calculated directly from the images by
 discriminating the noise pixels from the image with the help of the true image. This approach has the
 advantage, that the resulting thresholds are more precisely optimized\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
 Since the boundary thresholds are calculated as a quotient of \(Q_c\), this benefits here as well.

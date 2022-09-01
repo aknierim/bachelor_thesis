@@ -163,9 +163,10 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     for the settings with ID~47.}
     \label{tab:metrics_tail}
     \rowcolors{0}{white!92!black}{}
+    \adjustbox{varwidth=\linewidth,scale=0.9}{%
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        {ID} & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        {ID} & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         % \input{build/metrics_tail.txt} %% kinda broken atm
@@ -174,12 +175,12 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         140 & 0.1460 & 0.0000 & 1.0000 & 0.8540 & 1.0000 & 0.9256 & 0.5730 \\
         81 & 0.1854 & 0.0000 & 1.0000 & 0.8146 & 0.9997 & 0.9288 & 0.5927 \\
         47 & 0.2268 & 0.0000 & 1.0000 & 0.7732 & 0.9994 & 0.9332 & 0.6134 \\
-    \end{tabular}
+    \end{tabular}}
 \end{table}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{build/metrics_tailcuts.pdf}
+    \includegraphics[width=0.95\textwidth]{build/metrics_tailcuts.pdf}
     \caption{Metrics for \tailcuts{}. One can see that the cleaning setting with ID 47 performs
     best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
     setting of the five parameter combinations.}
@@ -197,7 +198,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        ID & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         \input{build/metrics_mars.txt}\\
@@ -221,7 +222,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        ID & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         \input{build/metrics_fact.txt}\\
@@ -245,7 +246,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] }
         \hiderowcolors
-        ID & \gls{tpr} & \gls{fpr} & \gls{tnr} & \gls{fnr} & \gls{ppv} & \gls{acc} & \gls{ba} \\
+        ID & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         \input{build/metrics_tcc.txt}\\
@@ -346,8 +347,8 @@ also slightly better in terms of the \gls{acc} metric.
     \begin{tabular}{c S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]
         S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        {Cleaning Algorithm} & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} &
-        {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
+        {Cleaning Algorithm} & {\acrshort{tpr}} & {\acrshort{fpr}} & {\acrshort{tnr}} &
+        {\acrshort{fnr}} & {\acrshort{ppv}} & {\acrshort{acc}} & {\acrshort{ba}} \\
         \addlinespace[0.5em]
         \showrowcolors
         Tailcuts & 0.2316 & 0.0000 & 1.0000 & 0.7684 & 0.9971 & 0.9358 & 0.6158 \\
@@ -384,8 +385,8 @@ to be a good choice for cleaning since it performs reasonably well even on \gls{
     \begin{tabular}{c S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]
         S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        {Cleaning Algorithm} & {\gls{tpr}} & {\gls{fpr}} & {\gls{tnr}} &
-        {\gls{fnr}} & {\gls{ppv}} & {\gls{acc}} & {\gls{ba}} \\
+        {Cleaning Algorithm} & {\acrshort{tpr}} & {\acrshort{fpr}} & {\acrshort{tnr}} &
+        {\acrshort{fnr}} & {\acrshort{ppv}} & {\acrshort{acc}} & {\acrshort{ba}} \\
         \addlinespace[0.5em]
         \showrowcolors
         Tailcuts & 0.2268 & 0.0000 & 1.0000 & 0.7732 & 0.9994 & 0.9332 & 0.6134 \\
