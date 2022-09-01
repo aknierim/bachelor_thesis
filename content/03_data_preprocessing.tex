@@ -12,7 +12,7 @@ were simulated in \autoref{sec:data-simulation} and then, in \autoref{sec:data-l
 data levels and \ctapipe{}'s various analysis steps. In \autoref{sec:pipeline} I will
 explain the full pipeline created for this work.
 
-
+\vspace{-0.5cm}
 \section{Data simulation}
 \label{sec:data-simulation}
 
@@ -29,8 +29,10 @@ and \autoref{fig:ctapipe}. Some of the data properties are listed in \autoref{ta
 This data is the basis for the analysis in this work. A total of around \(\num{27}\)\,k telescope events
 (\sim\(\num{12}\)\,k array events) throughout \(\num{20}\) \texttt{simtel} runs of diffuse gamma data
 were used for the initial analysis, \ie the testing of different parameters as described in
-\autoref{sec:hyperparameters}. After processing the individual runs and merging them into one large
-file, this file is being processed for the aforementioned parameters. %  \(\num{27353}\) \(\num{12668}\)
+\autoref{sec:hyperparameters}. Telescope events are the events that have been observed on a telescope level,
+while array events are the events where at least two telescopes observed the same \gls{eas}.
+After processing the individual runs and merging them into one large
+file, this file is processed for the aforementioned parameters. %  \(\num{27353}\) \(\num{12668}\)
 
 Once promising parameters are found, a larger dataset, containing around \(\num{1.3}\)\,M telescope events
 (\sim\(\num{620}\)\,k array events) throughout \(987\) runs, is processed with these
@@ -42,6 +44,7 @@ selected settings, allowing for more statistics and a better comparison of the c
     analysis.}
     \label{tab:simtel}
     \rowcolors{0}{white!92!black}{}
+    \adjustbox{varwidth=\linewidth,scale=0.9}{%
     \begin{tabular}{l r}
         \hiderowcolors
         & Diffuse Gamma data \\
@@ -52,7 +55,7 @@ selected settings, allowing for more statistics and a better comparison of the c
         {Number of showers} & \num{50000} \\
         {Spectral index} & \num{-2.0} \\
         {Maximum scatter range / \si{\meter}} & \num{1900} \\
-    \end{tabular}
+    \end{tabular}}
 \end{table}
 
 
@@ -60,11 +63,11 @@ selected settings, allowing for more statistics and a better comparison of the c
 \label{sec:data-levels}
 
 There are several data levels in \ctapipe{}, spanning from the raw data \rzero{} to the reconstructed events
-\dlt{}, with the raw data levels being denoted by an \textbf{R} and the calibrated data levels by a \textbf{D}.
+\dlt{}, with the raw data levels being denoted by an \textbf{R} and the stored data levels by a \textbf{D}.
 \autoref{fig:ctapipe} shows a simplified overview of the data levels and the analysis steps.
 The raw data level \rzero{} is the data that comes directly from the photodetectors. The time-resolved
 signal of the data is calibrated from \rzero{} to \rone{}. The data volume gets reduced
-(\rone{} \rightarrow \dlz{}) by detecting waveform peaks for each pixel and then integrating them.
+(\rone{} \rightarrow \dlz{}) by \todo{better wording needed}detecting waveform peaks for each pixel and then integrating them.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{graphics/ctapipe.png}
@@ -81,12 +84,12 @@ The \dlz{} data level is the first level being stored and also the first level t
 the simulation datasets used in this work. From \dlz{} to \dloa{}, the photon images are extracted
 by integrating the waveform peaks of each pixel, whilst the time images ("peak times", compare \autoref{fig:ctapipe})
 are extracted by finding the rising edge of the pulse. The resulting images are cleaned by cleaning algorithms,
-which, in turn, allows for a parametrization of the events from \dloa{} to \dlob{}.
+to distinguish signal from \gls{nsb}, which, in turn, allows for a parametrization of the events from \dloa{} to \dlob{}.
 % From \dlz{} to \dloa{}, the images of the data are extracted
 % from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
 % of the events (\dloa{} \rightarrow \dlob{}).
 The cleaning is a necessary step, especially for
-low-energy events, where the actual signal is harder to distinguish from the \gls{nsb}. The cleaning algorithms
+low-energy events, where the signal count is low compared to the \gls{nsb}. The cleaning algorithms
 of \ctapipe{} are introduced in \autoref{sec:cleaning-algorithms} and can be roughly categorized into
 time-based and non-time-based algorithms.
 

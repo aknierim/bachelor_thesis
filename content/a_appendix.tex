@@ -128,3 +128,47 @@ For the processing of the datasets, I used the development version of \texttt{ct
     \lstinputlisting[basicstyle=\footnotesize\lstsansserif, multicols=2, language=yaml]{./configs/env.yml}
     \end{mdframed}
 \end{spacing}
+
+
+\section{Additional plots and tables}
+\label{ap:additional_plots_tables}
+
+\subsection{Metrics}
+\label{ap:metrics}
+The table below shows the metrics used in this work as well as their formulas. Also shown is a confusion matrix for
+a binary (positive/negative) classification problem.
+
+\glsreset{tpr}\glsreset{fpr}\glsreset{tnr}\glsreset{tp}\glsreset{fn}\glsreset{fp}\glsreset{tn}
+\begin{table}
+    \centering
+    \caption{The metrics used for this works analysis as well as their calculation. Right: Confusion
+    matrix for a binary (positive/negative) classification.}
+    \label{tab:metrics}
+    \begin{subtable}{0.48\textwidth}
+        \centering
+        \rowcolors{0}{white!92!black}{}
+        \adjustbox{varwidth=\linewidth,scale=0.95}{%
+        \begin{tabular}{l c}
+            \hiderowcolors
+            {Metric} & {Calculation} \\
+            \showrowcolors
+            \gls{tpr} & ${\frac{\tp}{\tp + \fn}}$ \\
+            \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
+            \gls{tnr} & ${\frac{\tn}{\tn + \fp}}$ \\
+            \gls{fnr} & ${\frac{\fn}{\fn + \tp}}$ \\
+            \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
+            \gls{acc} & ${\frac{\tp + \tn}{\tp + \fp + \tn + \fn}}$ \\
+            \gls{ba} & ${\frac{\tpr + \tnr}{2}}$ \\
+        \end{tabular}}
+    \end{subtable}%
+    \begin{subtable}{0.48\textwidth}
+        \centering
+        \adjustbox{varwidth=\linewidth,scale=0.85}{%
+        \begin{tabular}{r l c c}
+            & & \multicolumn{2}{c}{Prediction} \\
+            & & positive & negative \\
+            \parbox[t]{2mm}{\multirow{2}{*}{\rotatebox[origin=c]{90}{Label}}} &  pos. & \colorbox{white!92!black}{\gls{tp}} & \gls{fn} \\
+            & neg. & \gls{fp} & \colorbox{white!92!black}{\gls{tn}} \\
+        \end{tabular}}
+    \end{subtable}%
+\end{table}

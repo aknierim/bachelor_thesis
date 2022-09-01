@@ -1,6 +1,7 @@
 """
 Basic idea adapted from Kai Bruegge's PhD thesis
 """
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
@@ -10,9 +11,11 @@ from astropy.coordinates import SkyCoord
 from collections import Counter
 
 from thesis_scripts.custom_cmap import custom_cmap
+from thesis_scripts.shifted_colormap import shiftedColorMap
 
 
-cmap = custom_cmap(['#1a2bad', "#32a852", "#fffc5e", "#f7d200"])
+orig_cmap = matplotlib.cm.inferno
+cmap = shiftedColorMap(orig_cmap, midpoint=0.3, name='shiftedcmap')
 
 # not used, but nice to have for lookups etc
 """
@@ -111,10 +114,10 @@ colors = table['Energy_Flux100'].to('TeV/(cm2 s)')
 
 fig, ax = plt.subplots(1, 1, figsize=(8,4.5), subplot_kw=dict(projection='mollweide'), constrained_layout=True)
 
-sc = ax.scatter(x_coord, y_coord, c=colors, cmap="inferno", norm=LogNorm(), alpha=0.9, s=8, edgecolors='none')
+sc = ax.scatter(x_coord, y_coord, c=colors, cmap=cmap, norm=LogNorm(), alpha=0.9, s=8, edgecolors='none')
 ax.scatter(x_coord[6630], y_coord[6630], marker='o', linewidths=1.3, s=20, facecolors='none', edgecolors='#00ff00', label='Crab Nebula') #'#fc0000'
-ax.scatter(x_coord[agn], y_coord[agn], marker='o', linewidths=1.2, s=20, facecolors='none', edgecolors='#0181F4', label='AGN') # 32a852
-ax.scatter(x_coord[snr], y_coord[snr], marker='o', linewidths=1.2, s=20, facecolors='none', edgecolors='#c0f2fa', label='SNR') # 07ba9f
+ax.scatter(x_coord[agn], y_coord[agn], marker='o', linewidths=1, s=20, facecolors='none', edgecolors='#0181F4', label='AGN') # 32a852
+ax.scatter(x_coord[snr], y_coord[snr], marker='o', linewidths=1, s=20, facecolors='none', edgecolors='#c0f2fa', label='SNR') # 07ba9f
 # ax.scatter(x_coord[grb], y_coord[grb], marker='o', s=20, facecolors='none', edgecolors='#fc0000', label='GRB')
 # ax.scatter(x_coord[pwn], y_coord[pwn], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='PWN')
 # ax.scatter(x_coord[psr], y_coord[psr], marker='o', s=20, facecolors='none', edgecolors='#2ab5fa', label='Pulsar')
@@ -127,7 +130,7 @@ ax.grid(False)
 ax.legend()
 ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.025), ncol=3)
 
-ax.set_title('LAT 12-year Source Catalog (4FGL-DR3)')
+ax.set_title('LAT 12-year Source Catalog (4FGL--DR3)')
 
 cbar = fig.colorbar(sc, ax=ax, pad=0.1, fraction=0.025, label='Flux / \si{\TeV\per\square\centi\meter \per\second}')
 

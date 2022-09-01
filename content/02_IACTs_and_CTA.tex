@@ -24,16 +24,15 @@ larger effective area than any space-based instrument. This is especially helpfu
     kilometer per year \cite{carmelo_2020}.}
     \label{fig:flux}
 \end{wrapfigure}
-where the gamma-ray flux is low compared to lower energies that have higher fluxes and the effective
-collection area of even larger space-based instruments such as \gls{fermilat} is too small \cite[p.~256]{funk}.
-This means, that space-based experiments with their small effective area
-will see fewer high-energy events compared to ground-based experiments. The cosmic ray flux in
+where the gamma-ray flux is low, whereas lower energies show higher fluxes. Because the effective
+collection area of space-based instruments such as \gls{fermilat} is too small \cite[p.~256]{funk},
+they will see fewer high-energy events compared to ground-based experiments. The cosmic ray flux in
 \autoref{fig:flux} shows this well: The flux decreases rapidly with higher energies, with only one
-high-energy photon per day and square meter reaching Earth from the Crab Nebula \cite{noethe_thesis}
+high-energy (\greater\(\SI{40}{\giga\eV}\)) photon per day and square meter reaching Earth from the Crab Nebula \cite{noethe_thesis}
 and even fewer photons for energies in the \si{\exa\eV} domain, where only \(\num{1}\) particle per
 square kilometer per year reaches Earth.
 
-For high-energy gamma rays, Earth's atmosphere is opaque, so ground-based experiments rely on
+\todo{opaque or not opaque---that is the question}For high-energy photons, Earth's atmosphere is opaque, so ground-based experiments rely on
 cascades of sub-particles in so-called \glspl{eas}. For gamma-ray astronomy, the electromagnetic
 component of these \glspl{eas}, shown in \autoref{fig:heitler_model}, is of interest, as these
 are produced by gamma rays. When a gamma ray interacts with Earth's atmosphere, it decays into an
@@ -104,16 +103,16 @@ on La Palma.
 \cta{} consists of three types of telescopes, shown in \autoref{fig:cta_telescopes}, each being
 sensitive to a different energy range \cite{cta_specs}:
 \begin{description}
-    \item [] \textbf{\gls{lst}}: The largest telescopes in \cta{} have primary deflector diameter
-    of \SI{23}{\meter} with a field of view of \SI{4.3}{\deg} and are sensitive to energy
-    ranges from \(\SI{20}{\giga\eV}\) to \(\SI{150}{\giga\eV}\).
+    \item [] \textbf{\gls{lst}}: The largest telescopes in \cta{} have a primary deflector diameter
+    of \SI{23}{\meter} with a field of view of \SI{4.3}{\deg} and provide full system sensitivity in the energy
+    regime from \(\SI{20}{\giga\eV}\) to \(\SI{150}{\giga\eV}\).
     \item [] \textbf{\gls{mst}}: The \glspl{mst} have a primary deflector diameter of \SI{11.5}{\meter}
-    with a field of view of \SI{7.7}{\deg} for their NectarCam and are sensitive to energy ranges
-    from \(\SI{150}{\giga\eV}\) to \(\SI{5}{\tera\eV}\).
+    with a field of view of \SI{7.7}{\deg} for their NectarCam and provide full system sensitivity in the energy
+    regime from \(\SI{150}{\giga\eV}\) to \(\SI{5}{\tera\eV}\).
     \item [] \textbf{\gls{sst}}: Being the smallest telescope type in \cta{}, the \glspl{sst}
     have a primary deflector diameter of \SI{4.3}{\meter}, a secondary deflector diameter of
-    \SI{1.8}{\meter} with a field of view of \SI{10.5}{\deg} and are sensitive to energy ranges
-    from \(\SI{5}{\tera\eV}\) to \(\SI{300}{\tera\eV}\).
+    \SI{1.8}{\meter} with a field of view of \SI{10.5}{\deg} and provide full system sensitivity in the energy
+    regime from \(\SI{5}{\tera\eV}\) to \(\SI{300}{\tera\eV}\).
 \end{description}
 
 \begin{figure}
@@ -130,8 +129,8 @@ Since the southern hemisphere has a better view of the galactic center than the 
 only \cta{} south will feature the \glspl{sst} along the other two telescope types. \cta{} north
 will only feature \glspl{mst} and \glspl{lst}. In its full configuration, \cta{} would feature
 \(\num{70}\) \glspl{sst}, \(\num{25}\) \glspl{mst} and \(\num{4}\) \glspl{lst} at \cta{} south,
-and \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst} at \cta{} north. In its initial proposal,
-however, the reduced layout---called Alpha Configuration--- is the current official layout for both \cta{}
+and \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst} at \cta{} north. However, the reduced
+layout---called Alpha Configuration---is the currently planned layout for both \cta{}
 north and south. This work will focus on the northern site, consisting of \(\num{9}\) \glspl{mst}
 and \(\num{4}\) \glspl{lst} \cite{cta_north_layout}. \autoref{fig:cta_layout} shows the planned
 Alpha Configuration layout of both sites of \cta{} where \cta{} south is displayed with its
@@ -154,8 +153,12 @@ camera is based on a \gls{sipm} photodetector. Both detector types provide fast 
 order of nanoseconds. \glspl{pmt} can detect small amounts of electromagnetic radiation due to their
 amplification process. However, this amplification process also amplifies the noise of the detector
 and also needs higher voltages than \glspl{sipm}. The latter, on the other hand, needs to be cooled,
-as \glspl{sipm} are prone to have a higher dark current at higher temperatures. The \gls{mst} and
-\gls{lst} will feature a camera with \(\num{1855}\) pixels.
+as \glspl{sipm} are prone to have a higher dark current at higher temperatures.
+% The \gls{mst} and \gls{lst} will feature a camera with \(\num{1855}\) pixels.
+
+With \cta{} probing the \gls{vhe} gamma-ray sky and a resolution outperforming predecessors, like
+\gls{hess} or \gls{magic}, it will be able to observe a broad variety of sources, allowing insights
+into interaction processes of \gls{vhegr} as well as their origin.
 
 Together with gravitational wave and neutrino observatories as well as with other photon observatories,
 \cta{} will probe the universe in its \glsreset{he}\gls{he} domain, allowing to study a broad field of key questions
@@ -174,6 +177,3 @@ in astrophysics. As such, \cta's scientific goals can be divided into three cate
     probed. Furthermore, \cta{} will search for quantum gravitational effects on photon propagation.
 \end{description}
 
-With \cta{} probing the \gls{vhe} gamma-ray sky and a resolution outperforming predecessors, like
-\gls{hess} or \gls{magic}, it will be able to observe a broad variety of sources, allowing insights
-into interaction processes of \gls{vhegr} as well as their origin.

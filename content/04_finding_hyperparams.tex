@@ -7,10 +7,12 @@ reconstruction of the events in a dataset. Therefore, a tweaking of the availabl
 cleaner is necessary. In this chapter, I will first introduce the cleaning algorithms and their parameters
 in \autoref{sec:cleaning-algorithms} and then describe the procedure to find optimal hyperparameters
 in \autoref{sec:hyperparameters}.
-
+\vspace{-0.5cm}
 \section{Cleaning Algorithms}
 \label{sec:cleaning-algorithms}
-
+\vspace{-0.5cm}
+\subsection{\texttt{TailcutsImageCleaner}}
+\vspace{-0.5cm}
 Version \texttt{0.15.1} of \ctapipe{} features four cleaning algorithms, two of which are time-based.
 The \tailcuts{} algorithm is the most basic algorithm of the four and serves as a good
 starting point for the development of new cleaning algorithms. Its first step is to select all
@@ -35,6 +37,8 @@ default values of the algorithm.
     \label{fig:tailcuts_clean}
 \end{figure}
 
+\subsection{\texttt{MARSImageCleaner}}
+\vspace{-0.5cm}
 The \mars{} algorithm \cite{mars} is very much based on the \tailcuts{}
 algorithm and features an additional step, in that it also selects all neighbors of a neighbor of a
 core pixel, if they are above the boundary threshold. The three steps for the \mars{} algorithm
@@ -95,27 +99,32 @@ are shown in \autoref{fig:mars_cleaning} for its default values.
     other cleaning algorithms are selected in the first step.}
     \label{fig:fact_cleaning}
 \end{figure}
-
+\subsection{\texttt{FactImageCleaner}}
+\vspace{-0.5cm}
 The \fact{} algorithm \cite{temme_thesis, temme_diploma} is a time-based cleaning algorithm that first selects all pixels that are above
-\(Q_c\). Then, all pixels that have less than \(N\) neighbors are removed. Per default, the algorithm
-looks for a minimum of at least \(\num{2}\) neighbors. For the third step, all pixels neighboring
+\(Q_c\). Then, all pixels that have less than \(N\) neighbors are removed.
+% Per default, the algorithm looks for a minimum of at least \(\num{2}\) neighbors.
+For the third step, all pixels neighboring
 the remaining pixels that are above \(Q_b\) are selected. After that, all
 pixels that have less than \(N\) neighbors and that have arrived within a given timeframe are removed.
-This timeframe is set to \(\SI{5}{\nano\second}\) by default. Again, all pixels
-with less than \(N\) neighbors are removed. The last step once again removes pixels with less than
+% This timeframe is set to \(\SI{5}{\nano\second}\) by default.
+Again, all pixels with less than \(N\) neighbors are removed. The last step once again removes pixels with less than
 \(N\) neighbors, arriving within the given time limit. The visualization of the algorithm is shown in
 \autoref{fig:fact_cleaning} for the default values of the algorithm.
-
+\vspace{-0.75cm}
+\subsection{\texttt{TimeConstrainedImageCleaner}}
+\vspace{-0.5cm}
 The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration \cite{tcc}.
 It first selects all pixels that are above \(Q_c\). Then, all pixels that have
 less than \(N\) neighbors are removed. A minimum of \(\num{1}\) neighboring pixel is needed in the default
 settings. After that, all core pixels whose arrival times are within a given timeframe of the average arrival time.
-This core time limit \(t_c\) is set to \(\SI{4.5}{\nano\second}\) by default. As a fourth step,
-the \tcc{} algorithm finds all pixels above \(Q_b\). Then, all pixels with
-less than \(N\) neighbors arriving within a given timeframe are removed. This boundary time limit
-is set to \(\SI{1.5}{\nano\second}\) by default. The visualization of the algorithm is shown in
-\autoref{fig:tcc_cleaning} for the default values of the algorithm.
-
+% This core time limit \(t_c\) is set to \(\SI{4.5}{\nano\second}\) by default.
+As a fourth step, the \tcc{} algorithm finds all pixels above \(Q_b\). Then, all pixels with
+less than \(N\) neighbors arriving within a given timeframe are removed.
+% This boundary time limit is set to \(\SI{1.5}{\nano\second}\) by default.
+The visualization of the algorithm is shown in \autoref{fig:tcc_cleaning} for the default values of the algorithm.
+For a better comparison, the resulting cleaned images are of each cleaner are shown in \autoref{fig:cleaners_together}
+in \hyperref[ap:additional_plots]{appendix \ref{ap:additional_plots}}.
 \begin{figure}
     \centering
     % \begin{subfigure}[t]{0.32\textwidth}
@@ -195,12 +204,12 @@ The full configuration files for the default settings of each cleaning algorithm
 \hyperref[ap:config_files]{appendix \ref{ap:config_files}}. There, the configuration files for the allowed telescopes
 as described in \autoref{sec:pipeline} are shown, too.
 
-To find the optimal hyperparameters I utilized \sklearn{}~\cite{scikit-learn} for a grid search. This
+To find the optimal hyperparameters, I utilized \sklearn{}~\cite{scikit-learn} for a grid search. This
 allows one to manually set subsets of hyperparameters and search for the best combination of these.
 \autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix \ref{ap:hyperparameters}} shows
 the subsets of hyperparameters used in this work.
 
-I used noise quantiles to determine what percentage of all pixels would fall under a certain threshold. This threshold would
+I used \todo{explain noise quantiles}noise quantiles to determine what percentage of all pixels would fall under a certain threshold. This threshold would
 then serve as the core threshold \(Q_b\). The quantiles are calculated directly from the images by
 discriminating the noise pixels from the image with the help of the true image. This approach has the
 advantage, that the resulting thresholds are more precisely optimized\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
@@ -208,7 +217,7 @@ Since the boundary thresholds are calculated as a quotient of \(Q_c\), this bene
 The quantiles used in this work are shown in \autoref{fig:quantiles}.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{build/quantiles_plot.pdf}
+    \includegraphics[width=0.65\textwidth]{build/quantiles_plot.pdf}
     \caption{Picture noise quantiles for a \gls{mst} NectarCam dataset. The quantiles are calculated
     as the percentage of noise pixels in the image. The resulting threshold can then be used as a
     candidate for the core threshold \(Q_c\) in a grid search.}
@@ -262,8 +271,9 @@ In this work, I chose to first look at the efficiency
 \begin{equation}\label{eq:efficiency}
     \eff =  \frac{n_{\mathrm{reco}}}{n_{\mathrm{total}}},
 \end{equation}
-where \(n_{\mathrm{reco}}\) is the number of reconstructed events and \(n_{\mathrm{total}}\)
-the total number of events in the dataset. By first binning the efficiency per energy and then
+where \(n_{\mathrm{total}}\) is the total number of events in the dataset and \(n_{\mathrm{reco}}\)
+the number of reconstructed events. The latter depends on the cleaning, as only a successfully cleaned
+event can be parametrized and therefore reconstructed. By first binning the efficiency per energy and then
 taking the mean, one can sort the datasets by setting upper and lower bounds for the efficiency.
 The intervals' lengths were chosen as \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total
 of \(\num{20}\) intervals.
@@ -273,47 +283,13 @@ For each interval, the mean angular resolution is calculated by determining the
 between the reconstructed origin and the true origin of the shower.
 % This angular distance, or separation, is calculated with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}.
 The dataset with the lowest mean angular resolution is the best performing for each interval.
-If more low-energy events are reconstructed, the efficiency will be lower, but the angular resolution
-may be higher, as those events are more likely to include pixels that are part of the background.
+If more low-energy events are reconstructed, not only will the efficiency be higher, but also the angular resolution,
+as those events are more likely to include pixels that are part of the \gls{nsb}.
 % Not all events will ever be properly reconstructed for any parameter combination, so there won't be
 % a mean angular resolution for all intervals, but only a subset.
 % Also, the mean angular resolution may be higher when more events were reconstructed.
 As a result, a trade-off between efficiency and angular resolution is necessary.
 
 For the performance analysis of the algorithms, I calculated metrics such as, but not limited to, the \gls{tpr} or recall,
-the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used metrics can be seen in \autoref{tab:metrics}.
-
-\begin{table}
-    \centering
-    \caption{The metrics used for this works analysis as well as their calculation. Right: Confusion
-    matrix for a binary (positive/negative) classification.}
-    \label{tab:metrics}
-    \glsreset{tpr}\glsreset{fpr}\glsreset{tnr}
-    \begin{subtable}{0.48\textwidth}
-        \centering
-        \rowcolors{0}{white!92!black}{}
-        \adjustbox{varwidth=\linewidth,scale=0.85}{%
-        \begin{tabular}{l c}
-            \hiderowcolors
-            {Metric} & {Calculation} \\
-            \showrowcolors
-            \gls{tpr} & ${\frac{\tp}{\tp + \fn}}$ \\
-            \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
-            \gls{tnr} & ${\frac{\tn}{\tn + \fp}}$ \\
-            \gls{fnr} & ${\frac{\fn}{\fn + \tp}}$ \\
-            \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
-            \gls{acc} & ${\frac{\tp + \tn}{\tp + \fp + \tn + \fn}}$ \\
-            \gls{ba} & ${\frac{\tpr + \tnr}{2}}$ \\
-        \end{tabular}}
-    \end{subtable}%
-    \begin{subtable}{0.48\textwidth}
-        \centering
-        \adjustbox{varwidth=\linewidth,scale=0.9}{%
-        \begin{tabular}{r l c c}
-            & & \multicolumn{2}{c}{Prediction} \\
-            & & positive & negative \\
-            \parbox[t]{2mm}{\multirow{2}{*}{\rotatebox[origin=c]{90}{Label}}} &  pos. & \colorbox{white!92!black}{\gls{tp}} & \gls{fn} \\
-            & neg. & \gls{fp} & \colorbox{white!92!black}{\gls{tn}} \\
-        \end{tabular}}
-    \end{subtable}%
-\end{table}
+the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used metrics can be seen in \autoref{tab:metrics}
+in \hyperref[ap:metrics]{appendix \ref{ap:metrics}}.

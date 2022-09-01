@@ -18,8 +18,8 @@ cleaning algorithms is presented in \autoref{sec:comparison}.
 To narrow down possible candidates for the optimal hyperparameters, I first analyzed the efficiency
 of the different cleaning algorithms. The efficiency is determined by the number of events that are
 reconstructed after cleaning. For this work I chose \(\num{20}\) intervals within \(\num{0}\) and
-\(\num{1}\) with a step size of \(\num{0.05}\). The mean efficiency is then calculated as the mean
-of \autoref{eq:efficiency}. For each interval those datasets are selected, where the mean efficiency
+\(\num{1}\) with a step size of \(\num{0.05}\). The events are binned per energy mean efficiency over all
+is then calculated as the mean of \autoref{eq:efficiency}. For each interval those datasets are selected, where the mean efficiency
 lies between the lower and upper bound of the interval. Then the minimum angular resolution is
 determined for each interval. The parameters of these datasets are then selected to be the optimal
 parameters for each cleaning algorithm. This not only allows for a comparison of the cleaners but also
@@ -293,7 +293,7 @@ Now, with the best-performing settings for each cleaner, it is reasonable to com
 the performance to the default settings, that are implemented in the \ctapipe{} source code
 (see \autoref{tab:hyperparameters}). First, the relative angular resolution
 \begin{equation}
-    \theta_\text{rel} = \frac{\theta_{\SI{68}{\percent}}}{\theta_\text{base}}
+    \theta_\text{rel} = \frac{\theta_{\SI{68}{\percent}}}{\theta_{\SI{68}{\percent},\,\text{base}}}
 \end{equation}
 is computed for the default settings and the best-performing settings for each cleaner.
 The results are shown in \autoref{fig:rel_angres} for the same efficiency intervals
@@ -361,9 +361,9 @@ also slightly better in terms of the \gls{acc} metric.
 \section{Comparison of the cleaning algorithms}
 \label{sec:comparison}
 
-Because the cleaning algorithms in this work are the only ones that are implemented in the \ctapipe{}
-source code as of writing this thesis, a comparison of the algorithms against each other seems to be
-another feasible option. I once again decided to use the best-performing setting of each algorithm
+As of writing this thesis, the cleaning algorithms discussed in this thesis are the only ones implemented
+in the \ctapipe{} source code. With the determined hyperparameters, I decided to compare the performance of all
+four cleaners. I once again decided to use the best-performing setting of each algorithm
 and look at the metrics. The metrics of all four algorithms are shown in \autoref{fig:metrics_all}.
 The corresponding values are listed in \autoref{tab:metrics_all}.
 
@@ -398,6 +398,9 @@ to be a good choice for cleaning since it performs reasonably well even on \gls{
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_all.pdf}
-    \caption{Bar plot visualizing the metrics for the best-performing settings of all four cleaning algorithms.}
+    \caption{Bar plot visualizing the metrics for the best-performing settings of all four cleaning algorithms.
+    \fact{} performs best out of all cleaning algorithms, followed by \mars{} and \tcc{}. The latter, however
+    performs well \wrt the angular resolution, as shown in \autoref{fig:rel_angres} and can therefore be considered
+    a viable alternative to \fact{}.}
     \label{fig:metrics_all}
 \end{figure}
