@@ -43,7 +43,7 @@ def metrics_bar_plot(
 
     data = pd.read_csv(f'plots/data/metrics/metrics_{cleaner}_MST_MST_NectarCam.csv')
     unique_ids = data['unique_file_id']
-    data = data.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
+    data = data.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn", "FPR", "PPV"])
     labels = [metrics_dict[k] for k in data.keys()]
     x_ticks = np.arange(len(labels))
 
@@ -85,7 +85,7 @@ def metrics_bar_plot_all(
     df = pd.concat([tail, mars, fact, tcc])
     # print(df)
 
-    df = df.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
+    df = df.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn", "FPR", "PPV"])
     labels = [metrics_dict[k] for k in df.keys()]
     x_ticks = np.arange(len(labels))
 
@@ -96,7 +96,7 @@ def metrics_bar_plot_all(
 
     fig, ax = plt.subplots(1, 1, figsize=(size[0]*2, size[1]))
     for idx, color, label in zip(range(len(df)), colors, names):
-        ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, color=color, label=label)
+        ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, color=color, label=label, alpha=0.9)
 
     ax.set_xticks(x_ticks)
     ax.set_xticklabels(df.keys(), fontsize=8)

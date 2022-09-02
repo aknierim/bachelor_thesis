@@ -124,7 +124,7 @@ less than \(N\) neighbors arriving within a given timeframe are removed.
 % This boundary time limit is set to \(\SI{1.5}{\nano\second}\) by default.
 The visualization of the algorithm is shown in \autoref{fig:tcc_cleaning} for the default values of the algorithm.
 For a better comparison, the resulting cleaned images are of each cleaner are shown in \autoref{fig:cleaners_together}
-in \hyperref[ap:additional_plots]{appendix \ref{ap:additional_plots}}.
+in \hyperref[ap:additional_plots_tables]{appendix \ref{ap:additional_plots_tables}}.
 \begin{figure}
     \centering
     % \begin{subfigure}[t]{0.32\textwidth}
@@ -209,9 +209,9 @@ allows one to manually set subsets of hyperparameters and search for the best co
 \autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix \ref{ap:hyperparameters}} shows
 the subsets of hyperparameters used in this work.
 
-I used noise quantiles to determine what percentage of all pixels would fall under a certain threshold.
-The noise quantiles here mean all pixels that are not part of the true signal.
-The resulting threshold would then serve as the core threshold \(Q_b\). The quantiles are calculated directly from the images by
+I used noise quantiles, \ie the percentage of all \textit{noise} pixels that are therefore not part of the true signal,
+to determine the core threshold \(Q_c\). This would mean, that \eg \(\SI{99.99}{\percent}\)
+of the noise pixels would fall under a threshold of \(\SI{9.50}{\pe}\) for the data used in this work. The quantiles are calculated directly from the images by
 discriminating the noise pixels from the image with the help of the true image. This approach has the
 advantage, that the resulting thresholds are more precisely optimized\footnote{As opposed to setting the thresholds by hand, \eg{} \numrange{4}{10} in \num{0.5} increments}.
 Since the boundary thresholds are calculated as a quotient of \(Q_c\), this benefits here as well.
@@ -275,9 +275,9 @@ In this work, I chose to first look at the efficiency
 where \(n_{\mathrm{total}}\) is the total number of events in the dataset and \(n_{\mathrm{reco}}\)
 the number of reconstructed events. The latter depends on the cleaning, as only a successfully cleaned
 event can be parametrized and therefore reconstructed. By first binning the efficiency per energy and then
-taking the mean, one can sort the datasets by setting upper and lower bounds for the efficiency.
+taking the sum over all energy bins, one can sort the datasets by setting upper and lower bounds for the efficiency.
 The intervals' lengths were chosen as \(\num{0.05}\), \ie \(\SI{5}{\percent}\), resulting in a total
-of \(\num{20}\) intervals.
+of \(\num{20}\) intervals between \(\SI{0}{\percent}\) and \(\SI{100}{\percent}\).
 
 For each interval, the mean angular resolution is calculated by determining the
 \(\SI{68}{\percent}\) containment of the angular distance distribution, \ie the angular distance

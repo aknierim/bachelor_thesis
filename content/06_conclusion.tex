@@ -9,7 +9,7 @@ optimized algorithms and the default algorithms, as well as a comparison between
 cleaner was performed.
 
 Most of the data (pre-)processing in this work was done with \gls{cta}'s open-source low-level data processing pipeline
-software \ctapipe{}, version \texttt{0.15.1}. The data used was PROD5 \gls{mc} data consisting of
+software \ctapipe{}, version \texttt{0.15.1}. The data used was PROD5 \gls{mc} simulations consisting of
 \(\num{1.3}\)\,M telescope events (\sim\(\num{620}\)\,k array events) throughout \(987\) runs. The data
 was processed from raw \texttt{simtel} data (\rzero) up to cleaned (\dloa) and parametrized (\dlob) levels
 for the metrics as well as reconstructed (\dlt) data for the efficiency and angular resolution.
@@ -27,7 +27,8 @@ The main results of this thesis are the hyperparameters for the cleaning algorit
 Due to the long runtimes of the grid searches and the time limitation of this thesis, however, the hyperparameters
 for cleaning algorithms were only optimized for \glspl{mst}. The optimal hyperparameters of each cleaning algorithm for
 the \glspl{mst} are listed in \autoref{tab:best_parameters}. A further grid search with only \gls{lst}
-data would be necessary to find the remaining core and boundary thresholds \(Q_c\) and \(Q_b\).
+data would be necessary to find the remaining core and boundary thresholds \(Q_c\) and \(Q_b\) as well
+as the time limits for the \gls{lst} data.
 
 The comparison of the performance of the optimized algorithms with the default algorithms has shown that
 the optimized algorithms performed better than the default algorithms \wrt the angular resolution. This

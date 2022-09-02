@@ -37,8 +37,8 @@ def metrics_bar_plot_all(
     df = pd.concat([tail, mars, fact, tcc])
     base = pd.concat([tail_b, mars_b, fact_b, tcc_b])
 
-    df = df.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
-    base = base.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
+    df = df.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn", "FPR", "PPV"])
+    base = base.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn", "FPR", "PPV"])
 
     labels = [metrics_dict[k] for k in df.keys()]
     x_ticks = np.arange(len(labels))

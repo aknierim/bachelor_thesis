@@ -135,7 +135,7 @@ For the processing of the datasets, I used the development version of \texttt{ct
 
 \subsection{Metrics}
 \label{ap:metrics}
-The table below shows the metrics used in this work as well as their formulas. Also shown is a confusion matrix for
+\autoref{tab:metrics} below shows the metrics used in this work as well as their formulas. Also shown is a confusion matrix for
 a binary (positive/negative) classification problem.
 
 \glsreset{tpr}\glsreset{fpr}\glsreset{tnr}\glsreset{tp}\glsreset{fn}\glsreset{fp}\glsreset{tn}
@@ -147,16 +147,16 @@ a binary (positive/negative) classification problem.
     \begin{subtable}{0.48\textwidth}
         \centering
         \rowcolors{0}{white!92!black}{}
-        \adjustbox{varwidth=\linewidth,scale=0.95}{%
+        \adjustbox{varwidth=\linewidth,scale=0.9}{%
         \begin{tabular}{l c}
             \hiderowcolors
             {Metric} & {Calculation} \\
             \showrowcolors
             \gls{tpr} & ${\frac{\tp}{\tp + \fn}}$ \\
-            \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
+            % \gls{fpr} & ${\frac{\fp}{\fp + \tn}}$ \\
             \gls{tnr} & ${\frac{\tn}{\tn + \fp}}$ \\
             \gls{fnr} & ${\frac{\fn}{\fn + \tp}}$ \\
-            \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
+            % \gls{ppv} & ${\frac{\tp}{\tp + \fp}}$ \\
             \gls{acc} & ${\frac{\tp + \tn}{\tp + \fp + \tn + \fn}}$ \\
             \gls{ba} & ${\frac{\tpr + \tnr}{2}}$ \\
         \end{tabular}}
@@ -172,3 +172,17 @@ a binary (positive/negative) classification problem.
         \end{tabular}}
     \end{subtable}%
 \end{table}
+
+\subsection{A comparison of the last steps of the cleaning algorithms}
+\label{ap:comparing_last_steps}
+
+\autoref{fig:cleaners_together} below shows the last steps of the cleaning algorithms \tailcuts{}, \mars{}, \fact{} and \tcc{}
+for the default parameters set in \ctapipe{}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{plots/cleaner_steps/last_steps.pdf}
+    \caption{The last steps of the cleaning algorithms \tailcuts{}, \mars{}, \fact{} and \tcc{} for the default
+    parameters set in \ctapipe{}. Also shown are the uncleaned image and the true image for better comparison.}
+    \label{fig:cleaners_together}
+\end{figure}

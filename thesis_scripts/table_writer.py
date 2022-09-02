@@ -54,7 +54,7 @@ def metrics_table(tab_name):
     table = pd.read_csv(f"./plots/data/metrics/metrics_{cleaner}_MST_MST_NectarCam.csv")
     ids = table["unique_file_id"]
 
-    table = table.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn"])
+    table = table.drop(columns=["unique_file_id", "tp", "tn", "fp", "fn", "FPR", "PPV"])
     table = table.astype(float).applymap('{:,.4f}'.format)
     table.insert(loc=0, column="unique_file_id", value=ids)
 

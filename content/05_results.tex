@@ -18,8 +18,8 @@ cleaning algorithms is presented in \autoref{sec:comparison}.
 To narrow down possible candidates for the optimal hyperparameters, I first analyzed the efficiency
 of the different cleaning algorithms. The efficiency is determined by the number of events that are
 reconstructed after cleaning. For this work I chose \(\num{20}\) intervals within \(\num{0}\) and
-\(\num{1}\) with a step size of \(\num{0.05}\). The events are binned per energy mean efficiency over all
-is then calculated as the mean of \autoref{eq:efficiency}. For each interval those datasets are selected, where the mean efficiency
+\(\num{1}\) with a step size of \(\num{0.05}\). The events are binned per energy and the mean efficiency over all
+energy bins is then calculated as the mean of \autoref{eq:efficiency}. For each interval those datasets are selected, where the mean efficiency
 lies between the lower and upper bound of the interval. Then the minimum angular resolution is
 determined for each interval. The parameters of these datasets are then selected to be the optimal
 parameters for each cleaning algorithm. This not only allows for a comparison of the cleaners but also
@@ -36,12 +36,10 @@ angular resolution. The efficiency would be higher, of course, for a full-array 
 mean also including \glspl{lst} data, which for this work would not help find the optimal
 parameters, since it is better to analyze the telescope types separately. The reason for the latter
 is, that optimizing the telescopes by type would lead to better results for the hyperparameters.
-
-
 \begin{table}
     \centering
-    \caption{The results of the analysis for the mean efficiency of each cleaning algorithm. The efficiency
-    is calculated as the ratio of the number of reconstructed events $n_{\mathrm{reco}}$ and the number
+    \caption{The results of the analysis for the mean efficiency of each cleaning algorithm taken over all
+    energy bins. The efficiency is calculated as the ratio of the number of reconstructed events $n_{\mathrm{reco}}$ and the number
     of total events $n_{\mathrm{total}}$. The table lists the lower and upper limits of each efficiency
     interval. The efficiency is then calculated as the mean over the whole energy range of the dataset and
     each listed efficiency is the one where the mean angular resolution is minimal for the given
@@ -80,7 +78,7 @@ is, that optimizing the telescopes by type would lead to better results for the 
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
         \hiderowcolors
-        & & \multicolumn{4}{c}{Mean Angular Resolution \(\theta_{\SI{68}{\percent}} \;/\; \si{\degree}\)} \\
+        & & \multicolumn{4}{c}{Mean Angular Resolution\(\;/\; \si{\degree}\)} \\
         {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {Tailcuts} & {MARS} & {FACT} & {TCC} \\
         \addlinespace[0.5em]
         \showrowcolors
@@ -103,29 +101,26 @@ As such, for further comparison of the cleaning algorithms, the corresponding da
 the angular resolution are plotted in \autoref{fig:efficiency_angres} for the intervals
 \([\num{0.25}, \num{0.30}]\) and \([\num{0.45}, \num{0.50}]\). The reason for this is that these are
 the minimum and maximum intervals \wrt the efficiency, where all cleaners have valid values.
-
+Furthermore, the mean angular resolution is plotted against the efficiency in \autoref{fig:ar_vs_eff}.
 \begin{figure}
     \centering
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.25_0.30.pdf}
+        \includegraphics[width=0.95\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.25_0.30.pdf}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.45_0.50.pdf}
+        \includegraphics[width=0.95\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.45_0.50.pdf}
     \end{subfigure}
     \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. Notice
     the decrease in the scattering of the mean angular resolution at medium to
     medium-high energies at higher efficiencies in the right plots.}
     \label{fig:efficiency_angres}
 \end{figure}
-
-Furthermore, the mean angular resolution is plotted against the efficiency in \autoref{fig:ar_vs_eff}.
-
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{build/ar_vs_eff.pdf}
+    \includegraphics[width=0.85\textwidth]{build/ar_vs_eff.pdf}
     \caption{Angular resolution plotted against the efficiency.}
     \label{fig:ar_vs_eff}
 \end{figure}
@@ -134,7 +129,7 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 \section{Metrics of the cleaning algorithms}
 \label{sec:metrics}
 \glsreset{tp}\glsreset{fp}\glsreset{fn}\glsreset{tn}
-Concerning the metrics, I first analyzed the parameter combinations of each cleaning algorithm. First,
+Concerning the metrics, I first analyzed the parameter combinations of all settings found in \autoref{sec:efficiency_angres}. First,
 the number of the \gls{tp}, \gls{fp}, \gls{fn} and \gls{tn} values is calculated per event. Then,
 those values are summed up for each cleaning algorithm and the metrics are calculated as shown in
 \autoref{tab:metrics}.
@@ -166,15 +161,15 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        {ID} & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
+        {ID} & \acrshort{tpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         % \input{build/metrics_tail.txt} %% kinda broken atm
-        118 & 0.0972 & 0.0000 & 1.0000 & 0.9028 & 1.0000 & 0.9256 & 0.5486 \\
-        51 & 0.1231 & 0.0000 & 1.0000 & 0.8769 & 1.0000 & 0.9256 & 0.5615 \\
-        140 & 0.1460 & 0.0000 & 1.0000 & 0.8540 & 1.0000 & 0.9256 & 0.5730 \\
-        81 & 0.1854 & 0.0000 & 1.0000 & 0.8146 & 0.9997 & 0.9288 & 0.5927 \\
-        47 & 0.2268 & 0.0000 & 1.0000 & 0.7732 & 0.9994 & 0.9332 & 0.6134 \\
+        118 & 0.0972 & 1.0000 & 0.9028 &  0.9256 & 0.5486 \\
+         51 & 0.1231 & 1.0000 & 0.8769 & 0.9256 & 0.5615 \\
+        140 & 0.1460 & 1.0000 & 0.8540 & 0.9256 & 0.5730 \\
+         81 & 0.1854 & 1.0000 & 0.8146 & 0.9288 & 0.5927 \\
+         47 & 0.2268 & 1.0000 & 0.7732 & 0.9332 & 0.6134 \\
     \end{tabular}}
 \end{table}
 
@@ -189,8 +184,8 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 
 \begin{table}
     \centering
-    \caption{Results for the metrics of \mars{}. The last row (ID~10) shows some increase in the \gls{fpr}
-    and therefore some decrease in \gls{tnr} and a more significant decrease in the \gls{ppv} value. Since
+    \caption{Results for the metrics of \mars{}. The last row (ID~10) shows a significant increase in the \gls{tpr}
+    and therefore decrease in \gls{fnr} and another significant increase in the \gls{ba} value. Since
     this specific parameter combination also corresponds to a mean angular resolution an order higher
     than the rest, I chose to select the second highest performing setting (ID~15) for further analysis
     instead.}
@@ -198,7 +193,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        ID & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
+        ID & \acrshort{tpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         \input{build/metrics_mars.txt}\\
@@ -222,7 +217,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
         \hiderowcolors
-        ID & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
+        ID & \acrshort{tpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         \input{build/metrics_fact.txt}\\
@@ -246,7 +241,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] }
         \hiderowcolors
-        ID & \acrshort{tpr} & \acrshort{fpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{ppv} & \acrshort{acc} & \acrshort{ba} \\
+        ID & \acrshort{tpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
         \input{build/metrics_tcc.txt}\\
@@ -290,13 +285,13 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \section{Performance compared to the default settings}
 \label{sec:performance}
 
-Now, with the best-performing settings for each cleaner, it is reasonable to compare
+Now, with a setting selected for each cleaner, it is reasonable to compare
 the performance to the default settings, that are implemented in the \ctapipe{} source code
 (see \autoref{tab:hyperparameters}). First, the relative angular resolution
 \begin{equation}
     \theta_\text{rel} = \frac{\theta_{\SI{68}{\percent}}}{\theta_{\SI{68}{\percent},\,\text{base}}}
 \end{equation}
-is computed for the default settings and the best-performing settings for each cleaner.
+is computed for the default (base) settings and the selected settings for each cleaner.
 The results are shown in \autoref{fig:rel_angres} for the same efficiency intervals
 as in \autoref{fig:efficiency_angres}. One can see, that especially for the interval
 \([0.45, 0.5)\) and at medium to high energies, \tcc{} performs fairly well compared to the default settings.
@@ -305,7 +300,7 @@ of about \(\SI{10}{\percent}\).
 
 Furthermore, the metrics of the hyperparameters determined in this work can be compared to the
 metrics of the default settings. The results are shown in \autoref{fig:metrics_comparison} with the
-values of the metrics being listed in \autoref{tab:metrics_default}. The values for the best-performing
+values of the metrics being listed in \autoref{tab:metrics_default}. The values for the selected
 settings in this work are listed in \autoref{tab:metrics_all}.
 \fact{} performs worse than its default setting \wrt the metrics, especially in terms of
 \gls{tpr} and \gls{ba}. This might be due to the higher core and boundary thresholds compared to the
@@ -331,7 +326,7 @@ also slightly better in terms of the \gls{acc} metric.
         \centering
         \includegraphics[width=\textwidth]{plots/ar_aeff/Rel_AR_0.45_0.50_base.pdf}
     \end{subfigure}
-    \caption{Relative angular resolution for the default settings and the best-performing settings for each cleaner.
+    \caption{Relative angular resolution for the default settings and the selected settings for each cleaner.
     \tcc{} outperforms the default values with the new settings, while the other algorithms improve only slightly.}
     \label{fig:rel_angres}
 \end{figure}
@@ -364,7 +359,7 @@ also slightly better in terms of the \gls{acc} metric.
 
 As of writing this thesis, the cleaning algorithms discussed in this thesis are the only ones implemented
 in the \ctapipe{} source code. With the determined hyperparameters, I decided to compare the performance of all
-four cleaners. I once again decided to use the best-performing setting of each algorithm
+four cleaners. I once again decided to use the settings selected in \autoref{sec:metrics} for each algorithm
 and look at the metrics. The metrics of all four algorithms are shown in \autoref{fig:metrics_all}.
 The corresponding values are listed in \autoref{tab:metrics_all}.
 
@@ -375,7 +370,7 @@ to be a good choice for cleaning since it performs reasonably well even on \gls{
 
 \begin{table}
     \centering
-    \caption{Metrics for the best-performing settings of each cleaning algorithm. Out of these
+    \caption{Metrics for the selected settings of each cleaning algorithm. Out of these
     four algorithms, \fact{} performs best in terms of \gls{tpr} and \gls{ba}, while \mars{} and
     \tailcuts{} perform well on \gls{acc} and \gls{ppv} respectively. \fact{}, however, performs
     reasonably well in the scope of the resulting metrics of this work and is, therefore, a good
@@ -399,7 +394,7 @@ to be a good choice for cleaning since it performs reasonably well even on \gls{
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_all.pdf}
-    \caption{Bar plot visualizing the metrics for the best-performing settings of all four cleaning algorithms.
+    \caption{Bar plot visualizing the metrics for the selected settings of all four cleaning algorithms.
     \fact{} performs best out of all cleaning algorithms, followed by \mars{} and \tcc{}. The latter, however
     performs well \wrt the angular resolution, as shown in \autoref{fig:rel_angres} and can therefore be considered
     a viable alternative to \fact{}.}
