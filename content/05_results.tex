@@ -1,15 +1,15 @@
 \chapter{Results}
 \label{ch:results}
 
-In this chapter, the results of the analysis are presented. First I present the results of the
+In this chapter, the results of the analysis are presented. First, I present the results of the
 efficiency analysis in \autoref{sec:efficiency_angres}. The initial tests of parameter combinations
 are based on a small dataset consisting of \(\num{20}\) runs, \ie \(\num{12668}\) events. This is
 due to the number of parameter combinations that are tested, as more runs would increase the
-processing time immensely. Furthermore, I present the results of the angular resolution for a combined
+processing time immensely. Furthermore, I show the results of the angular resolution for a combined
 metric with the efficiency. Then, in \autoref{sec:metrics}, the metrics of each resulting combination
-of hyperparameters are presented. In \autoref{sec:performance}, the performance of each cleaning
-algorithm compared to the default settings is presented. Finally, a comparison of the different
-cleaning algorithms is presented in \autoref{sec:comparison}.
+of hyperparameters are plotted. In \autoref{sec:performance}, the performance of each cleaning
+algorithm compared to the default settings is shown. Finally, a comparison of the different
+cleaning algorithms is provided in \autoref{sec:comparison}.
 
 
 \section{Analysis of the efficiency and the angular resolution}
@@ -96,7 +96,7 @@ is, that optimizing the telescopes by type would lead to better results for the 
         0.50 & 0.55 &  & 1.301 &  &  \\
     \end{tabular}
 \end{table}
-From the tables, one can see that there is a clear trade-off in choosing between efficiency and angular resolution.
+The results listed in the tables show that there is a clear trade-off in choosing between efficiency and angular resolution.
 As such, for further comparison of the cleaning algorithms, the corresponding datasets for the efficiency and
 the angular resolution are plotted in \autoref{fig:efficiency_angres} for the intervals
 \([\num{0.25}, \num{0.30}]\) and \([\num{0.45}, \num{0.50}]\). The reason for this is that these are
@@ -115,7 +115,7 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
     \end{subfigure}
     \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. Notice
     the decrease in the scattering of the mean angular resolution at medium to
-    medium-high energies at higher efficiencies in the right plots.}
+    medium-high energies at higher efficiencies in the plots on the right.}
     \label{fig:efficiency_angres}
 \end{figure}
 \begin{figure}
@@ -155,7 +155,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{table}
     \centering
     \caption{Results for the metrics of \tailcuts{}. One can see, that the best results are obtained
-    for the settings with ID~47.}
+    for the setting with ID~47.}
     \label{tab:metrics_tail}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
@@ -176,7 +176,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=0.95\textwidth]{build/metrics_tailcuts.pdf}
-    \caption{Metrics for \tailcuts{}. One can see that the cleaning setting with ID 47 performs
+    \caption{Metrics for \tailcuts{}. It can be seen, that the cleaning setting with ID 47 performs
     best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
     setting of the five parameter combinations.}
     \label{fig:metrics_tail}
@@ -227,7 +227,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_fact.pdf}
-    \caption{Metrics for \fact{}. One can see that the cleaning setting with ID 503 performs
+    \caption{Metrics for \fact{}. The cleaning setting with ID 503 performs
     best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
     setting of the ten parameter combinations.}
     \label{fig:metrics_fact}
@@ -235,8 +235,8 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 
 \begin{table}
     \centering
-    \caption{Results for the metrics of \tcc{}. One can see, that the best results are obtained
-    for the settings with ID~807.}
+    \caption{Results for the metrics of \tcc{}. The best results are obtained
+    for the setting with ID~807.}
     \label{tab:metrics_tcc}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] }
@@ -251,7 +251,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_tcc.pdf}
-    \caption{Metrics for the \tcc{}. One can see that the cleaning setting with ID 807 performs
+    \caption{Metrics for the \tcc{}. The cleaning setting with ID 807 performs
     best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
     setting of the six parameter combinations.}
     \label{fig:metrics_tcc}
@@ -336,7 +336,7 @@ also slightly better in terms of the \gls{acc} metric.
     \caption{Metrics for the default (baseline) settings. The metrics show that \fact{}
     performs well even in its default settings and also better than with the hyperparameters
     determined in this work. \tcc{}, however, performs better with the hyperparameters listed in
-    \autoref{tab:best_parameters} \wrt{} to the metrics.}
+    \autoref{tab:best_parameters} \wrt the metrics.}
     \label{tab:metrics_default}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{c S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]

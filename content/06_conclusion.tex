@@ -19,7 +19,7 @@ The four implemented cleaning algorithms can be roughly categorized into time-ba
 algorithms (\tailcuts{} and \mars{}). While the non-time-based algorithms only take thresholds of the photon count of each pixel
 into account, the time-based algorithms also set limits on the arrival time of each pixel. This allows
 for a lower core threshold \(Q_c\) for the photon count per pixel, which in turn can lead to better
-results from the cleaning process. A good cleaning not only reduces data size---as a majority of the
+results in the cleaning process. A good cleaning not only reduces data size---as a majority of the
 pixels in the image are made up by \gls{nsb}---but it also allows for a better parameterization and in turn
 a better reconstruction of the events.
 
@@ -36,8 +36,8 @@ means that the found hyperparameters could help with origin reconstructions. Whe
 however, only \tcc{} really improved, while \fact{} even performed worse than its default implementation.
 The reason might be, that the higher core threshold \(Q_c\)---compared to the default value---would
 select fewer pixels. Additionally, a comparison between the optimized algorithms themselves was performed. This led to \fact{}
-being the best performing algorithm overall \wrt the metrics, albeit only a slight advantage over the
-other algorithms.
+being the best performing algorithm overall \wrt the metrics, with only a slight advantage over the
+other algorithms, however.
 
 All in all, one can say, that the hyperparameters determined at a higher efficiency return better results,
 albeit resulting in a higher angular resolution. This is due to the fact that a higher efficiency means
