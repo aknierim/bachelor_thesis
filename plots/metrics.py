@@ -78,7 +78,7 @@ def metrics_bar_plot_all(
     tcc = pd.read_csv('plots/data/metrics/metrics_tcc_MST_MST_NectarCam.csv')
 
     tail = tail.iloc[[row_idx],:]
-    mars = mars.iloc[[row_idx - 1],:]
+    mars = mars.iloc[[row_idx],:]
     fact = fact.iloc[[row_idx],:]
     tcc = tcc.iloc[[row_idx],:]
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
     metrics_bar_plot("tailcuts", size=size, color='C0', width=0.1)
     metrics_bar_plot("mars", size=size, color='C1', width=0.1)
-    metrics_bar_plot("fact", size=size, color='C2', width=0.05)
+    metrics_bar_plot("fact", size=size, color='C2', width=0.09)
     metrics_bar_plot("tcc", size=size, color='C3', width=0.1)
 
     # with open('configs/tailcuts/tailcuts_clean_mst_6.200_4.650_mn_2_config.yml') as f:

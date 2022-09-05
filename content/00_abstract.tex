@@ -12,12 +12,11 @@ with the aim of improving their performance. A grid search achieves this objecti
 over a range of reasonable hyperparameters. The data used in this work is diffuse gamma \gls{mc} simulation data for
 the \glspl{mst} at the northern site of \cta{} on the Canarian island of La Palma.
 
-The hyperparameters determined for the \tcc{} algorithm in \ctapipe{} improve its performance over
-its default parameters significantly \wrt the angular resolution, while the other algorithms are only
-slightly improved by the respective hyperparameters or their results are not improved at all.
-In terms of metrics, the performance of the \tcc{} algorithm only improved slightly with the new parameters, while \fact{}
-performed worse than with its default values. Overall, however, \fact{} performed better than the other
-algorithms.
+The hyperparameters determined for the algorithms in \ctapipe{} improve their performance over
+their default parameters significantly \wrt the angular resolution. This is especially true for the
+\tcc{} algorithm, which shows the most improvement \wrt the metrics, closely followed by \mars{}.
+Overall, \fact{} and \mars{} perform the best out of all cleaning algorithms in this work,
+with the latter being notable for its consistency in terms of the angular resolution over the whole energy range.
 
 
 \section*{Kurzfassung}
@@ -30,17 +29,23 @@ Energiebereiche der Gammastrahlen erwartet.
 
 In dieser Arbeit betrachte ich die vier Bildreinigungsalgorithmen an, die in Software \ctapipe{} implementiert
 sind, welche sich zur Zeit für \cta{} in Entwicklung befindet. Zudem bestimme ich optimierte
-Hyperparameter für jeden Algorithmus mit dem Ziel, die Leitung der Bildreinigungsalgorithmen zu verbessern.
+Hyperparameter für jeden Algorithmus mit dem Ziel, die Leistung der Bildreinigungsalgorithmen zu verbessern.
 Dies wird mittels einer Grid-Search über eine Auswahl von Hyperparametern durchgeführt. Die zu diesem
 Zweck verwendeten Daten bestehen aus diffusen Gammadaten, die mittels einer \gls{mc}-Simulation für die
 \glspl{mst} des nördlichen Standorts \gls{cta}s auf der Kanarischen Insel La Palma erzeugt wurden.
 
-Die Ergebnisse zeigen, dass die in dieser Arbeit gefundenen Hyperparameter die Leistung des \tcc{}-Algorithmus
-in Bezug auf die Winkelauflösung verbesserten, während die Leistungen der anderen Algorithmen nur wenig
-verbessert wurden oder gleiche Ergebnisse lieferten, wie mit den Standardparametern.
-In Bezug auf die Metriken konnten die gefundenen Hyperparameter bei \tcc{} eine leichte Verbesserung
-bewirken, während die Parameter bei \fact{} sogar eine etwas schlechtere Leistung bewirkten.
-Insgesamt lieferte \fact{} allerdings bessere Ergebnisse als die anderen Algorithmen.
+Die Ergebniss zeigen, dass die in dieser Arbeit gefundenen Hyperparameter die Leistung aller vier
+Algorithmen in Bezug auf die Winkelauflösung verbessern. Dies gilt insbesondere für den \tcc{}-Algorithmus,
+der sich auch auf in Bezug auf die Metriken am meisten verbessert, gefolgt vom \mars{}-Algorithmus.
+Insgesamt arbeiten \fact{} und \mars{} von allen vier Algorithmen in dieser Arbeit am besten, wobei
+letzterer insbesondere bei der Winkelauflösung über den gesamten Energiebereich hinweg
+konstant gute Ergebnisse liefert.
+% Die Ergebnisse zeigen, dass die in dieser Arbeit gefundenen Hyperparameter die Leistung des \tcc{}-Algorithmus
+% in Bezug auf die Winkelauflösung verbesserten, während die Leistungen der anderen Algorithmen nur wenig
+% verbessert wurden oder gleiche Ergebnisse lieferten, wie mit den Standardparametern.
+% In Bezug auf die Metriken konnten die gefundenen Hyperparameter bei \tcc{} eine leichte Verbesserung
+% bewirken, während die Parameter bei \fact{} sogar eine etwas schlechtere Leistung bewirkten.
+% Insgesamt lieferte \fact{} allerdings bessere Ergebnisse als die anderen Algorithmen.
 \end{otherlanguage}
 \glsresetall
 % \listoftodos

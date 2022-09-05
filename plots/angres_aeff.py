@@ -165,6 +165,6 @@ if __name__ == "__main__":
     fig.suptitle(r"$0.40 \leq \mathrm{Efficiency} < 0.45$")
     plt.savefig(f'plots/ar_aeff/AR_Aeff_MST_0.40_0.45.pdf')
 
-    fig, ax, ax2 = plot_combined([118, 54, 767, 367])
-    fig.suptitle(r"$0.10 \leq \mathrm{Efficiency} < 0.15$")
-    plt.savefig(f'plots/ar_aeff/AR_Aeff_MST_0.10_0.15.pdf')
+    # fig, ax, ax2 = plot_combined([118, 54, 767, 367])
+    # fig.suptitle(r"$0.10 \leq \mathrm{Efficiency} < 0.15$")
+    # plt.savefig(f'plots/ar_aeff/AR_Aeff_MST_0.10_0.15.pdf')

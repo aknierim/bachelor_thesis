@@ -30,7 +30,7 @@ def metrics_bar_plot_all(
     tcc_b = pd.read_csv('plots/data/baseline/metrics_tcc_base.csv')
 
     tail = tail.iloc[[row_idx],:]
-    mars = mars.iloc[[row_idx-1],:]
+    mars = mars.iloc[[row_idx],:]
     fact = fact.iloc[[row_idx],:]
     tcc = tcc.iloc[[row_idx],:]
 
@@ -162,7 +162,7 @@ def plot_ang_res(
         label=rf"TCC"
     )
 
-    ax.set_ylabel(r'Rel. Angular Resolution $ \theta_{68\%} / \theta_{\mathrm{base}}$')
+    ax.set_ylabel(r'Rel. Angular Resolution $ \theta_{\SI{68}{\percent},\,\mathrm{rel}}$')
     ax.set_xlabel(r'$E_{\mathrm{true}} \,\,/\,\, \mathrm{TeV}$')
     ax.set_xscale('log')
 

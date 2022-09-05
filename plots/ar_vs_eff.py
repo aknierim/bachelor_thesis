@@ -3,7 +3,7 @@ import pandas as pd
 
 df_angres = pd.read_csv('plots/data/combined_table.csv')
 
-df_angres = df_angres.iloc[4:9]
+# df_angres = df_angres.iloc[4:9]
 
 size = plt.gcf().get_size_inches()
 fig, ax = plt.subplots(1,1, figsize=(size[0], size[1]), constrained_layout=True, dpi=300)

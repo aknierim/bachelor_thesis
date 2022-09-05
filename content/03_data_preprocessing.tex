@@ -17,7 +17,7 @@ explain the full pipeline created for this work.
 \label{sec:data-simulation}
 
 In its current in-development state, \ctapipe{} is used and tested with simulated data, as the software
-can only be sufficiently tested when the output is compared to truth data. This data is created with the help of
+can only be sufficiently tested when the output is compared to the true data. This data is created with the help of
 \gls{mc} simulations. The software used for these simulations is called \gls{corsika} \cite{corsika} and
 allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
 a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}, that allows simulating the optics
@@ -40,7 +40,7 @@ selected settings, allowing for more statistics and a better comparison of the c
 %\(\num{1331328}\) \(\num{621848}\)
 \begin{table}
     \centering
-    \caption{Simtel data properties of the \gls{corsika} simulation used for the datasets in this works
+    \caption{\texttt{Simtel} data properties of the \gls{corsika} simulation used for the datasets in this work's
     analysis.}
     \label{tab:simtel}
     \rowcolors{0}{white!92!black}{}
@@ -98,11 +98,10 @@ While the latter are selecting pixels based on charge thresholds which
 subsequently might lead to the need for a higher threshold, the former also takes the arrival times of
 pixels in the camera frame into account, allowing for a lower charge threshold.
 
-The advantage of a lower charge threshold allows the selection of more of the signal at lower energies.
+The advantage of a lower charge threshold is, that it allows the selection of more of the signal at lower energies.
 Once the events are cleaned and parametrized, they can then be reconstructed (\dlob{} \rightarrow \dlt{})
 and stored on the \dlt{} data level, which consists of an event list with direction, energy and the
 reconstructed gammaness---a value that predicates how likely an event was produced by a gamma.
-
 
 \section{This Work's Data Processing Pipeline}
 \label{sec:pipeline}
