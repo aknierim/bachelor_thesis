@@ -11,9 +11,9 @@ in \autoref{sec:hyperparameters}.
 \section{Cleaning Algorithms}
 \label{sec:cleaning-algorithms}
 \vspace{-0.5cm}
-\subsection{\texttt{TailcutsImageCleaner}}
+\subsection*{\texttt{TailcutsImageCleaner}}
 \vspace{-0.5cm}
-Version \texttt{0.15.1} of \ctapipe{} features four cleaning algorithms, two of which are time-based.
+The used version of \ctapipe{} features four cleaning algorithms, two of which are time-based.
 The \tailcuts{} algorithm is the most basic algorithm of the four and serves as a good
 starting point for the development of new cleaning algorithms. Its first step is to select all
 pixels that are above a certain threshold, the core threshold \(Q_c\). These
@@ -37,7 +37,7 @@ default values of the algorithm.
     \label{fig:tailcuts_clean}
 \end{figure}
 
-\subsection{\texttt{MARSImageCleaner}}
+\subsection*{\texttt{MARSImageCleaner}}
 \vspace{-0.5cm}
 The \mars{} algorithm \cite{mars} is very much based on the \tailcuts{}
 algorithm and features an additional step, in that it also selects all neighbors of a neighbor of a
@@ -99,7 +99,7 @@ are shown in \autoref{fig:mars_cleaning} for its default values.
     other cleaning algorithms are selected in the first step.}
     \label{fig:fact_cleaning}
 \end{figure}
-\subsection{\texttt{FactImageCleaner}}
+\subsection*{\texttt{FactImageCleaner}}
 \vspace{-0.5cm}
 The \fact{} algorithm \cite{temme_thesis, temme_diploma} is a time-based cleaning algorithm that first selects all pixels that are above
 \(Q_c\). Then, all pixels that have less than \(N\) neighbors are removed.
@@ -112,7 +112,7 @@ Again, all pixels with less than \(N\) neighbors are removed. The last step once
 \(N\) neighbors, arriving within the given time limit. The visualization of the algorithm is shown in
 \autoref{fig:fact_cleaning} for the default values of the algorithm.
 \vspace{-0.75cm}
-\subsection{\texttt{TimeConstrainedImageCleaner}}
+\subsection*{\texttt{TimeConstrainedImageCleaner}}
 \vspace{-0.5cm}
 The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration \cite{tcc}.
 It first selects all pixels that are above \(Q_c\). Then, all pixels that have
@@ -171,7 +171,7 @@ well as a \texttt{time\_limit\_boundary} for \tcc{}.
     \tailcuts{} and \mars{} have only three parameters, while the \fact{} and \tcc{} algorithms have
     one and two additional time-based parameters, respectively. This table shows the default values
     and, if the parameters have them, also their units, as they are implemented in the \ctapipe{}
-    source code for version \texttt{0.15.1}.}
+    source code.}
     \label{tab:hyperparameters}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
@@ -285,7 +285,8 @@ between the reconstructed origin and the true origin of the shower.
 % This angular distance, or separation, is calculated with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}.
 The dataset with the lowest mean angular resolution is the best performing for each interval.
 If more low-energy events are reconstructed, not only will the efficiency be higher, but also the angular resolution,
-as those events are more likely to include pixels that are part of the \gls{nsb}.
+as those events are more likely to include pixels that are part of the \gls{nsb} and also include less signal pixels
+than a high-energy event.
 % Not all events will ever be properly reconstructed for any parameter combination, so there won't be
 % a mean angular resolution for all intervals, but only a subset.
 % Also, the mean angular resolution may be higher when more events were reconstructed.

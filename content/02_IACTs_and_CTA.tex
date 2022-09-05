@@ -1,11 +1,11 @@
 \chapter{IACTs and the Cherenkov Telescope Array}
 \glsreset{iact}
 
-Most modern gamma-ray observations are performed with either space-based experiments or with
-\glspl{iact}, which are ground-based telescopes or arrays of telescopes that use the Cherenkov light
-emitted by \glspl{eas} in the atmosphere. In the following sections I will introduce \glspl{iact} and
-the \gls{cta} and explain the mechanisms that make it possible to observe gamma rays with these types
-of experiments.
+Modern gamma-ray observations are performed with either space-based experiments or with
+ground-based experiments like water Cherenkov tanks such as the \gls{hawc} \cite{hawc} experiment or \glspl{iact}, the latter
+being telescopes that use the Cherenkov light emitted by \glspl{eas} in the atmosphere.
+In the following sections, I will introduce \glspl{iact} and the \gls{cta} and explain the mechanisms
+that make it possible to observe gamma rays with these types of experiments.
 
 
 \section{Imaging Air Cherenkov Telescopes}
@@ -24,7 +24,7 @@ larger effective area than any space-based instrument. This is especially helpfu
     kilometer per year \cite{carmelo_2020}.}
     \label{fig:flux}
 \end{wrapfigure}
-where the gamma-ray flux is low, whereas lower energies show higher fluxes. At such high energies
+where the gamma-ray flux is low, whereas lower energies show higher fluxes. At such high energies,
 space-based instruments, experiments such as \gls{fermilat}, see fewer high-energy events compared
 to ground-based experiments, due to their comparatively small effective collection area \cite[p.~256]{funk}.
 The cosmic ray flux in \autoref{fig:flux} shows this well: The flux decreases rapidly with higher
@@ -70,7 +70,7 @@ as can be seen in \autoref{fig:cherenkov}.
     \caption{The electromagnetic component of an extensive air shower (see \hyperref[fig:heitler_model]{(a)})
     is induced by gamma rays that then decay into electrons and positrons via pair production.
     These charged particles will emit more gammas via bremsstrahlung, which again will produce
-    new electrons and positrons. This will continue until \eg the energy of the gammas is below
+    new electrons and positrons. This will continue until the energy of the gammas is below
     the threshold of \SI{1022}{\kilo\eV} for pair production. Another process is the production of
     Cherenkov light from the electrons and positrons, which is shown in \hyperref[fig:cherenkov]{(b)}.
     The Cherenkov light is the result of the charged particles traveling faster than the speed of light
@@ -85,20 +85,19 @@ of the air shower and can be used to determine the shower's primary particles' p
 reconstruct its origin. As the hadronic component of \glspl{eas} produce
 electromagnetic subshowers, \glspl{iact} have a dominant hadronic background, which has to be
 separated from the gamma ray-induced showers, for example with
-machine learning algorithms. This work, however, does not focus on these algorithms, but instead
-on cleaning algorithms that are used to separate the signal from the electronic noise coming from the
-camera as well as from the \gls{nsb}. This is a vital step in the analysis of an event, as only a
-fraction of all pixels in the camera frame are part of the signal.
+machine learning algorithms. Before this separation, however, signal pixels in the camera image have
+separated from the electronic noise coming from the camera as well as from the \gls{nsb} with the help of
+cleaning algorithms. This will be the focus of this work. These cleaning algorithms pose a vital step
+in the analysis of an event, as only a fraction of all pixels in the camera frame are part of the signal.
 
 
 \section{The Cherenkov Telescope Array}
 \label{sec:cta}
 
 \cta{} is a new generation of \glspl{iact} that will consist of two sites,
-one of which will be built at the \gls{orm} on the Canarian island of La Palma while the other
+one of which will be built at the \gls{orm} on the Canarian island of La Palma while the other one
 will be built in the southern hemisphere at the \glspl{eso} Paranal Observatory in the Atacama desert
-of northern Chile. In this work, I will focus on the northern array, also called \cta{} north,
-on La Palma.
+of northern Chile.
 
 \cta{} consists of three types of telescopes, shown in \autoref{fig:cta_telescopes}, each being
 sensitive to a different energy range \cite{cta_specs}:
@@ -152,7 +151,7 @@ The \gls{mst}'s and \gls{lst}'s cameras are based on \gls{pmt} photodetectors, w
 camera is based on a \gls{sipm} photodetector. Both detector types provide fast response times in the
 order of nanoseconds. \glspl{pmt} can detect small amounts of electromagnetic radiation due to their
 amplification process. However, this amplification process also amplifies the noise of the detector
-and also needs higher voltages than \glspl{sipm}. The latter, on the other hand, needs to be cooled,
+and needs higher voltages than \glspl{sipm}. The latter, on the other hand, needs to be cooled,
 as \glspl{sipm} are prone to having a higher dark current at higher temperatures.
 % The \gls{mst} and \gls{lst} will feature a camera with \(\num{1855}\) pixels.
 
@@ -160,7 +159,7 @@ With \cta{} probing the \gls{vhe} gamma-ray sky and a resolution outperforming p
 \gls{hess} or \gls{magic}, it will be able to observe a broad variety of sources, allowing insights
 into interaction processes of \gls{vhegr} as well as their origin.
 
-Together with gravitational wave and neutrino observatories as well as with other photon observatories,
+Together with gravitational wave and neutrino observatories as well as with other gamma observatories,
 \cta{} will probe the universe in its \glsreset{he}\gls{he} domain, allowing to study a broad field of key questions
 in astrophysics. As such, \cta's scientific goals can be divided into three categories \cite{cta_scientific_goals}:
 \begin{description}
@@ -170,7 +169,7 @@ in astrophysics. As such, \cta's scientific goals can be divided into three cate
     in feedback on star formation and galaxy evolution.
     \item [Extreme Environments:] \cta{} aims to deepen our understanding of the processes that
     are at work close to neutron stars and black holes, the characteristics of relativistic jets and
-    \gls{pwn}. Also, it will probe how intense radiation fields and magnetic fields are and how these
+    \gls{pwn}. Also, it will probe the intensity of radiation fields and magnetic fields and how these
     would evolve over cosmic time scales.
     \item [Frontiers in Physics:] \cta{} will try to answer questions about the nature of dark matter
     and its distribution in the universe. As such, the existence of axion-like particles will be

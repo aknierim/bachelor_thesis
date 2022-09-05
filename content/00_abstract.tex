@@ -2,19 +2,19 @@
 
 \section*{Abstract}
 In recent years, gamma astronomy has become a vastly studied field of astrophysics.
-Since then many \gls{iact} experiments have been producing insights into sources of
+Since then, many \gls{iact} experiments have been producing insights into sources of
 high-energy gamma-rays. Continuing this trend, the \gls{cta}, a next-generation \gls{iact},
-will provide new data at some of the highest energies of the gamma-ray spectrum.
+will provide new data targeting some of the highest energies of the gamma-ray spectrum.
 
-In this thesis, I take a look at the four cleaning algorithms implemented in the low-level data processing software \ctapipe{},
+In this thesis, I consider the four cleaning algorithms implemented in the low-level data processing software \ctapipe{},
 currently developed for \gls{cta}. Furthermore, I will determine optimized hyperparameters for each algorithm
-with the aim of improving the performance of the cleaning algorithms. This is achieved with a grid search
+with the aim of improving their performance. A grid search achieves this objective
 over a range of reasonable hyperparameters. The data used in this work is diffuse gamma \gls{mc} simulation data for
 the \glspl{mst} at the northern site of \cta{} on the Canarian island of La Palma.
 
-The hyperparameters determined for the \tcc{} algorithm in \ctapipe{} improved its performance over
-its default parameters \wrt to the angular resolution, while the other algorithms were only
-slightly improved by the respective hyperparameters or at least returned similar results.
+The hyperparameters determined for the \tcc{} algorithm in \ctapipe{} improve its performance over
+its default parameters significantly \wrt the angular resolution, while the other algorithms are only
+slightly improved by the respective hyperparameters or their results are not improved at all.
 In terms of metrics, the performance of the \tcc{} algorithm only improved slightly with the new parameters, while \fact{}
 performed worse than with its default values. Overall, however, \fact{} performed better than the other
 algorithms.
@@ -28,15 +28,15 @@ zahlreiche neue Erkenntnisse im Bereich der hochenergetischen Gammastrahlen und 
 Mit \gls{cta}, einem \gls{iact} der nächsten Generation, werden neue Daten in einigen der höchsten
 Energiebereiche der Gammastrahlen erwartet.
 
-In dieser Arbeit schaue ich mir die vier Bildreinigungsalgorithmen an, die in der sich zur Zeit für \cta{}
-in Entwicklung befindlichen Software \ctapipe{} implementiert sind. Zudem bestimme ich optimierte
+In dieser Arbeit betrachte ich die vier Bildreinigungsalgorithmen an, die in Software \ctapipe{} implementiert
+sind, welche sich zur Zeit für \cta{} in Entwicklung befindet. Zudem bestimme ich optimierte
 Hyperparameter für jeden Algorithmus mit dem Ziel, die Leitung der Bildreinigungsalgorithmen zu verbessern.
-Dies wird mittels einer Grid-Search über eine Auswahl von Hyperparametern durchgeführt. Die Daten, die zu diesem
-Zweck verwendet werden, bestehen aus diffusen Gammadaten, die mittels einer \gls{mc}-Simulation für die
+Dies wird mittels einer Grid-Search über eine Auswahl von Hyperparametern durchgeführt. Die zu diesem
+Zweck verwendeten Daten bestehen aus diffusen Gammadaten, die mittels einer \gls{mc}-Simulation für die
 \glspl{mst} des nördlichen Standorts \gls{cta}s auf der Kanarischen Insel La Palma erzeugt wurden.
 
 Die Ergebnisse zeigen, dass die in dieser Arbeit gefundenen Hyperparameter die Leistung des \tcc{}-Algorithmus
-in Bezug auf die Winkelauflösung verbesserten, während die Leistungen der anderen Algorithmen nur ein wenig
+in Bezug auf die Winkelauflösung verbesserten, während die Leistungen der anderen Algorithmen nur wenig
 verbessert wurden oder gleiche Ergebnisse lieferten, wie mit den Standardparametern.
 In Bezug auf die Metriken konnten die gefundenen Hyperparameter bei \tcc{} eine leichte Verbesserung
 bewirken, während die Parameter bei \fact{} sogar eine etwas schlechtere Leistung bewirkten.

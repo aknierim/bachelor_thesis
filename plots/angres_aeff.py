@@ -19,17 +19,17 @@ def plot_eff_area(
 ) -> matplotlib.axes.Axes:
 
 
-    mean_tail = tail["aeff"].mean()
-    mean_mars = mars["aeff"].mean()
-    mean_fact = fact["aeff"].mean()
-    mean_tcc = tcc["aeff"].mean()
+    eff_tail = tail["n_reco"].sum() / tail["n_total"].sum()
+    eff_mars = mars["n_reco"].sum() / mars["n_total"].sum()
+    eff_fact = fact["n_reco"].sum() / fact["n_total"].sum()
+    eff_tcc = tcc["n_reco"].sum() / tcc["n_total"].sum()
 
     ax.errorbar(
         tail["true_energy_center"],
         tail["aeff"],
         xerr=0.5 * tail["bin_width"],
         linestyle="",
-        label=f"Tailcuts, Mean Efficiency = {mean_tail:.3f}"
+        label=rf"Tailcuts, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_tail:.3f}"
     )
 
     ax.errorbar(
@@ -37,7 +37,7 @@ def plot_eff_area(
         mars["aeff"],
         xerr=0.5 * mars["bin_width"],
         linestyle="",
-        label=f"MARS, Mean Efficiency = {mean_mars:.3f}"
+        label=rf"MARS, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_mars:.3f}"
     )
 
     ax.errorbar(
@@ -45,7 +45,7 @@ def plot_eff_area(
         fact["aeff"],
         xerr=0.5 * fact["bin_width"],
         linestyle="",
-        label=f"FACT, Mean Efficiency = {mean_fact:.3f}"
+        label=rf"FACT, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_fact:.3f}"
     )
 
     ax.errorbar(
@@ -53,7 +53,7 @@ def plot_eff_area(
         tcc["aeff"],
         xerr=0.5 * tcc["bin_width"],
         linestyle="",
-        label=f"TCC, Mean Efficiency = {mean_tcc:.3f}"
+        label=rf"TCC, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_tcc:.3f}"
     )
 
     ax.set_xscale("log")
@@ -65,6 +65,8 @@ def plot_eff_area(
     ax.set_ylabel(r"Efficiency $n_\mathrm{reco} \;/\; n_\mathrm{total}$")
 
     ax.legend(fontsize=12)
+
+    return ax
 
 
 def plot_ang_res(
@@ -157,3 +159,12 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         raise e
+
+    fig, ax, ax2 = plot_combined([101, 13, 974, 1954])
+    ax2.set_ylim(1e-2, 1)
+    fig.suptitle(r"$0.40 \leq \mathrm{Efficiency} < 0.45$")
+    plt.savefig(f'plots/ar_aeff/AR_Aeff_MST_0.40_0.45.pdf')
+
+    fig, ax, ax2 = plot_combined([118, 54, 767, 367])
+    fig.suptitle(r"$0.10 \leq \mathrm{Efficiency} < 0.15$")
+    plt.savefig(f'plots/ar_aeff/AR_Aeff_MST_0.10_0.15.pdf')

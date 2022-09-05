@@ -1,8 +1,8 @@
-\chapter{Data processing with \ctapipe{}}
+\chapter{Data Processing with \texorpdfstring{\ctapipe{}}{ctapipe}}
 \label{ch:data-processing}
 
 The analysis in this work was done with the open-source low-level data processing software for \cta{},
-\ctapipe{} \cite{ctapipe}, more specifically, version \texttt{0.15.1}.
+\ctapipe{} \cite{ctapipe}, more specifically, the code from the \texttt{master} branch from July 6 (\texttt{f26107fe}).
 % The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 % henceforth shortened to version \texttt{0.15.1}.
 The goal of \ctapipe{} is to provide a complete analysis
@@ -13,7 +13,7 @@ data levels and \ctapipe{}'s various analysis steps. In \autoref{sec:pipeline} I
 explain the full pipeline created for this work.
 
 \vspace{-0.5cm}
-\section{Data simulation}
+\section{Data Simulation}
 \label{sec:data-simulation}
 
 In its current in-development state, \ctapipe{} is used and tested with simulated data, as the software
@@ -59,15 +59,16 @@ selected settings, allowing for more statistics and a better comparison of the c
 \end{table}
 
 
-\section{Data Levels in \ctapipe{}}
+\section{Data Levels in \texorpdfstring{\ctapipe{}}{ctapipe}}
 \label{sec:data-levels}
 
 There are several data levels in \ctapipe{}, spanning from the raw data \rzero{} to the reconstructed events
 \dlt{}, with the raw data levels being denoted by an \textbf{R} and the stored data levels by a \textbf{D}.
 \autoref{fig:ctapipe} shows a simplified overview of the data levels and the analysis steps.
 The raw data level \rzero{} is the data that comes directly from the photodetectors. The time-resolved
-signal of the data is calibrated from \rzero{} to \rone{}. The data volume gets reduced
-(\rone{} \rightarrow \dlz{}) by selecting waveform peaks for each pixel.
+signal of the data is calibrated from \rzero{} to \rone{}. The data volume can be reduced
+from \rone{} to \dlz{} by selecting and saving waveforms, thus discarding pixels that likely do not contain
+any signal.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{graphics/ctapipe.png}
@@ -83,7 +84,7 @@ signal of the data is calibrated from \rzero{} to \rone{}. The data volume gets 
 The \dlz{} data level is the first level being stored and also the first level to be processed from
 the simulation datasets used in this work. From \dlz{} to \dloa{}, the photon images are extracted
 by integrating the waveform peaks of each pixel, whilst the time images ("peak times", compare \autoref{fig:ctapipe})
-are extracted by finding the rising edge of the pulse. The resulting images are cleaned by cleaning algorithms,
+are extracted by finding the rising edge of the pulse. The resulting images are cleaned by algorithms,
 to distinguish signal from \gls{nsb}, which, in turn, allows for a parametrization of the events from \dloa{} to \dlob{}.
 % From \dlz{} to \dloa{}, the images of the data are extracted
 % from the time pulses, which are then cleaned by a cleaning algorithm, allowing for parametrization
@@ -103,7 +104,7 @@ and stored on the \dlt{} data level, which consists of an event list with direct
 reconstructed gammaness---a value that predicates how likely an event was produced by a gamma.
 
 
-\section{This work's data processing pipeline}
+\section{This Work's Data Processing Pipeline}
 \label{sec:pipeline}
 In this work, the data processing pipeline is as follows: First, several simulation data runs are
 selected and processed with \ctapipe{}. Then, the datasets are merged and serve as a basis for a re-run
@@ -116,7 +117,7 @@ The second file contains a list of all the allowed telescope IDs. This allows a 
 that are used in the analysis. This is especially helpful if one wants to only analyze \gls{mst}-related
 data, like in this work.
 
-For the re-run of the combined dataset, the cleaning settings are used\footnote{As opposed to the preprocessing step},
+For the re-run of the combined dataset, the cleaning settings are used,
 however, since this step is the heart of this work's search for the optimal hyperparameters.
 The configuration files used are shown in \hyperref[ap:config_files]{appendix \ref{ap:config_files}}.
 

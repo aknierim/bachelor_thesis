@@ -12,24 +12,29 @@ algorithm compared to the default settings is shown. Finally, a comparison of th
 cleaning algorithms is provided in \autoref{sec:comparison}.
 
 
-\section{Analysis of the efficiency and the angular resolution}
+\section{Analysis of the Efficiency and the Angular Resolution}
 \label{sec:efficiency_angres}
 
 To narrow down possible candidates for the optimal hyperparameters, I first analyzed the efficiency
 of the different cleaning algorithms. The efficiency is determined by the number of events that are
 reconstructed after cleaning. For this work I chose \(\num{20}\) intervals within \(\num{0}\) and
-\(\num{1}\) with a step size of \(\num{0.05}\). The events are binned per energy and the mean efficiency over all
-energy bins is then calculated as the mean of \autoref{eq:efficiency}. For each interval only those datasets are selected, where the mean efficiency
+\(\num{1}\) with a step size of \(\num{0.05}\). The number of reconstructed events \(n_{\mathrm{reco}}\)
+and the total number of events \(n_{\mathrm{total}}\) are binned per energy and the efficiency is then
+calculated as
+\begin{equation}\label{eq:efficiency_sum}
+    \eff = \frac{\sum_{N} n_{\mathrm{reco}}}{\sum_{\mathrm{N}} n_{\mathrm{total}}},
+\end{equation}
+with \(N\) being the number of bins. For each interval only those datasets are selected, where the efficiency
 lies between the lower and upper bound of the interval. Then the minimum angular resolution is
 determined for each interval. The parameters of these datasets are then selected to be the optimal
 parameters for each cleaning algorithm. This not only allows for a comparison of the cleaners but also
 a decision on a trade-off between the efficiency and the angular resolution, namely having a better
 angular resolution, but a lower efficiency or a higher efficiency but a higher and therefore worse
-angular resolution. The results for the mean efficiency are listed in \autoref{tab:efficiency} and
+angular resolution. The results for the efficiency are listed in \autoref{tab:efficiency} and
 the results for the mean angular resolution in \autoref{tab:angres}.
 
 As one can see, not all cleaning algorithms have valid values for each interval, peaking at a maximum
-of around \(\SIrange{45}{50}{\percent}\) of successfully reconstructed events. This is because not
+of around \(\SIrange{40}{45}{\percent}\) of successfully reconstructed events. This is because not
 all events are stereo events, \ie events, where two or more telescopes were triggered, which is a
 requirement for the reconstruction.
 The remaining events are therefore mono events and do not contribute to either the efficiency or the
@@ -40,12 +45,12 @@ types separately. The reason for the latter is, that optimizing the telescopes b
 better results for the hyperparameters.
 \begin{table}
     \centering
-    \caption{The results of the analysis for the mean efficiency of each cleaning algorithm taken over all
-    energy bins. The efficiency is calculated as the ratio of the number of reconstructed events $n_{\mathrm{reco}}$ and the number
-    of total events $n_{\mathrm{total}}$. The table lists the lower and upper limits of each efficiency
-    interval. The efficiency is then calculated as the mean over the whole energy range of the dataset and
+    \caption{The results of the analysis for the efficiency of each cleaning algorithm taken over all
+    energy bins. The table lists the lower and upper limits of each efficiency
+    interval. The efficiency is calculated according to \autoref{eq:efficiency_sum} and
     each listed efficiency is the one where the mean angular resolution is minimal for the given
-    interval. Notice how not all cleaning algorithms have valid results for all efficiency intervals.}
+    interval. Notice how not all cleaning algorithms have valid results for all efficiency intervals, due to not all
+    events being stereo events.}
     \label{tab:efficiency}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
@@ -55,17 +60,15 @@ better results for the hyperparameters.
         \addlinespace[0.5em]
         \showrowcolors
         % \input{build/efficiency.txt}
-        0.00 & 0.05 &       &       & 0.034 &       \\
-        0.05 & 0.10 &       &       & 0.051 &       \\
-        0.10 & 0.15 &       &       & 0.117 &       \\
-        0.15 & 0.20 &       &       & 0.163 &       \\
-        0.20 & 0.25 &       &       & 0.218 & 0.211 \\
-        0.25 & 0.30 & 0.263 & 0.265 & 0.287 & 0.273 \\
-        0.30 & 0.35 & 0.313 & 0.315 & 0.321 & 0.316 \\
-        0.35 & 0.40 & 0.362 & 0.364 & 0.369 & 0.390 \\
-        0.40 & 0.45 & 0.402 & 0.403 & 0.426 & 0.426 \\
-        0.45 & 0.50 & 0.451 & 0.463 & 0.466 & 0.455 \\
-        0.50 & 0.55 &       & 0.501 &       &       \\
+        0.00 & 0.05 &       &       & 0.007 &       \\
+        0.05 & 0.10 &       &       & 0.051 & 0.070 \\
+        0.10 & 0.15 & 0.121 & 0.122 & 0.141 & 0.121 \\
+        0.15 & 0.20 & 0.177 & 0.179 & 0.178 & 0.176 \\
+        0.20 & 0.25 & 0.242 & 0.244 & 0.250 & 0.248 \\
+        0.25 & 0.30 & 0.296 & 0.297 & 0.254 & 0.263 \\
+        0.30 & 0.35 & 0.307 & 0.306 & 0.340 & 0.311 \\
+        0.35 & 0.40 & 0.365 & 0.380 & 0.388 & 0.375 \\
+        0.40 & 0.45 & 0.401 & 0.410 & 0.405 & 0.401 \\
     \end{tabular}
 \end{table}
 
@@ -74,8 +77,8 @@ better results for the hyperparameters.
     \caption{The results of the analysis for the mean angular resolution of each cleaning algorithm.
     The table lists the lower and upper limits of each efficiency interval. The angular resolution listed
     is the minimum mean angular resolution of the respective efficiency interval. The corresponding efficiency
-    values are listed in \autoref{tab:efficiency}. Notice how not all cleaning algorithms have valid results
-    for all efficiency intervals.}
+    values are listed in \autoref{tab:efficiency}. Notice how not all cleaning algorithms have valid results for all efficiency intervals, due to not all
+    events being stereo events.}
     \label{tab:angres}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
@@ -86,16 +89,14 @@ better results for the hyperparameters.
         \showrowcolors
         % \input{build/angular_resolution.tex}
         0.00 & 0.05 &       &       & 0.244 &       \\
-        0.05 & 0.10 &       &       & 0.297 &       \\
-        0.10 & 0.15 &       &       & 0.420 &       \\
-        0.15 & 0.20 &       &       & 0.428 &       \\
-        0.20 & 0.25 &       &       & 0.477 & 0.413 \\
-        0.25 & 0.30 & 0.358 & 0.291 & 0.415 & 0.396 \\
-        0.30 & 0.35 & 0.308 & 0.282 & 0.367 & 0.340 \\
-        0.35 & 0.40 & 0.334 & 0.332 & 0.366 & 0.386 \\
-        0.40 & 0.45 & 0.357 & 0.343 & 0.365 & 0.383 \\
-        0.45 & 0.50 & 0.395 & 0.395 & 0.404 & 0.390 \\
-        0.50 & 0.55 &       & 1.301 &       &       \\
+        0.05 & 0.10 &       &       & 0.428 & 0.413 \\
+        0.10 & 0.15 & 0.358 & 0.291 & 0.415 & 0.396 \\
+        0.15 & 0.20 & 0.308 & 0.282 & 0.367 & 0.340 \\
+        0.20 & 0.25 & 0.334 & 0.332 & 0.403 & 0.388 \\
+        0.25 & 0.30 & 0.346 & 0.356 & 0.366 & 0.386 \\
+        0.30 & 0.35 & 0.357 & 0.343 & 0.365 & 0.383 \\
+        0.35 & 0.40 & 0.395 & 0.395 & 0.404 & 0.390 \\
+        0.40 & 0.45 & 0.432 & 0.424 & 0.420 & 0.427 \\
     \end{tabular}
 \end{table}
 The results listed in the tables show that there is a clear trade-off in choosing between efficiency and angular resolution.
@@ -109,12 +110,12 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
     \centering
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.25_0.30.pdf}
+        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.10_0.15.pdf}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.45_0.50.pdf}
+        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.40_0.45.pdf}
     \end{subfigure}
     \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. Notice
     the decrease in the scattering of the mean angular resolution at medium to
@@ -124,12 +125,12 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.75\textwidth]{build/ar_vs_eff.pdf}
-    \caption{Angular resolution plotted against the efficiency between \(\num{0.2}\) and \(\num{0.5}\).}
+    \caption{Angular resolution plotted against the efficiency between \(\num{0.355}\) and \(\num{0.485}\).}
     \label{fig:ar_vs_eff}
 \end{figure}
 
 
-\section{Metrics of the cleaning algorithms}
+\section{Metrics of the Cleaning Algorithms}
 \label{sec:metrics}
 \glsreset{tp}\glsreset{fp}\glsreset{fn}\glsreset{tn}
 Concerning the metrics, I first analyzed the parameter combinations of all settings found in \autoref{sec:efficiency_angres}. First,
@@ -145,20 +146,15 @@ This improves readability as opposed to writing out the full settings. The hyper
 IDs of all algorithms are listed in \autoref{tab:best_parameters}.
 
 While all settings perform well w.\,r.\,t., for example, the \gls{tnr}, one can see from the results, that for all cleaning
-algorithms---except for \mars{}---, the best parameter combination is the one where the \gls{tpr}, the \gls{acc} and the \gls{ba}
-are the highest. These settings are the ones that correspond to the highest efficiency. While this is true
-for \tailcuts{}, \fact{} and \tcc{}, the metrics for \mars{} are an exception. The reason for that is, that when
-looking at the corresponding mean angular resolution for the highest performing setting (ID~10), the value is
-\(\SI{1.301}{\degree}\) (see \autoref{tab:angres}) and therefore an order of magnitude worse than the other algorithms. For better
-comparison, I, therefore, choose the second highest performing setting (ID~15) with a mean angular
-resolution of \(\SI{0.395}{\degree}\) to be the best candidate for further analysis.
+algorithms, the best parameter combination is the one where the \gls{tpr}, the \gls{acc} and the \gls{ba}
+are the highest. These settings are the ones that correspond to the highest efficiency.
 The values for each respective metric and cleaning algorithm are listed in
 \Autoref{tab:metrics_tail, tab:metrics_mars, tab:metrics_fact, tab:metrics_tcc} respectively, while
 a comparison of the cleaners against each other is shown in \autoref{sec:comparison}.
 \begin{table}
     \centering
     \caption{Results for the metrics of \tailcuts{}. One can see, that the best results are obtained
-    for the setting with ID~47.}
+    for the setting with ID~101.}
     \label{tab:metrics_tail}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
@@ -171,8 +167,10 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         118 & 0.0972 & 1.0000 & 0.9028 & 0.9256 & 0.5486 \\
          51 & 0.1231 & 1.0000 & 0.8769 & 0.9256 & 0.5615 \\
         140 & 0.1460 & 1.0000 & 0.8540 & 0.9256 & 0.5730 \\
+        141 & 0.1660 & 1.0000 & 0.8340 & 0.9283 & 0.5830 \\
          81 & 0.1854 & 1.0000 & 0.8146 & 0.9288 & 0.5927 \\
          47 & 0.2268 & 1.0000 & 0.7732 & 0.9332 & 0.6134 \\
+        101 & 0.3169 & 0.9997 & 0.6831 & 0.9418 & 0.6583 \\
     \end{tabular}}
 \end{table}
 
@@ -206,16 +204,16 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_mars.pdf}
-    \caption{Metrics for \mars{}. While ID~10 arguably performs best at first glance---albeit with a not
-    insignificant decrease in the \gls{ppv} value---, I chose ID~15
-    for further analysis, as its mean angular resolution is an order of magnitude better.}
+    \caption{Metrics for \mars{}. The results show, that the cleaning setting with ID~13 performs
+    best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
+    setting of the five parameter combinations \wrt the metrics.}
     \label{fig:metrics_mars}
 \end{figure}
 
 \begin{table}
     \centering
     \caption{Results for the metrics of \fact{}. One can see, that the best results are obtained
-    for the settings with ID~503.}
+    for the settings with ID~974.}
     \label{tab:metrics_fact}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4]}
@@ -223,23 +221,23 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         ID & \acrshort{tpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
-        \input{build/metrics_fact.txt}\\
+        \input{build/metrics_fact.txt}
     \end{tabular}
 \end{table}
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_fact.pdf}
-    \caption{Metrics for \fact{}. The cleaning setting with ID 503 performs
+    \caption{Metrics for \fact{}. The cleaning setting with ID~947 performs
     best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
-    setting of the ten parameter combinations.}
+    setting of the nine parameter combinations.}
     \label{fig:metrics_fact}
 \end{figure}
 
 \begin{table}
     \centering
     \caption{Results for the metrics of \tcc{}. The best results are obtained
-    for the setting with ID~807.}
+    for the setting with ID~1954.}
     \label{tab:metrics_tcc}
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{r S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] S[table-format=1.4] }
@@ -247,16 +245,16 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         ID & \acrshort{tpr} & \acrshort{tnr} & \acrshort{fnr} & \acrshort{acc} & \acrshort{ba} \\
         \addlinespace[0.5em]
         \showrowcolors
-        \input{build/metrics_tcc.txt}\\
+        \input{build/metrics_tcc.txt}
     \end{tabular}
 \end{table}
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{build/metrics_tcc.pdf}
-    \caption{Metrics for the \tcc{}. The cleaning setting with ID 807 performs
+    \caption{Metrics for the \tcc{}. The cleaning setting with ID~1954 performs
     best in terms of the number of true positives, accuracy and balanced accuracy, making it the best
-    setting of the six parameter combinations.}
+    setting of the eight parameter combinations.}
     \label{fig:metrics_tcc}
 \end{figure}
 
@@ -285,7 +283,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \end{tabular}
 \end{table}
 
-\section{Performance compared to the default settings}
+\section{Performance Compared to the Default Settings}
 \label{sec:performance}
 
 Now, with a setting selected for each cleaner, it is reasonable to compare
@@ -357,7 +355,7 @@ also slightly better in terms of the \gls{acc} metric.
     \end{tabular}
 \end{table}
 
-\section{Comparison of the cleaning algorithms}
+\section{Comparison of the Cleaning Algorithms}
 \label{sec:comparison}
 
 As of writing this thesis, the cleaning algorithms discussed in this thesis are the only ones implemented

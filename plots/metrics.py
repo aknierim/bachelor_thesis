@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     size = plt.gcf().get_size_inches()
 
-    metrics_bar_plot("tailcuts", size=size, color='C0', width=0.13)
+    metrics_bar_plot("tailcuts", size=size, color='C0', width=0.1)
     metrics_bar_plot("mars", size=size, color='C1', width=0.1)
     metrics_bar_plot("fact", size=size, color='C2', width=0.05)
     metrics_bar_plot("tcc", size=size, color='C3', width=0.1)
