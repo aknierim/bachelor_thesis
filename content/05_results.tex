@@ -19,7 +19,7 @@ To narrow down possible candidates for the optimal hyperparameters, I first anal
 of the different cleaning algorithms. The efficiency is determined by the number of events that are
 reconstructed after cleaning. For this work I chose \(\num{20}\) intervals within \(\num{0}\) and
 \(\num{1}\) with a step size of \(\num{0.05}\). The events are binned per energy and the mean efficiency over all
-energy bins is then calculated as the mean of \autoref{eq:efficiency}. For each interval those datasets are selected, where the mean efficiency
+energy bins is then calculated as the mean of \autoref{eq:efficiency}. For each interval only those datasets are selected, where the mean efficiency
 lies between the lower and upper bound of the interval. Then the minimum angular resolution is
 determined for each interval. The parameters of these datasets are then selected to be the optimal
 parameters for each cleaning algorithm. This not only allows for a comparison of the cleaners but also
@@ -30,12 +30,14 @@ the results for the mean angular resolution in \autoref{tab:angres}.
 
 As one can see, not all cleaning algorithms have valid values for each interval, peaking at a maximum
 of around \(\SIrange{45}{50}{\percent}\) of successfully reconstructed events. This is because not
-all events are stereo events, \ie events, where two or more telescopes were triggered.
+all events are stereo events, \ie events, where two or more telescopes were triggered, which is a
+requirement for the reconstruction.
 The remaining events are therefore mono events and do not contribute to either the efficiency or the
 angular resolution. The efficiency would be higher, of course, for a full-array analysis, but that would
-mean also including \glspl{lst} data, which for this work would not help find the optimal
-parameters, since it is better to analyze the telescope types separately. The reason for the latter
-is, that optimizing the telescopes by type would lead to better results for the hyperparameters.
+mean also including \glspl{lst} data\footnote{which was left out due to time limitations, see \autoref{ch:conclusions}.},
+which for this work would not help find the optimal parameters, since it is better to analyze the telescope
+types separately. The reason for the latter is, that optimizing the telescopes by type would lead to
+better results for the hyperparameters.
 \begin{table}
     \centering
     \caption{The results of the analysis for the mean efficiency of each cleaning algorithm taken over all
@@ -53,17 +55,17 @@ is, that optimizing the telescopes by type would lead to better results for the 
         \addlinespace[0.5em]
         \showrowcolors
         % \input{build/efficiency.txt}
-        0.00 & 0.05 &  &  & 0.034 &  \\
-        0.05 & 0.10 &  &  & 0.051 &  \\
-        0.10 & 0.15 &  &  & 0.117 &  \\
-        0.15 & 0.20 &  &  & 0.163 &  \\
-        0.20 & 0.25 &  &  & 0.218 & 0.211 \\
+        0.00 & 0.05 &       &       & 0.034 &       \\
+        0.05 & 0.10 &       &       & 0.051 &       \\
+        0.10 & 0.15 &       &       & 0.117 &       \\
+        0.15 & 0.20 &       &       & 0.163 &       \\
+        0.20 & 0.25 &       &       & 0.218 & 0.211 \\
         0.25 & 0.30 & 0.263 & 0.265 & 0.287 & 0.273 \\
         0.30 & 0.35 & 0.313 & 0.315 & 0.321 & 0.316 \\
         0.35 & 0.40 & 0.362 & 0.364 & 0.369 & 0.390 \\
         0.40 & 0.45 & 0.402 & 0.403 & 0.426 & 0.426 \\
         0.45 & 0.50 & 0.451 & 0.463 & 0.466 & 0.455 \\
-        0.50 & 0.55 &  & 0.501 &  &  \\
+        0.50 & 0.55 &       & 0.501 &       &       \\
     \end{tabular}
 \end{table}
 
@@ -83,17 +85,17 @@ is, that optimizing the telescopes by type would lead to better results for the 
         \addlinespace[0.5em]
         \showrowcolors
         % \input{build/angular_resolution.tex}
-        0.00 & 0.05 &  &  & 0.244 &  \\
-        0.05 & 0.10 &  &  & 0.297 &  \\
-        0.10 & 0.15 &  &  & 0.420 &  \\
-        0.15 & 0.20 &  &  & 0.428 &  \\
-        0.20 & 0.25 &  &  & 0.477 & 0.413 \\
+        0.00 & 0.05 &       &       & 0.244 &       \\
+        0.05 & 0.10 &       &       & 0.297 &       \\
+        0.10 & 0.15 &       &       & 0.420 &       \\
+        0.15 & 0.20 &       &       & 0.428 &       \\
+        0.20 & 0.25 &       &       & 0.477 & 0.413 \\
         0.25 & 0.30 & 0.358 & 0.291 & 0.415 & 0.396 \\
         0.30 & 0.35 & 0.308 & 0.282 & 0.367 & 0.340 \\
         0.35 & 0.40 & 0.334 & 0.332 & 0.366 & 0.386 \\
         0.40 & 0.45 & 0.357 & 0.343 & 0.365 & 0.383 \\
         0.45 & 0.50 & 0.395 & 0.395 & 0.404 & 0.390 \\
-        0.50 & 0.55 &  & 1.301 &  &  \\
+        0.50 & 0.55 &       & 1.301 &       &       \\
     \end{tabular}
 \end{table}
 The results listed in the tables show that there is a clear trade-off in choosing between efficiency and angular resolution.
@@ -102,26 +104,27 @@ the angular resolution are plotted in \autoref{fig:efficiency_angres} for the in
 \([\num{0.25}, \num{0.30}]\) and \([\num{0.45}, \num{0.50}]\). The reason for this is that these are
 the minimum and maximum intervals \wrt the efficiency, where all cleaners have valid values.
 Furthermore, the mean angular resolution is plotted against the efficiency in \autoref{fig:ar_vs_eff}.
+\vspace{-0.2cm}
 \begin{figure}
     \centering
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.95\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.25_0.30.pdf}
+        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.25_0.30.pdf}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.95\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.45_0.50.pdf}
+        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.45_0.50.pdf}
     \end{subfigure}
     \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. Notice
     the decrease in the scattering of the mean angular resolution at medium to
-    medium-high energies at higher efficiencies in the plots on the right.}
+    medium-high energies at higher efficiencies in the plots on the right.\vspace{-0.5cm}}
     \label{fig:efficiency_angres}
 \end{figure}
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.85\textwidth]{build/ar_vs_eff.pdf}
-    \caption{Angular resolution plotted against the efficiency.}
+    \includegraphics[width=0.75\textwidth]{build/ar_vs_eff.pdf}
+    \caption{Angular resolution plotted against the efficiency between \(\num{0.2}\) and \(\num{0.5}\).}
     \label{fig:ar_vs_eff}
 \end{figure}
 
@@ -165,7 +168,7 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         \addlinespace[0.5em]
         \showrowcolors
         % \input{build/metrics_tail.txt} %% kinda broken atm
-        118 & 0.0972 & 1.0000 & 0.9028 &  0.9256 & 0.5486 \\
+        118 & 0.0972 & 1.0000 & 0.9028 & 0.9256 & 0.5486 \\
          51 & 0.1231 & 1.0000 & 0.8769 & 0.9256 & 0.5615 \\
         140 & 0.1460 & 1.0000 & 0.8540 & 0.9256 & 0.5730 \\
          81 & 0.1854 & 1.0000 & 0.8146 & 0.9288 & 0.5927 \\
