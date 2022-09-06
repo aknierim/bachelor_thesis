@@ -1,4 +1,4 @@
-\chapter{Finding Optimal Hyperparameters for the Cleaning Algorithms}
+\chapter{Finding Optimal Hyperparameters for the Cleaning Algorithms}%
 \label{ch:finding-hyperparams}
 
 This work aims to find optimal hyperparameters for the cleaning algorithms used in \ctapipe{}.
@@ -8,15 +8,15 @@ cleaner is necessary. In this chapter, I will first introduce the cleaning algor
 in \autoref{sec:cleaning-algorithms} and then describe the procedure to find optimal hyperparameters
 in \autoref{sec:hyperparameters}.
 \vspace{-0.5cm}
-\section{Cleaning Algorithms}
+\section{Cleaning Algorithms}%
 \label{sec:cleaning-algorithms}
 \vspace{-0.5cm}
-\subsection*{\texttt{TailcutsImageCleaner}}
+\subsection*{\texttt{TailcutsImageCleaner}}%
 \vspace{-0.5cm}
 The used version of \ctapipe{} features four cleaning algorithms, two of which are time-based.
 The \tailcuts{} algorithm is the most basic algorithm of the four and serves as a good
 starting point for the development of new cleaning algorithms. Its first step is to select all
-pixels that are above a certain threshold, the core threshold \(Q_c\). These
+pixels that are above a certain threshold, the core threshold \(Q_c\) (also called picture threshold in \ctapipe{}). These
 pixels are the core part of the signal and are the brightest. The \tailcuts{} algorithm
 then selects all pixels that are above the boundary threshold \(Q_b\) and are neighboring
 the core pixels. A visualization of the algorithm is shown in \autoref{fig:tailcuts_clean} for the
@@ -33,13 +33,13 @@ default values of the algorithm.
     \includegraphics[height=4cm]{plots/cleaner_steps/tailcuts.pdf}
     \caption{Visualization of the \tailcuts{} algorithm for a \gls{mst} NectarCam image. First, all
     pixels above the core threshold are selected. Then, all pixels neighboring the core
-    pixels that are above the boundary threshold are selected.}
+    pixels that are above the boundary threshold are selected.}%
     \label{fig:tailcuts_clean}
 \end{figure}
 
-\subsection*{\texttt{MARSImageCleaner}}
+\subsection*{\texttt{MARSImageCleaner}}%
 \vspace{-0.5cm}
-The \mars{} algorithm \cite{mars} is very much based on the \tailcuts{}
+The \mars{} algorithm~\cite{mars} is very much based on the \tailcuts{}
 algorithm and features an additional step, in that it also selects all neighbors of a neighbor of a
 core pixel, if they are above the boundary threshold. The three steps for the \mars{} algorithm
 are shown in \autoref{fig:mars_cleaning} for its default values.
@@ -60,7 +60,7 @@ are shown in \autoref{fig:mars_cleaning} for its default values.
     \includegraphics[height=4cm]{plots/cleaner_steps/mars.pdf}
     \caption{Visualization of the \mars{} algorithm for a \gls{mst} NectarCam image. The first two
     steps are identical to the \tailcuts{} algorithm. The third step selects all neighbors of a neighbor of a
-    core pixel if they are above the boundary threshold \(Q_b\).}
+    core pixel if they are above the boundary threshold \(Q_b\).}%
     \label{fig:mars_cleaning}
 \end{figure}
 
@@ -96,12 +96,12 @@ are shown in \autoref{fig:mars_cleaning} for its default values.
     that have arrived within a given timeframe. The fifth and sixth steps are analogous to steps two and four respectively.
     Notice, that---per default in \ctapipe---the values for \(Q_c\) and \(Q_b\) are lower than for the other cleaners
     (see \autoref{tab:hyperparameters}), and hence together with the time limit more individual pixels than in the
-    other cleaning algorithms are selected in the first step.}
+    other cleaning algorithms are selected in the first step.}%
     \label{fig:fact_cleaning}
 \end{figure}
-\subsection*{\texttt{FactImageCleaner}}
+\subsection*{\texttt{FactImageCleaner}}%
 \vspace{-0.5cm}
-The \fact{} algorithm \cite{temme_thesis, temme_diploma} is a time-based cleaning algorithm that first selects all pixels that are above
+The \fact{} algorithm~\cite{temme_thesis, temme_diploma} is a time-based cleaning algorithm that first selects all pixels that are above
 \(Q_c\). Then, all pixels that have less than \(N\) neighbors are removed.
 % Per default, the algorithm looks for a minimum of at least \(\num{2}\) neighbors.
 For the third step, all pixels neighboring
@@ -112,9 +112,9 @@ Again, all pixels with less than \(N\) neighbors are removed. The last step once
 \(N\) neighbors, arriving within the given time limit. The visualization of the algorithm is shown in
 \autoref{fig:fact_cleaning} for the default values of the algorithm.
 \vspace{-0.75cm}
-\subsection*{\texttt{TimeConstrainedImageCleaner}}
+\subsection*{\texttt{TimeConstrainedImageCleaner}}%
 \vspace{-0.5cm}
-The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration \cite{tcc}.
+The \tcc{} algorithm is another time-based algorithm, coming from the \gls{magic} collaboration~\cite{tcc}.
 It first selects all pixels that are above \(Q_c\). Then, all pixels that have
 less than \(N\) neighbors are removed. A minimum of \(\num{1}\) neighboring pixel is needed in the default
 settings. After that, all core pixels whose arrival times are within a given timeframe of the average arrival time.
@@ -123,8 +123,8 @@ As a fourth step, the \tcc{} algorithm finds all pixels above \(Q_b\). Then, all
 less than \(N\) neighbors arriving within a given timeframe are removed.
 % This boundary time limit is set to \(\SI{1.5}{\nano\second}\) by default.
 The visualization of the algorithm is shown in \autoref{fig:tcc_cleaning} for the default values of the algorithm.
-For a better comparison, the resulting cleaned images are of each cleaner are shown in \autoref{fig:cleaners_together}
-in \hyperref[ap:additional_plots_tables]{appendix \ref{ap:additional_plots_tables}}.
+For a better comparison, the resulting cleaned images of each cleaner are shown in \autoref{fig:cleaners_together}
+in \hyperref[ap:additional_plots_tables]{appendix~\ref{ap:additional_plots_tables}}.
 \begin{figure}
     \centering
     % \begin{subfigure}[t]{0.32\textwidth}
@@ -151,12 +151,12 @@ in \hyperref[ap:additional_plots_tables]{appendix \ref{ap:additional_plots_table
     core time limit \(t_c\). The fourth step selects all pixels above the boundary threshold \(Q_b\).
     The fifth step removes all pixels with less than \(N\) neighbors, that have arrived within a given timeframe
     of the boundary time limit \(t_b\). Notice, that with the default values \tcc{} tends to select fewer pixels
-    than the other algorithms.}
+    than the other algorithms.}%
     \label{fig:tcc_cleaning}
 \end{figure}
 \vspace{-0.5cm}
 
-\section{Hyperparameters}
+\section{Hyperparameters}%
 \label{sec:hyperparameters}
 
 The hyperparameters of each cleaning algorithm are set in a specific \texttt{configuration} file. There,
@@ -171,14 +171,14 @@ well as a \texttt{time\_limit\_boundary} for \tcc{}.
     \tailcuts{} and \mars{} have only three parameters, while the \fact{} and \tcc{} algorithms have
     one and two additional time-based parameters, respectively. This table shows the default values
     and, if the parameters have them, also their units, as they are implemented in the \ctapipe{}
-    source code.}
+    source code.}%
     \label{tab:hyperparameters}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
     \begin{tabular}{l l l}
-        \hiderowcolors
+        \hiderowcolors%
         \textbf{Cleaning Algorithm} & \textbf{Hyperparameter} & \textbf{Default Values} \\
-        \showrowcolors
+        \showrowcolors%
         \tailcuts{} & \texttt{picture\_threshold}               & \qquad\(\SI{7}{\pe}\) \\
                     & \texttt{boundary\_threshold}              & \qquad\(\SI{5}{\pe}\) \\
                     & \texttt{min\_number\_picture\_neighbors}  & \qquad\(\num{0}\) \\
@@ -201,12 +201,12 @@ well as a \texttt{time\_limit\_boundary} for \tcc{}.
 \end{table}
 
 The full configuration files for the default settings of each cleaning algorithm are listed in
-\hyperref[ap:config_files]{appendix \ref{ap:config_files}}. There, the configuration files for the allowed telescopes
+\hyperref[ap:config_files]{appendix~\ref{ap:config_files}}. There, the configuration files for the allowed telescopes
 as described in \autoref{sec:pipeline} are shown, too.
 
 To find the optimal hyperparameters, I utilized \sklearn{}~\cite{scikit-learn} for a grid search. This
 allows one to manually set subsets of hyperparameters and search for the best combination of these.
-\autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix \ref{ap:hyperparameters}} shows
+\autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix~\ref{ap:hyperparameters}} shows
 the subsets of hyperparameters used in this work.
 
 I used noise quantiles, \ie the percentage of all \textit{noise} pixels that are not part of the true signal,
@@ -221,7 +221,7 @@ The quantiles used in this work are shown in \autoref{fig:quantiles}.
     \includegraphics[width=0.65\textwidth]{build/quantiles_plot.pdf}
     \caption{Picture noise quantiles for a \gls{mst} NectarCam dataset. The quantiles are calculated
     as the percentage of noise pixels in the image. The resulting threshold can then be used as a
-    candidate for the core threshold \(Q_c\) in a grid search.}
+    candidate for the core threshold \(Q_c\) in a grid search.}%
     % This method is more precise than selecting
     % the thresholds by hand, as they are calculated directly from the image.}
     \label{fig:quantiles}
@@ -285,7 +285,7 @@ between the reconstructed origin and the true origin of the shower.
 % This angular distance, or separation, is calculated with the \texttt{astropy.coordinates.angular\_separation} function from \astropy{}~\cite{astropy1, astropy2}.
 The dataset with the lowest mean angular resolution is the best performing for each interval.
 If more low-energy events are reconstructed, not only will the efficiency be higher, but also the angular resolution,
-as those events are more likely to include pixels that are part of the \gls{nsb} and also include less signal pixels
+as those events are more likely to include pixels that are part of the \gls{nsb} and also include fewer signal pixels
 than a high-energy event.
 % Not all events will ever be properly reconstructed for any parameter combination, so there won't be
 % a mean angular resolution for all intervals, but only a subset.
@@ -294,4 +294,4 @@ As a result, a trade-off between efficiency and angular resolution is necessary.
 
 For the performance analysis of the algorithms, I calculated metrics such as, but not limited to, the \gls{tpr} or recall,
 the \gls{fpr} or fall-out and the \gls{tnr} or specificity. A list of all used metrics can be seen in \autoref{tab:metrics}
-in \hyperref[ap:metrics]{appendix \ref{ap:metrics}}.
+in \hyperref[ap:metrics]{appendix~\ref{ap:metrics}}.

@@ -1,14 +1,15 @@
-\chapter{IACTs and the Cherenkov Telescope Array}
-\glsreset{iact}
+\chapter{IACTs and the Cherenkov Telescope Array}%
+\label{ch:IACTs_and_CTA}
+\glsreset{iact}%
 
 Modern gamma-ray observations are performed with either space-based experiments or with
-ground-based experiments. Examples include water Cherenkov tanks, such as the \gls{hawc} \cite{hawc} experiment, or \glspl{iact}, the latter
+ground-based experiments. Examples include water Cherenkov tanks, such as the \gls{hawc}~\cite{hawc} experiment, or \glspl{iact}, the latter
 being telescopes that use the Cherenkov light emitted by \glspl{eas} in the atmosphere.
 In the following sections, I will introduce \glspl{iact} and the \gls{cta} and explain the mechanisms
 that enable the observations of gamma rays with these types of experiments.
 
 
-\section{Imaging Air Cherenkov Telescopes}
+\section{Imaging Air Cherenkov Telescopes}%
 \label{sec:iact}
 
 Because of their ground-based setup, \glspl{iact} take advantage of the Earth's atmosphere to get a
@@ -21,15 +22,15 @@ larger effective area than any space-based instrument. This is especially helpfu
     \caption{The cosmic ray flux as a function of energy. For very high energies the flux becomes very
     small with only \(\num{1}\) particle per square meter per year reaching Earth. For even higher
     energies in the domain of \si{\exa\eV} this flux becomes \(\num{1}\) particle per square
-    kilometer per year \cite{carmelo_2020}.}
+    kilometer per year~\cite{carmelo_2020}.}%
     \label{fig:flux}
 \end{wrapfigure}
 where the gamma-ray flux is already decreasing, whereas lower energies show higher fluxes. At such high energies,
 experiments with space-based instruments, such as \gls{fermilat}, see fewer high-energy events compared
-to ground-based experiments, due to their comparatively small effective collection area \cite[p.~256]{funk}.
+to ground-based experiments, due to their comparatively small effective collection area~\cite[p.~256]{funk}.
 The cosmic ray flux in \autoref{fig:flux} shows this well: The flux decreases rapidly with higher
 energies, with only one high-energy (\greater\(\SI{40}{\giga\eV}\)) photon per day and square meter
-reaching Earth from the Crab Nebula \cite{noethe_thesis} and even fewer photons for energies in the
+reaching Earth from the Crab Nebula~\cite{noethe_thesis} and even fewer photons for energies in the
 \si{\exa\eV} domain, where only \(\num{1}\) particle per square kilometer per year reaches Earth.
 
 Earth's atmosphere is opaque to \gls{he} gamma rays, so ground-based experiments rely on
@@ -55,7 +56,7 @@ as can be seen in \autoref{fig:cherenkov}.
         \includegraphics[width=0.90\textwidth]{graphics/heitler_model.pdf}
         \caption{Simplified first steps of the Heitler model of the electromagnetic component of an extensive air shower.
         A gamma ray induces an electron and a positron via pair production that then emit more photons
-        via bremsstrahlung.}
+        via bremsstrahlung.}%
         \label{fig:heitler_model}
     \end{subfigure}
     \hfill
@@ -64,7 +65,7 @@ as can be seen in \autoref{fig:cherenkov}.
         \includegraphics[width=0.90\textwidth]{graphics/cherenkov_radiation.pdf}
         \caption{Cherenkov radiation (outward-pointing arrows) from a charged particle traveling at
         uniform velocity, faster than the speed of light in the medium. The dashed line shows the
-        path of the particle over time.}
+        path of the particle over time.}%
         \label{fig:cherenkov}
     \end{subfigure}
     \caption{The electromagnetic component of an extensive air shower (see \hyperref[fig:heitler_model]{(a)})
@@ -75,7 +76,7 @@ as can be seen in \autoref{fig:cherenkov}.
     Cherenkov light from the electrons and positrons, which is shown in \hyperref[fig:cherenkov]{(b)}.
     The Cherenkov light is the result of the charged particles traveling faster than the speed of light
     in the atmosphere, thus emitting photons in a fixed angle \(\theta\) \wrt the refraction index
-    \(n\) of the medium and the factor \(\beta\).}
+    \(n\) of the medium and the factor \(\beta\).}%
     \label{fig:cherenkov_heitler}
 \end{figure}
 
@@ -85,13 +86,13 @@ of the air shower and can be used to determine the shower's primary particles' p
 reconstruct its origin. As the hadronic component of \glspl{eas} produce
 electromagnetic subshowers, \glspl{iact} have a dominant hadronic background, which has to be
 separated from the gamma ray-induced showers, for example with
-machine learning algorithms. Before this separation, however, signal pixels in the camera image have
+machine learning algorithms. Before this separation, however, signal pixels in the camera image have to be
 separated from the electronic noise coming from the camera as well as from the \gls{nsb} with the help of
 cleaning algorithms. This will be the focus of this work. These cleaning algorithms pose a vital step
 in the analysis of an event, as only a fraction of all pixels in the camera frame are part of the signal.
 
 
-\section{The Cherenkov Telescope Array}
+\section{The Cherenkov Telescope Array}%
 \label{sec:cta}
 
 \cta{} is a new generation of \glspl{iact} that will consist of two sites,
@@ -100,7 +101,7 @@ will be built in the southern hemisphere at the \glspl{eso} Paranal Observatory 
 of northern Chile.
 
 \cta{} consists of three types of telescopes, shown in \autoref{fig:cta_telescopes}, each being
-sensitive to a different energy range \cite{cta_specs}:
+sensitive to a different energy range~\cite{cta_specs}:
 \begin{description}
     \item [] \textbf{\gls{lst}}: The largest telescopes in \cta{} have a primary deflector diameter
     of \SI{23}{\meter} with a field of view of \SI{4.3}{\deg} and provide full system sensitivity in the energy
@@ -118,9 +119,9 @@ sensitive to a different energy range \cite{cta_specs}:
     \centering
     \includegraphics[width=0.7\textwidth]{graphics/telescopes_render.jpg}
     \caption{A rendered image of the 3 telescope prototypes in \cta{}. From left to right: The \gls{sst},
-    two types of \gls{mst} (SCT and MST) and the \gls{lst}. This work will not feature the SCT, as
-    the simulation data used contains only \gls{lst} and \gls{mst} data for the northern array.
-    Image credit: Gabriel Pérez Diaz, IAC \cite{cta_tech}.}
+    two types of \gls{mst} (SCT and MST) and the \gls{lst}. This work will only feature the \gls{mst}, as
+    the simulation data used contains solely \gls{mst} data for the northern array (see \autoref{ch:results}).
+    Image credit: Gabriel Pérez Diaz, IAC~\cite{cta_tech}.}%
     \label{fig:cta_telescopes}
 \end{figure}
 
@@ -128,22 +129,21 @@ Since the southern hemisphere has a better view of the galactic center than the 
 only \cta{} south will feature the \glspl{sst} along the other two telescope types. \cta{} north
 will only feature \glspl{mst} and \glspl{lst}. In its full configuration, \cta{} would feature
 \(\num{70}\) \glspl{sst}, \(\num{25}\) \glspl{mst} and \(\num{4}\) \glspl{lst} at \cta{} south,
-and \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst} at \cta{} north. However, the reduced
+and \(\num{15}\) \glspl{mst} and \(\num{4}\) \glspl{lst} at \cta{} north. However, a reduced
 layout---called Alpha Configuration---is the currently planned layout for both \cta{}
 north and south. This work will focus on the northern site, consisting of \(\num{9}\) \glspl{mst}
-and \(\num{4}\) \glspl{lst} \cite{cta_north_layout}. \autoref{fig:cta_layout} shows the planned
+and \(\num{4}\) \glspl{lst}~\cite{cta_north_layout}. \autoref{fig:cta_layout} shows the planned
 Alpha Configuration layout of both sites of \cta{} where \cta{} south is displayed with its
-\(\num{37}\) \glspl{sst}, \(\num{14}\) \glspl{mst} and the \(\num{4}\) \glspl{lst} in the center
-\cite{cta_south_layout}.
+\(\num{37}\) \glspl{sst}, \(\num{14}\) \glspl{mst} and the \(\num{4}\) \glspl{lst} in the center~\cite{cta_south_layout}.
 \begin{figure}
     \centering
     % \includegraphics[width=0.75\textwidth]{graphics/cta_alpha_layout.pdf}
     \includegraphics[width=0.75\textwidth]{graphics/cta_layout.pdf}
     \caption{Alpha Configuration layout of the \cta{} north and \cta{}
     south site. \cta{} south would feature \(\num{37}\) \glspl{sst}, \(\num{14}\) \glspl{mst} and
-    \(\num{4}\) \glspl{lst} \cite{cta_south_layout} in it's Alpha Configuration, while \cta{} north would
-    feature \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst} \cite{cta_north_layout}.
-    This figure was adapted from Kai Br\"ugge in his Ph.D. thesis \cite{bruegge_thesis}.}
+    \(\num{4}\) \glspl{lst}~\cite{cta_south_layout} in its Alpha Configuration, while \cta{} north would
+    feature \(\num{9}\) \glspl{mst} and \(\num{4}\) \glspl{lst}~\cite{cta_north_layout}.
+    This figure was adapted from Kai Br\"ugge in his Ph.D. thesis~\cite{bruegge_thesis}.}%
     \label{fig:cta_layout}
 \end{figure}
 
@@ -161,7 +161,7 @@ into interaction processes of \gls{vhegr} as well as their origin.
 
 Together with gravitational wave and neutrino observatories as well as with other gamma observatories,
 \cta{} will probe the universe in its \glsreset{he}\gls{he} domain, allowing to study a broad field of key questions
-in astrophysics. As such, \cta's scientific goals can be divided into three categories \cite{cta_scientific_goals}:
+in astrophysics. As such, \cta's scientific goals can be divided into three categories~\cite{cta_scientific_goals}:
 \begin{description}
     \item [Origin and Role of relativistic Cosmic Particles:] \cta{} will try to find the sources of
     \gls{he} cosmic particle acceleration in the universe. This includes the search for the mechanisms

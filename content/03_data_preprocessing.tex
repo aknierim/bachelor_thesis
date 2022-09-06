@@ -1,8 +1,8 @@
-\chapter{Data Processing with \texorpdfstring{\ctapipe{}}{ctapipe}}
+\chapter{Data Processing with \texorpdfstring{\ctapipe{}}{ctapipe}}%
 \label{ch:data-processing}
 
 The analysis in this work was done with the open-source low-level data processing software for \cta{},
-\ctapipe{} \cite{ctapipe}, more specifically, the code from the \texttt{master} branch from July 6 (\texttt{f26107fe}).
+\ctapipe{}~\cite{ctapipe}, more specifically, the code from the \texttt{master} branch from July 6 (\texttt{f26107fe}).
 % The version used is the development version \texttt{0.15.1.dev166+gf26107f},
 % henceforth shortened to version \texttt{0.15.1}.
 The goal of \ctapipe{} is to provide a complete analysis
@@ -13,14 +13,14 @@ data levels and \ctapipe{}'s various analysis steps. In \autoref{sec:pipeline} I
 explain the full pipeline created for this work.
 
 \vspace{-0.5cm}
-\section{Data Simulation}
+\section{Data Simulation}%
 \label{sec:data-simulation}
 
 In its current in-development state, \ctapipe{} is used and tested with simulated data, as a comparison
 to true data makes testing easier, although, in theory, real data can be tested, too. This data is created with the help of
-\gls{mc} simulations. The software used for these simulations is called \gls{corsika} \cite{corsika} and
+\gls{mc} simulations. The software used for these simulations is called \gls{corsika}~\cite{corsika} and
 allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
-a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}, that allows simulating the optics
+a virtual \gls{iact} array, the \texttt{sim\_telarray}~\cite{bernlohr2008}, that allows simulating the optics
 of various mirror and camera geometries via ray-tracing of incoming photons. This also includes
 simulations of imperfections or misalignments of the mirrors of each telescope. The resulting so-called
 \texttt{simtel} data is used in \ctapipe{} and can be processed as described in \autoref{sec:data-levels}
@@ -41,7 +41,7 @@ selected settings, allowing for more statistics and a better comparison of the c
 \begin{table}
     \centering
     \caption{\texttt{Simtel} data properties of the \gls{corsika} simulation used for the datasets in this work's
-    analysis.}
+    analysis.}%
     \label{tab:simtel}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
@@ -59,7 +59,7 @@ selected settings, allowing for more statistics and a better comparison of the c
 \end{table}
 
 
-\section{Data Levels in \texorpdfstring{\ctapipe{}}{ctapipe}}
+\section{Data Levels in \texorpdfstring{\ctapipe{}}{ctapipe}}%
 \label{sec:data-levels}
 
 There are several data levels in \ctapipe{}, spanning from the raw data \rzero{} to the reconstructed events
@@ -77,7 +77,7 @@ any signal.
     and then reduced in volume by selecting waveforms (\rone{} \rightarrow \dlz{}). From there the
     images are extracted (\dlz{} \rightarrow \dloa{}) and cleaned with a cleaning algorithm. This
     allows for parametrization of the events (\dloa{} \rightarrow \dlob{}). The parametrized events
-    can then be reconstructed (\dlob{} \rightarrow \dlt{}) \cite{noethe_thesis, hackfeld}.}
+    can then be reconstructed (\dlob{} \rightarrow \dlt{})~\cite{noethe_thesis, hackfeld}.}%
     \label{fig:ctapipe}
 \end{figure}
 
@@ -103,13 +103,13 @@ Once the events are cleaned and parametrized, they can then be reconstructed (\d
 and stored on the \dlt{} data level, which consists of an event list with direction, energy and the
 reconstructed gammaness---a value that predicates how likely an event was produced by a gamma.
 
-\section{This Work's Data Processing Pipeline}
+\section{This Work's Data Processing Pipeline}%
 \label{sec:pipeline}
 In this work, the data processing pipeline is as follows: First, several simulation data runs are
 selected and processed with \ctapipe{}. Then, the datasets are merged and serve as a basis for a re-run
 of the combined dataset with various parameter combinations described in \autoref{ch:finding-hyperparams}.
 
-The settings for \ctapipe{} are saved in two configuration files: First, a file, that sets up the
+The settings for \ctapipe{} are saved in two configuration files: First, a file that sets up the
 cleaning process and what data to write to the output file. For the preprocessing step of this work's
 pipeline, the cleaning settings are not relevant, as this step only serves to create a merged dataset.
 The second file contains a list of all the allowed telescope IDs. This allows a selection of the telescopes
@@ -118,7 +118,7 @@ data, like in this work.
 
 For the re-run of the combined dataset, the cleaning settings are used,
 however, since this step is the heart of this work's search for the optimal hyperparameters.
-The configuration files used are shown in \hyperref[ap:config_files]{appendix \ref{ap:config_files}}.
+The configuration files used are shown in \hyperref[ap:config_files]{appendix~\ref{ap:config_files}}.
 
 Each resulting dataset can then be processed on an array or telescope data level, resulting in
 \dloa{} image plots, values for the angular resolution and the efficiency as well as metrics for the
@@ -132,7 +132,7 @@ processing pipeline of this work is shown in \autoref{fig:data-processing}.
     \caption{Schematic overview of the data pipeline used for this work. Single runs of the simulation
     data are processed with \ctapipe\texttt{-process} and then merged via the tool \ctapipe\texttt{-merge} (green shaded area).
     The merged data is then processed on the array or telescope data level resulting in scores for metrics
-    as well as \dlo{} \texttt{images} and plots for the angular resolution and the effective area (blue shaded area).}
+    as well as \dlo{} \texttt{images} and plots for the angular resolution and the effective area (blue shaded area).}%
     \label{fig:data-processing}
 \end{figure}
 

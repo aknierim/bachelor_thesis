@@ -1,12 +1,13 @@
-\vspace{-1.5cm}
-\chapter{Conclusions and Outlook}
+\newgeometry{top=2.5cm}
+\chapter{Conclusions and Outlook}%
 \label{ch:conclusions}
-\vspace{-0.5cm}
-In the scope of this work, the hyperparameters for each of the four currently (as of writing this thesis)
+\vspace{-0.7cm}
+In the scope of this work, the hyperparameters for each of the four currently
 implemented cleaning algorithms were searched via a grid search. The resulting hyperparameters were then
 probed \wrt a combined metric of the angular resolution and the efficiency. These results allowed for a
 selection of hyperparameters for further study. Finally, a comparison between the optimized and the default
 parameters as well as a comparison between each respective cleaner was performed.
+\vspace{-0.025cm}
 
 Most of the data (pre-)processing in this work was done with \gls{cta}'s open-source low-level data processing pipeline
 software \ctapipe{}. The data used was PROD5 \gls{mc} simulations, which was processed from raw \texttt{simtel} data
@@ -17,6 +18,7 @@ algorithms (\tailcuts{} and \mars{}). The time-based algorithms have the advanta
 for a lower core threshold \(Q_c\) for the photon count per pixel, which in turn can lead to better
 results in the cleaning process. A good cleaning allows for better parameterization and in turn
 a better reconstruction of the events.
+\vspace{-0.025cm}
 
 The main results of this thesis are the hyperparameters for the cleaning algorithms.
 Due to the long runtimes of the grid searches and the time limitation of this thesis, however, the hyperparameters
@@ -24,24 +26,29 @@ for cleaning algorithms could only be optimized for the \glspl{mst}. The optimal
 the \glspl{mst} are listed in \autoref{tab:best_parameters}. A further grid search for the \gls{lst}
 data would be necessary to find the remaining core and boundary thresholds \(Q_c\) and \(Q_b\) as well
 as the time limits.
+\vspace{-0.025cm}
 
 The comparison of the performance of the optimized algorithms with the default algorithms has shown that
 the optimized algorithms performed better than the default algorithms \wrt the angular resolution---especially
 for medium to high energies. This means that the found hyperparameters could help with origin reconstructions. When looking at the metrics,
 all algorithms but \fact{} improved significantly, with the latter improving just slightly over its performance with default settings.
-The reason might be, that the parameters selected in \autoref{tab:best_parameters} are very close to the default parameters
+The reason is, that the parameters selected in \autoref{tab:best_parameters} are very close to the default parameters
 (see \autoref{tab:hyperparameters}). The parameters for the other algorithms differ more from their default settings,
 thus leading to a more significant improvement. Additionally, a comparison between the optimized algorithms themselves was performed. This led to \fact{} and \mars{}
 being the best-performing algorithms overall \wrt the metrics, with \mars{} showing a consistency \wrt the
 angular resolution. \tailcuts{} and \tcc{}, however, still performed fairly well.
+\vspace{-0.025cm}
 
-In this work, I chose to select the efficiency over the angular resolution as this led to a better
-performance \wrt the metrics. This is due to the fact that a higher efficiency means
+In this work, I prioritized the efficiency over the angular resolution as this led to a better
+performance \wrt the image level metrics. This is due to the fact that a higher efficiency means
 that more events got reconstructed and therefore better overall statistics. Another user, however,
 might still want to choose the angular resolution over the efficiency if it fits their purpose.
 The parameters for all other parameter combinations can be found in \autoref{tab:zenbu_no_parametoru}
-in \hyperref[ap:additional_plots_tables]{appendix \ref{ap:additional_plots_tables}}.
+in \hyperref[ap:additional_plots_tables]{appendix~\ref{ap:additional_plots_tables}}.
+\vspace{-0.025cm}
 
-Finally, further analysis and a broader grid search might be necessary to find better hyperparameters
-and therefore better the performance of all algorithms. This will also be necessary for the \gls{lst} data.
+Finally, although the results already promising, further analysis and a broader grid search may lead
+to even better-suited hyperparameters and therefore better the performance of all algorithms.
+This is especially true for the \gls{lst} data, which was left out due to the aforementioned long run times of the pipeline.
 
+\restoregeometry

@@ -29,7 +29,7 @@ def plot_eff_area(
         tail["aeff"],
         xerr=0.5 * tail["bin_width"],
         linestyle="",
-        label=rf"Tailcuts, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_tail:.3f}"
+        label=rf"Tailcuts, $\mathrm{{Eff}}$ = {eff_tail:.3f}"
     )
 
     ax.errorbar(
@@ -37,7 +37,7 @@ def plot_eff_area(
         mars["aeff"],
         xerr=0.5 * mars["bin_width"],
         linestyle="",
-        label=rf"MARS, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_mars:.3f}"
+        label=rf"MARS, $\mathrm{{Eff}}$ = {eff_mars:.3f}"
     )
 
     ax.errorbar(
@@ -45,7 +45,7 @@ def plot_eff_area(
         fact["aeff"],
         xerr=0.5 * fact["bin_width"],
         linestyle="",
-        label=rf"FACT, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_fact:.3f}"
+        label=rf"FACT, $\mathrm{{Eff}}$ = {eff_fact:.3f}"
     )
 
     ax.errorbar(
@@ -53,8 +53,10 @@ def plot_eff_area(
         tcc["aeff"],
         xerr=0.5 * tcc["bin_width"],
         linestyle="",
-        label=rf"TCC, $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$ = {eff_tcc:.3f}"
+        label=rf"TCC, $\mathrm{{Eff}}$ = {eff_tcc:.3f}"
     )
+
+    # alternative label: $\sum n_{{\mathrm{{reco}}}} \,/\, \sum n_{{\mathrm{{total}}}}$
 
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -62,7 +64,7 @@ def plot_eff_area(
     ax.set_xlabel(
         rf"$E_{{\mathrm{{true}}}} \,\, / \,\, \mathrm{{{energy_unit}}}$"
     )
-    ax.set_ylabel(r"Efficiency $n_\mathrm{reco} \;/\; n_\mathrm{total}$")
+    ax.set_ylabel(r"$n_\mathrm{reco} \;/\; n_\mathrm{total}$")
 
     ax.legend(fontsize=12)
 
