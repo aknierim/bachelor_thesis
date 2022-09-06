@@ -50,7 +50,7 @@ def metrics_bar_plot_all(
 
     fig, ax = plt.subplots(1, 1, figsize=(size[0]*2, size[1]))
     for idx, color, label in zip(range(len(df)), colors, names):
-        ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, edgecolor=color, fill=False, label=label, ls='-', lw=1.5)
+        ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, edgecolor=color, fill=False, label=label + ", this work", ls='-', lw=1.5)
         ax.bar(x_ticks + interval[idx]*width, base.iloc[idx], width, color=color, alpha=0.5, label=label + " baseline")
 
 

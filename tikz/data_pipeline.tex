@@ -4,7 +4,7 @@
 \begin{document}
 \begin{tikzpicture}[scale=0.750, every node/.style={scale=0.6}]
     \node [draw, circle, minimum size=1, align=center] (A) at (0,0) {Simulation\\Data};
-    \node [draw] (sim_data) at (0,-1.5) {DL0 or DL1};
+    \node [draw, align=center] (sim_data) at (0,-1.5) {\texttt{simtel},\\DL0 or DL1};
     \draw [to path={-- (\tikztotarget)}] (sim_data) edge (A);
 
     \fill [rounded corners, color=tulightgreen, fill opacity=0.7] (1.5,3) rectangle (7.5, -3);

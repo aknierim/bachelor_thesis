@@ -96,7 +96,7 @@ def metrics_bar_plot_all(
 
     fig, ax = plt.subplots(1, 1, figsize=(size[0]*2, size[1]))
     for idx, color, label in zip(range(len(df)), colors, names):
-        ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, color=color, label=label, alpha=0.9)
+        ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, color=color, label=label, alpha=0.7)
 
     ax.set_xticks(x_ticks)
     ax.set_xticklabels(df.keys(), fontsize=8)
