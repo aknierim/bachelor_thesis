@@ -213,7 +213,7 @@ def ar_eff():
 
             fig, ax = plot_combined(ids[0])
 
-            fig.suptitle(rf"${nlower:.2f} \leq \mathrm{{Efficiency}} < {nupper:.2f}$")
+            # fig.suptitle(rf"${nlower:.2f} \leq \mathrm{{Efficiency}} < {nupper:.2f}$")
 
             plt.savefig(f'plots/ar_aeff/Rel_AR_{nlower:.2f}_{nupper:.2f}_base.pdf')
             plt.close()

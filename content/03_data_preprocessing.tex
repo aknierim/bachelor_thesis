@@ -19,7 +19,7 @@ explain the full pipeline created for this work.
 In its current in-development state, \ctapipe{} is used and tested with simulated data, as a comparison
 to true data makes testing easier, although, in theory, real data can be tested, too. This data is created with the help of
 \gls{mc} simulations. The software used for these simulations is called \gls{corsika}~\cite{corsika} and
-allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
+allows for detailed simulation of \glspl{eas} initiated by \glspl{he} cosmic rays. The showers are observed by
 a virtual \gls{iact} array, the \texttt{sim\_telarray}~\cite{bernlohr2008}, that allows simulating the optics
 of various mirror and camera geometries via ray-tracing of incoming photons. This also includes
 simulations of imperfections or misalignments of the mirrors of each telescope. The resulting so-called
@@ -50,8 +50,8 @@ selected settings, allowing for more statistics and a better comparison of the c
         & Diffuse Gamma data \\
         \showrowcolors
         {Energy range / \si{\tera\eV}} & \numrange[range-phrase={--}]{0.003}{330} \\
-        {Zenith angle / \si{\degree}} & \num{20} \\
-        {View cone angle / \si{\degree}} & \num{10} \\
+        {Zenith angle / \si{\deg}} & \num{20} \\
+        {View cone angle / \si{\deg}} & \num{10} \\
         {Number of showers} & \num{50000} \\
         {Spectral index} & \num{-2.0} \\
         {Maximum scatter range / \si{\meter}} & \num{1900} \\
@@ -83,7 +83,7 @@ any signal.
 
 The \dlz{} data level is the first level being stored and also the first level to be processed from
 the simulation datasets used in this work. From \dlz{} to \dloa{}, the photon images are extracted
-by integrating the waveform peaks of each pixel, whilst the time images ("peak times", compare \autoref{fig:ctapipe})
+by integrating the waveform peaks of each pixel, whilst the time images (\enquote{peak times}, compare \autoref{fig:ctapipe})
 are extracted by finding the rising edge of the pulse. The resulting images are cleaned by algorithms,
 to distinguish signal from \gls{nsb}, which, in turn, allows for a parametrization of the events from \dloa{} to \dlob{}.
 % From \dlz{} to \dloa{}, the images of the data are extracted
