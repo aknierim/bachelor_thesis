@@ -105,10 +105,8 @@ The following table shows the subsets of hyperparameters used in the grid search
     \end{tabular}}
 \end{table}
 
-
-
 \section{Software Used}
-
+\label{ap:software}
 This work was written and built with \LaTeX{} and Lua\TeX{} from \TeX Live 2021 on both the Windows Subsystem for Linux (WSL, Ubuntu 20.04) on Windows 10 and Ubuntu 20.04.
 Also, I relied heavily on the python programming language, of which the most important libraries used
 for this work are listed below.
@@ -121,8 +119,8 @@ for this work are listed below.
     \item \sklearn{}~\cite{scikit-learn}
 \end{itemize}
 
-For the processing of the datasets, I used the development version of \texttt{ctapipe}, more specifically, version
-\texttt{0.15.1.dev166+gf26107f}. A complete listing of all used python libraries can be found below:
+For the processing of the datasets, I used the development version of \texttt{ctapipe}, more specifically,
+the code from the \texttt{master} branch from July 6 (\texttt{f26107fe}). A complete listing of all used python libraries can be found below:
 \begin{spacing}{0.5}
     \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
     \lstinputlisting[basicstyle=\footnotesize\lstsansserif, multicols=2, language=yaml]{./configs/env.yml}
@@ -186,3 +184,64 @@ for the default parameters set in \ctapipe{}.
     parameters set in \ctapipe{}. Also shown are the uncleaned image and the true image for better comparison.}
     \label{fig:cleaners_together}
 \end{figure}
+
+
+\subsection{Resulting Settings for Every Cleaning Algorithm}
+\label{ap:cleaning_settings_all}
+
+\autoref{tab:zenbu_no_parametoru} below shows all settings determined for every cleaning algorithm. Additionally, the
+angular resolution and the efficiency are shown to help with selecting the best settings for a user's needs.
+\begin{table}
+    \centering
+    \caption{All resulting settings for all four cleaning algorithm.
+    Listed are the core threshold \(Q_c\), the boundary threshold \(Q_b\),
+    the minimum number of neighbors and, where applicable, the time limit \(t\) as well as the core and boundary time limits
+    \(t_c\) and \(t_b\). Besides this, the angular resolution and the efficiency are also shown.}
+    \label{tab:zenbu_no_parametoru}
+    \rowcolors{0}{white!92!black}{}
+    \adjustbox{varwidth=\linewidth,scale=0.85}{%
+    \begin{tabular}{c S[table-format=2.0] S[table-format=1.3]
+        S[table-format=1.3] S[table-format=1.0] S[table-format=2.1] S[table-format=2.1]
+        S[table-format=2.1] S[table-format=1.3] S[table-format=1.3]}
+        \hiderowcolors
+        {Cleaning Algorithm} & {ID} & {\(Q_c \;/\; \si{\pe}\)} & {\(Q_b \;/\; \si{\pe}\)} & {Min. Neigh.} &
+        {\(t \;/\; \si{\nano\second}\)} & {\(t_c \;/\; \si{\nano\second}\)} & {\(t_b \;/\; \si{\nano\second}\)} &
+        {\(\eff\)} & {Mean Ang. Res\(\;/\; \si{\degree}\)}\\
+        \addlinespace[0.5em]
+        \showrowcolors
+        \tailcuts &  118 & 9.500 & 4.750 & 5 &      &      &      & 0.121 & 0.358 \\
+                 &   51 & 9.500 & 6.333 & 4 &      &      &      & 0.177 & 0.308 \\
+                 &  140 & 9.500 & 6.333 & 3 &      &      &      & 0.242 & 0.334 \\
+                 &  141 & 9.500 & 6.333 & 2 &      &      &      & 0.296 & 0.346 \\
+                 &   81 & 9.500 & 4.750 & 2 &      &      &      & 0.307 & 0.357 \\
+                 &   47 & 6.200 & 4.650 & 2 &      &      &      & 0.365 & 0.395 \\
+                 &  101 & 6.700 & 1.675 & 1 &      &      &      & 0.401 & 0.432 \\
+        \addlinespace[0.5em]
+        \mars    &   54 & 9.500 & 7.125 & 5 &      &      &      & 0.122 & 0.291 \\
+                 &   59 & 9.500 & 6.333 & 4 &      &      &      & 0.179 & 0.282 \\
+                 &   76 & 9.500 & 6.333 & 3 &      &      &      & 0.244 & 0.332 \\
+                 &   60 & 9.500 & 7.125 & 2 &      &      &      & 0.297 & 0.356 \\
+                 &  135 & 9.500 & 6.333 & 2 &      &      &      & 0.306 & 0.343 \\
+                 &   15 & 6.700 & 4.467 & 1 &      &      &      & 0.380 & 0.395 \\
+                 &   13 & 5.500 & 1.833 & 2 &      &      &      & 0.410 & 0.424 \\
+        \addlinespace[0.5em]
+        \fact    &  553 & 9.500 & 6.333 & 5 &  2.0 &      &      & 0.007 & 0.244\\
+                 &  271 & 9.500 & 4.750 & 4 &  4.0 &      &      & 0.051 & 0.428\\
+                 &  767 & 9.500 & 6.333 & 3 &  5.0 &      &      & 0.141 & 0.415\\
+                 &  722 & 9.500 & 3.167 & 3 &  5.0 &      &      & 0.178 & 0.367\\
+                 &  865 & 9.500 & 7.125 & 2 &  2.0 &      &      & 0.250 & 0.403\\
+                 &  691 & 9.500 & 7.125 & 2 &  4.0 &      &      & 0.254 & 0.366\\
+                 &  608 & 9.500 & 4.750 & 1 &  6.0 &      &      & 0.340 & 0.365\\
+                 &  503 & 6.700 & 3.350 & 1 & 12.0 &      &      & 0.388 & 0.404\\
+                 &  974 & 4.200 & 1.400 & 2 &  6.0 &      &      & 0.405 & 0.420\\
+        \addlinespace[0.5em]
+        \tcc     &   11 & 9.500 & 6.333 & 5 &      & 15.0 & 15.0 & 0.070 & 0.413\\
+                 &  367 & 9.500 & 7.125 & 4 &      & 20.0 & 12.0 & 0.121 & 0.396\\
+                 &  399 & 9.500 & 6.333 & 3 &      & 18.0 & 12.0 & 0.176 & 0.340\\
+                 &  582 & 9.500 & 7.125 & 2 &      & 20.0 & 12.0 & 0.248 & 0.388\\
+                 &  171 & 5.700 & 4.275 & 3 &      & 18.0 &  4.5 & 0.263 & 0.386\\
+                 & 1495 & 4.200 & 2.800 & 3 &      & 15.0 & 15.0 & 0.311 & 0.383\\
+                 &  807 & 6.700 & 4.467 & 1 &      & 15.0 & 12.0 & 0.375 & 0.390\\
+                 & 1954 & 6.700 & 1.675 & 1 &      & 15.0 &  9.0 & 0.401 & 0.427\\
+    \end{tabular}}
+\end{table}

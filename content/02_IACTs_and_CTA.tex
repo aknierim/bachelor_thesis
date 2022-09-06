@@ -2,16 +2,16 @@
 \glsreset{iact}
 
 Modern gamma-ray observations are performed with either space-based experiments or with
-ground-based experiments like water Cherenkov tanks such as the \gls{hawc} \cite{hawc} experiment or \glspl{iact}, the latter
+ground-based experiments. Examples include water Cherenkov tanks, such as the \gls{hawc} \cite{hawc} experiment, or \glspl{iact}, the latter
 being telescopes that use the Cherenkov light emitted by \glspl{eas} in the atmosphere.
 In the following sections, I will introduce \glspl{iact} and the \gls{cta} and explain the mechanisms
-that make it possible to observe gamma rays with these types of experiments.
+that enable the observations of gamma rays with these types of experiments.
 
 
 \section{Imaging Air Cherenkov Telescopes}
 \label{sec:iact}
 
-Because of their ground-based setup, \glspl{iact} are taking advantage of the Earth's atmosphere to get a
+Because of their ground-based setup, \glspl{iact} take advantage of the Earth's atmosphere to get a
 larger effective area than any space-based instrument. This is especially helpful for energies above
 \SI{100}{\giga\eV},
 \begin{wrapfigure}[24]{r}{0.48\textwidth}
@@ -24,8 +24,8 @@ larger effective area than any space-based instrument. This is especially helpfu
     kilometer per year \cite{carmelo_2020}.}
     \label{fig:flux}
 \end{wrapfigure}
-where the gamma-ray flux is low, whereas lower energies show higher fluxes. At such high energies,
-space-based instruments, experiments such as \gls{fermilat}, see fewer high-energy events compared
+where the gamma-ray flux is already decreasing, whereas lower energies show higher fluxes. At such high energies,
+experiments with space-based instruments, such as \gls{fermilat}, see fewer high-energy events compared
 to ground-based experiments, due to their comparatively small effective collection area \cite[p.~256]{funk}.
 The cosmic ray flux in \autoref{fig:flux} shows this well: The flux decreases rapidly with higher
 energies, with only one high-energy (\greater\(\SI{40}{\giga\eV}\)) photon per day and square meter
@@ -40,7 +40,7 @@ electron and a positron via pair production. These charged particles then emit m
 bremsstrahlung. These photons, again, produce more charged particles, which in turn emit even more
 photons. This process continues until any of these processes reaches energies below a certain
 threshold, \ie \SI{1022}{\kilo\eV} for the pair production process. For these processes to happen,
-the particles have to be in the fields of the atoms of the Earth's atmosphere. As the particles
+the particles have to be influenced by the fields of the atoms in Earth's atmosphere. As the particles
 travel at speeds faster than light in the atmosphere, they emit Cherenkov light at
 a fixed angle \(\theta\) with respect to the refraction index \(n\) of the atmosphere and the
 factor \(\beta = \sfrac{v}{\symup{c}}\). The angle can be determined trigonometrically as
@@ -80,7 +80,7 @@ as can be seen in \autoref{fig:cherenkov}.
 \end{figure}
 
 Cherenkov light emitted by \glspl{eas} can then be collected by an IACT's mirrors and detected by
-its camera within a timeframe of an order of nanoseconds. The resulting image will show the shape
+its camera within a timeframe on the order of nanoseconds. The resulting image will show the shape
 of the air shower and can be used to determine the shower's primary particles' properties and
 reconstruct its origin. As the hadronic component of \glspl{eas} produce
 electromagnetic subshowers, \glspl{iact} have a dominant hadronic background, which has to be
@@ -148,11 +148,11 @@ Alpha Configuration layout of both sites of \cta{} where \cta{} south is display
 \end{figure}
 
 The \gls{mst}'s and \gls{lst}'s cameras are based on \gls{pmt} photodetectors, while the \gls{sst}'s
-camera is based on a \gls{sipm} photodetector. Both detector types provide fast response times in the
+camera is based on a \gls{sipm} photodetector. Both detector types provide fast response times on the
 order of nanoseconds. \glspl{pmt} can detect small amounts of electromagnetic radiation due to their
 amplification process. However, this amplification process also amplifies the noise of the detector
-and needs higher voltages than \glspl{sipm}. The latter, on the other hand, needs to be cooled,
-as \glspl{sipm} are prone to having a higher dark current at higher temperatures.
+and requires higher voltages than \glspl{sipm}. The latter, on the other hand, has to be cooled,
+as \glspl{sipm} are prone to having a higher dark current with increasing temperatures.
 % The \gls{mst} and \gls{lst} will feature a camera with \(\num{1855}\) pixels.
 
 With \cta{} probing the \gls{vhe} gamma-ray sky and a resolution outperforming predecessors, like

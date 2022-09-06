@@ -55,7 +55,7 @@ better results for the hyperparameters for the respective telescopes.
     \rowcolors{0}{white!92!black}{}
     \begin{tabular}{S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
         \hiderowcolors
-        & & \multicolumn{4}{c}{Mean Efficiency} \\
+        & & \multicolumn{4}{c}{Efficiency} \\
         {$\eff_{\mathrm{lower}}$} & {$\eff_{\mathrm{upper}}$} & {Tailcuts} & {MARS} & {FACT} & {TCC} \\
         \addlinespace[0.5em]
         \showrowcolors
@@ -110,12 +110,12 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
     \centering
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.10_0.15.pdf}
+        \includegraphics[width=0.8\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.10_0.15.pdf}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.40_0.45.pdf}
+        \includegraphics[width=0.8\textwidth]{plots/ar_aeff/AR_Aeff_MST_0.40_0.45.pdf}
     \end{subfigure}
     \caption{Mean angular resolution and efficiency for the MST simulation binned per energy. Notice
     the decrease in the scattering of the mean angular resolution and the efficiency at medium to
@@ -124,8 +124,11 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 \end{figure}
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{build/ar_vs_eff.pdf}
-    \caption{Angular resolution plotted against the efficiency between \(\num{0.355}\) and \(\num{0.485}\).}
+    \includegraphics[width=0.6\textwidth]{build/ar_vs_eff.pdf}
+    \caption{Mean angular resolution plotted against the efficiency between \(\num{0.00}\) and \(\num{0.45}\) for
+    all for cleaning algorithms. For further analysis, I choose the efficiency over the angular resolution
+    as this would leave me with more reconstructed events and thus more statistics. This, however, results in
+    a higher and therefore worse angular resolution compared to \eg the values around an efficiency of \(0.18\).}
     \label{fig:ar_vs_eff}
 \end{figure}
 
@@ -294,10 +297,10 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
         {\(t \;/\; \si{\nano\second}\)} & {\(t_c \;/\; \si{\nano\second}\)} & {\(t_b \;/\; \si{\nano\second}\)} \\
         \addlinespace[0.5em]
         \showrowcolors
-        Tailcuts &  101 & 6.700 & 1.675 & 1 &      &      &      \\
-        MARS     &   13 & 5.500 & 1.833 & 2 &      &      &      \\
-        FACT     &  974 & 4.200 & 1.400 & 2 &  6.0 &      &      \\
-        TCC      & 1954 & 6.700 & 1.675 & 1 &      & 15.0 &  9.0 \\
+        \tailcuts &  101 & 6.700 & 1.675 & 1 &      &      &      \\
+        \mars     &   13 & 5.500 & 1.833 & 2 &      &      &      \\
+        \fact     &  974 & 4.200 & 1.400 & 2 &  6.0 &      &      \\
+        \tcc      & 1954 & 6.700 & 1.675 & 1 &      & 15.0 &  9.0 \\
     \end{tabular}
 \end{table}
 

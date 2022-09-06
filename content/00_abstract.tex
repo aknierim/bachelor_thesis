@@ -3,7 +3,7 @@
 \section*{Abstract}
 In recent years, gamma astronomy has become a vastly studied field of astrophysics.
 Since then, many \gls{iact} experiments have been producing insights into sources of
-high-energy gamma-rays. Continuing this trend, the \gls{cta}, a next-generation \gls{iact},
+high-energy gamma-rays. Continuing this trend, the \gls{cta}, a next-generation array of \glspl{iact},
 will provide new data targeting some of the highest energies of the gamma-ray spectrum.
 
 In this thesis, I consider the four cleaning algorithms implemented in the low-level data processing software \ctapipe{},
@@ -14,20 +14,20 @@ the \glspl{mst} at the northern site of \cta{} on the Canarian island of La Palm
 
 The hyperparameters determined for the algorithms in \ctapipe{} improve their performance over
 their default parameters significantly \wrt the angular resolution. This is especially true for the
-\tcc{} algorithm, which shows the most improvement \wrt the metrics, closely followed by \mars{}.
-Overall, \fact{} and \mars{} perform the best out of all cleaning algorithms in this work,
+time-based \tcc{} algorithm, which shows the most improvement \wrt the metrics, closely followed by the
+non-time-based \mars{} algorithm. Overall, \fact{} and \mars{} perform the best out of all cleaning algorithms in this work,
 with the latter being notable for its consistency in terms of the angular resolution over the whole energy range.
 
 
 \section*{Kurzfassung}
 \begin{otherlanguage}{ngerman}
 In den vergangenen Jahrzehnten hat sich die Gammaastronomie zu einem viel erforschten Bereich der
-Astrophysik entwickelt. Seitdem haben bildgebende, atmosphärische Tscherenkow-Teleskope (\gls{iact})
+Astrophysik entwickelt. Seitdem haben bildgebende, atmosphärische Tscherenkow-Teleskope (\glspl{iact})
 zahlreiche neue Erkenntnisse im Bereich der hochenergetischen Gammastrahlen und deren Quellen geliefert.
-Mit \gls{cta}, einem \gls{iact} der nächsten Generation, werden neue Daten in einigen der höchsten
+Mit \gls{cta}, einem Observatorium bestehend aus dutzenden \glspl{iact} der nächsten Generation, werden neue Daten in einigen der höchsten
 Energiebereiche der Gammastrahlen erwartet.
 
-In dieser Arbeit betrachte ich die vier Bildreinigungsalgorithmen an, die in Software \ctapipe{} implementiert
+In dieser Arbeit betrachte ich die vier Bildreinigungsalgorithmen an, die in der Software \ctapipe{} implementiert
 sind, welche sich zur Zeit für \cta{} in Entwicklung befindet. Zudem bestimme ich optimierte
 Hyperparameter für jeden Algorithmus mit dem Ziel, die Leistung der Bildreinigungsalgorithmen zu verbessern.
 Dies wird mittels einer Grid-Search über eine Auswahl von Hyperparametern durchgeführt. Die zu diesem

@@ -209,7 +209,7 @@ allows one to manually set subsets of hyperparameters and search for the best co
 \autoref{tab:hyperparameters_gridsearch} in \hyperref[ap:hyperparameters]{appendix \ref{ap:hyperparameters}} shows
 the subsets of hyperparameters used in this work.
 
-I used noise quantiles, \ie the percentage of all \textit{noise} pixels that are therefore not part of the true signal,
+I used noise quantiles, \ie the percentage of all \textit{noise} pixels that are not part of the true signal,
 to determine the core threshold \(Q_c\). This would mean, that \eg \(\SI{99.99}{\percent}\)
 of the noise pixels would fall under a threshold of \(\SI{9.50}{\pe}\) for the data used in this work. The quantiles are calculated directly from the images by
 discriminating the noise pixels from the image with the help of the true image. This approach has the
@@ -264,7 +264,7 @@ The quantiles used in this work are shown in \autoref{fig:quantiles}.
 
 The grid search results in \(\num{150}\) parameter combinations for \tailcuts{} and \mars{} each,
 as well as another \(\num{1050}\) combinations for \fact{} and further \(\num{3000}\) combinations for \tcc{}.
-Since it's impossible to find the optimal settings just by looking at the
+Since it is impossible to find the optimal settings just by looking at the
 cleaned images of the datasets, a combined metric is necessary to evaluate each cleaner's performance
 for the parameter combinations.
 

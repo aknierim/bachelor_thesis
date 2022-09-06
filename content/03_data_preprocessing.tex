@@ -16,8 +16,8 @@ explain the full pipeline created for this work.
 \section{Data Simulation}
 \label{sec:data-simulation}
 
-In its current in-development state, \ctapipe{} is used and tested with simulated data, as the software
-can only be sufficiently tested when the output is compared to the true data. This data is created with the help of
+In its current in-development state, \ctapipe{} is used and tested with simulated data, as a comparison
+to true data makes testing easier, although, in theory, real data can be tested, too. This data is created with the help of
 \gls{mc} simulations. The software used for these simulations is called \gls{corsika} \cite{corsika} and
 allows for detailed simulation of \glspl{eas} initiated by \glspl{hecr}. The showers are observed by
 a virtual \gls{iact} array, the \texttt{sim\_telarray} \cite{bernlohr2008}, that allows simulating the optics
@@ -35,7 +35,7 @@ After processing the individual runs and merging them into one large
 file, this file is processed for the aforementioned parameters. %  \(\num{27353}\) \(\num{12668}\)
 
 Once promising parameters are found, a larger dataset, containing around \(\num{1.3}\)\,M telescope events
-(\sim\(\num{620}\)\,k array events) throughout \(987\) runs, is processed with these
+(\sim\(\num{620}\)\,k array events) throughout \(987\) runs, is processed employing these
 selected settings, allowing for more statistics and a better comparison of the cleaning algorithms.
 %\(\num{1331328}\) \(\num{621848}\)
 \begin{table}
@@ -94,11 +94,11 @@ low-energy events, where the signal count is low compared to the \gls{nsb}. The 
 of \ctapipe{} are introduced in \autoref{sec:cleaning-algorithms} and can be roughly categorized into
 time-based and non-time-based algorithms.
 
-While the latter are selecting pixels based on charge thresholds which
+While the latter are selecting pixels based on charge thresholds, which
 subsequently might lead to the need for a higher threshold, the former also takes the arrival times of
 pixels in the camera frame into account, allowing for a lower charge threshold.
 
-The advantage of a lower charge threshold is, that it allows the selection of more of the signal at lower energies.
+The advantage of a lower charge threshold is, that it allows the selection of a larger portion of the signal at lower energies.
 Once the events are cleaned and parametrized, they can then be reconstructed (\dlob{} \rightarrow \dlt{})
 and stored on the \dlt{} data level, which consists of an event list with direction, energy and the
 reconstructed gammaness---a value that predicates how likely an event was produced by a gamma.
