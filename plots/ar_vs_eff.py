@@ -27,8 +27,8 @@ ax.plot(df_angres["ratio_tcc"].dropna(), df_angres["angres_tcc"].dropna(), "v:",
 
 ax.grid(ls="dotted")
 
-ax.set_xlabel(r"Efficiency $n_\mathrm{reco} \; / \; n_\mathrm{total}$")
-ax.set_ylabel(r"Mean Angular Resolution$\,\, / \,\, \mathrm{deg}$")
+ax.set_xlabel(r"Efficiency $n_\mathrm{reco} \; / \; n_\mathrm{total}$", fontsize=12)
+ax.set_ylabel(r"Mean Angular Resolution$\,\, / \,\, \mathrm{deg}$", fontsize=12)
 
 ax.legend()
 

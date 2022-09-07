@@ -51,11 +51,11 @@ def metrics_bar_plot_all(
     fig, ax = plt.subplots(1, 1, figsize=(size[0]*2, size[1]))
     for idx, color, label in zip(range(len(df)), colors, names):
         ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, edgecolor=color, fill=False, label=label + ", this work", ls='-', lw=1.5)
-        ax.bar(x_ticks + interval[idx]*width, base.iloc[idx], width, color=color, alpha=0.5, label=label + " baseline")
+        ax.bar(x_ticks + interval[idx]*width, base.iloc[idx], width, color=color, alpha=0.5, label=label + ", baseline")
 
 
     ax.set_xticks(x_ticks)
-    ax.set_xticklabels(df.keys(), fontsize=8)
+    ax.set_xticklabels(df.keys())
     ax.set_ylim(0, 1.05)
 
     ax.axhline(1.0, ls="dotted", alpha=0.4, color="black")
@@ -165,6 +165,8 @@ def plot_ang_res(
     ax.set_ylabel(r'Rel. Angular Resolution $ \theta_{\SI{68}{\percent},\,\mathrm{rel}}$')
     ax.set_xlabel(r'$E_{\mathrm{true}} \,\,/\,\, \mathrm{TeV}$')
     ax.set_xscale('log')
+
+    ax.set_ylim(0, 3.5)
 
     ax.legend(fontsize=12)
 

@@ -1,3 +1,4 @@
+\newgeometry{top=2.5cm}
 \chapter{Results}%
 \label{ch:results}
 
@@ -44,7 +45,7 @@ angular resolution. The efficiency would be higher, of course, for a full-array 
 mean also including \glspl{lst} data\footnote{which would result in additional long run times for the pipeline
 and was thus left out due to time limitations, also see \autoref{ch:conclusions}.}, which for this work
 would not help find the optimal parameters, since it is better to analyze the telescope
-types separately. The reason for the latter is, that optimizing the telescopes by type would lead to
+types separately. The reason for the latter is that optimizing the telescopes by type would lead to
 better results for the hyperparameters for the respective telescopes.
 \begin{table}
     \centering
@@ -105,8 +106,8 @@ better results for the hyperparameters for the respective telescopes.
 The results listed in the tables show that there is a clear trade-off in choosing between efficiency and angular resolution.
 As such, for further comparison of the cleaning algorithms, the corresponding datasets for the efficiency and
 the angular resolution are plotted in \autoref{fig:efficiency_angres} for the intervals
-\([\num{0.10}, \num{0.15}]\) and \([\num{0.40}, \num{0.45}]\). The reason for this is, that these are
-the minimum and maximum intervals \wrt the efficiency, where all cleaners have valid values.
+\([\num{0.10}, \num{0.15}]\) and \([\num{0.40}, \num{0.45}]\). The reason for this is that these are
+the minimum and maximum intervals \wrt the\restoregeometry efficiency, where all cleaners have valid values.
 Furthermore, the mean angular resolution is plotted against the efficiency in \autoref{fig:ar_vs_eff}.
 \vspace{-0.2cm}
 \begin{figure}
@@ -140,8 +141,10 @@ Furthermore, the mean angular resolution is plotted against the efficiency in \a
 \label{sec:metrics}
 \glsreset{tp}\glsreset{fp}\glsreset{fn}\glsreset{tn}
 Concerning the metrics on the image level, I first analyze the parameter combinations of all settings found in \autoref{sec:efficiency_angres}. First,
-the number of the \gls{tp}, \gls{fp}, \gls{fn} and \gls{tn} values is calculated per event. Then,
-those values are summed up for each setting from the datasets in the previous section and the metrics are calculated as shown in
+the number of the \gls{tp}, \gls{fp}, \gls{fn} and \gls{tn} values is calculated for all pixels of an event. A pixel would
+then be classified as a \gls{tp}, if it is, in fact, part of the signal, while it would be classified as \gls{tn} if it is
+part of the background. The \gls{fp} and \gls{fn} are classified analogous. Then, those values are
+summed up for each setting from the datasets in the previous section and the metrics are calculated as shown in
 \autoref{tab:metrics}.
 
 The metrics for each parameter combination are first compared for each cleaning algorithm respectively,
@@ -151,7 +154,7 @@ and are shown with specific IDs they were given when the datasets were first pro
 This improves readability as opposed to writing out the full settings. The hyperparameters for the best performing
 IDs of every algorithm are listed in \autoref{tab:best_parameters}.
 
-While all settings perform well w.\,r.\,t., for example, the \gls{tnr}, one can see from the results, that for all cleaning
+While all settings perform well w.\,r.\,t., for example, the \gls{tnr}, one can see from the results that for all cleaning
 algorithms, the best parameter combination is the one where the \gls{tpr}, the \gls{acc} and the \gls{ba}
 are the highest. These settings are also the ones that correspond to the highest efficiency.
 The values for each respective metric and cleaning algorithm are listed in
@@ -159,7 +162,7 @@ The values for each respective metric and cleaning algorithm are listed in
 a comparison of the cleaners against each other is shown in \autoref{sec:comparison}.
 \begin{table}
     \centering
-    \caption{Results for the metrics of \tailcuts{}. One can see, that the best results are obtained
+    \caption{Results for the metrics of \tailcuts{}. One can see that the best results are obtained
     for the setting with ID~101.}%
     \label{tab:metrics_tail}
     \rowcolors{0}{white!92!black}{}
@@ -182,14 +185,14 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{build/metrics_tailcuts.pdf}
-    \caption{Metrics for \tailcuts{}. It can be seen, that the cleaning setting with ID~101 performs
+    \includegraphics[width=0.9\textwidth]{build/metrics_tailcuts.pdf}
+    \caption{Metrics for \tailcuts{}. It can be seen that the cleaning setting with ID~101 performs
     best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
     setting of the five parameter combinations \wrt the metrics.}%
     \label{fig:metrics_tail}
 \end{figure}
 
-\begin{table}
+\begin{table}[!htbp]
     \centering
     \caption{Results for the metrics of \mars{}. The best results \wrt the metrics are obtained
     for the setting with ID~13.}%
@@ -211,18 +214,18 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
     \end{tabular}
 \end{table}
 
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
-    \includegraphics[width=\textwidth]{build/metrics_mars.pdf}
+    \includegraphics[width=0.95\textwidth]{build/metrics_mars.pdf}
     \caption{Metrics for \mars{}. The results show that the cleaning setting with ID~13 performs
     best in terms of the true positive rate, accuracy and balanced accuracy, making it the best
     setting of the five parameter combinations \wrt the metrics.}%
     \label{fig:metrics_mars}
 \end{figure}
 
-\begin{table}
+\begin{table}[!htbp]
     \centering
-    \caption{Results for the metrics of \fact{}. One can see, that the best results are obtained
+    \caption{Results for the metrics of \fact{}. One can see that the best results are obtained
     for the settings with ID~974.}%
     \label{tab:metrics_fact}
     \rowcolors{0}{white!92!black}{}
@@ -311,14 +314,14 @@ a comparison of the cleaners against each other is shown in \autoref{sec:compari
 \label{sec:performance}
 
 Now, with a setting selected for each cleaner, it is reasonable to compare
-the performance to the default settings, that are implemented in the \ctapipe{} source code
+the performance to the default settings that are implemented in the \ctapipe{} source code
 (see \autoref{tab:hyperparameters}). First, the relative angular resolution
 \begin{equation}
     \theta_{\SI{68}{\percent},\,\text{rel}} = \frac{\theta_{\SI{68}{\percent}}}{\theta_{\SI{68}{\percent},\,\text{base}}}
 \end{equation}
 is computed for the default (base) settings and the selected settings for each cleaner.
 The results are shown in \autoref{fig:rel_angres} for the same efficiency intervals
-as in \autoref{fig:efficiency_angres}. One can see, that especially for the interval
+as in \autoref{fig:efficiency_angres}. One can see that especially for the interval
 \([0.40, 0.45)\) and at medium to high energies, \tcc{} performs fairly well compared to the default settings.
 The other algorithms perform only slightly better than the default settings at a performance gain
 of up to \(\SI{50}{\percent}\) \eg for \mars{}. Notably for \mars{} is how it performs consistently
@@ -335,14 +338,6 @@ settings. Especially \tcc{} and \tailcuts{} and \mars{} gain a significant impro
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{build/metrics_baseline.pdf}
-    \caption{Metrics for the default (baseline) settings compared to the settings determined in this work.
-    One can see that a significant improvement was reached for \tcc{} and \tailcuts{} and \mars{}, especially in terms of \gls{tpr} and \gls{ba}.
-    \fact{} did only slightly improve, especially in terms of \gls{acc}.}%
-    \label{fig:metrics_comparison}
-\end{figure}
-\begin{figure}
-    \centering
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{plots/ar_aeff/Rel_AR_0.10_0.15_base.pdf}
@@ -355,8 +350,18 @@ settings. Especially \tcc{} and \tailcuts{} and \mars{} gain a significant impro
     \caption{Relative angular resolution for the default settings and the selected settings for each cleaner.
     \tcc{} outperforms the default values with the new settings, especially at higher energies. \mars{} seems
     to perform better across the whole energy range with the found hyperparameters. \fact{} and \tailcuts{}, too, perform
-    better, especially for medium to high energies.}%
+    better, especially for medium to high energies. The plots show the relative angular resolution for the
+    same efficiency intervals seen in \autoref{fig:efficiency_angres}, \([0.10, 0.15)\) (left) and \([0.40, 0.45)\) (right).}%
     \label{fig:rel_angres}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{build/metrics_baseline.pdf}
+    \caption{Metrics for the default (baseline) settings compared to the settings determined in this work.
+    One can see that a significant improvement was reached for \tcc{} and \tailcuts{} and \mars{}, especially in terms of \gls{tpr} and \gls{ba}.
+    \fact{} did only slightly improve, especially in terms of \gls{acc}.}%
+    \label{fig:metrics_comparison}
 \end{figure}
 
 \begin{table}
@@ -377,7 +382,6 @@ settings. Especially \tcc{} and \tailcuts{} and \mars{} gain a significant impro
         \mars{}     & 0.2346 & 1.0000 & 0.7654 & 0.9358 & 0.6173 \\
         \fact{}     & 0.3261 & 0.9998 & 0.6739 & 0.9429 & 0.6629 \\
         \tcc{}      & 0.1790 & 1.0000 & 0.8210 & 0.9299 & 0.5895 \\
-
     \end{tabular}
 \end{table}
 
@@ -390,7 +394,7 @@ four cleaners. I once again decided to use the settings selected in \autoref{sec
 and look at the metrics. The metrics of all four algorithms are shown in \autoref{fig:metrics_all}.
 The corresponding values are listed in \autoref{tab:metrics_all}.
 
-One can see, that \fact{} performs best out of all algorithms \wrt the metrics, closely followed by \mars{}.
+One can see that \fact{} performs best out of all algorithms \wrt the metrics, closely followed by \mars{}.
 Both algorithms perform well in terms of \gls{tpr} and \gls{ba}. \tailcuts{} and \tcc{}, although performing
 slightly worse than \fact{} and \mars{}, still perform fairly well. Both have the same scores for the \gls{acc}
 and a similar score for the \gls{ba}.

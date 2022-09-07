@@ -55,7 +55,7 @@ def metrics_bar_plot(
         ax.bar(x_ticks + interval[idx]*width, data.iloc[idx], width, color=color, alpha=alpha, label=unique_ids[idx])
 
     ax.set_xticks(x_ticks)
-    ax.set_xticklabels(data.keys(), fontsize=8)
+    ax.set_xticklabels(data.keys())
     ax.set_ylim(0, 1.05)
 
     ax.axhline(1.0, ls="dotted", alpha=0.4, color="black")
@@ -99,7 +99,7 @@ def metrics_bar_plot_all(
         ax.bar(x_ticks + interval[idx]*width, df.iloc[idx], width, color=color, label=label, alpha=0.7)
 
     ax.set_xticks(x_ticks)
-    ax.set_xticklabels(df.keys(), fontsize=8)
+    ax.set_xticklabels(df.keys())
     ax.set_ylim(0, 1.05)
 
     ax.axhline(1.0, ls="dotted", alpha=0.4, color="black")

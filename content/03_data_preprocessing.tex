@@ -1,3 +1,4 @@
+\newgeometry{top=2.5cm}
 \chapter{Data Processing with \texorpdfstring{\ctapipe{}}{ctapipe}}%
 \label{ch:data-processing}
 
@@ -17,14 +18,15 @@ explain the full pipeline created for this work.
 \label{sec:data-simulation}
 
 In its current in-development state, \ctapipe{} is used and tested with simulated data, as a comparison
-to true data makes testing easier, although, in theory, real data can be tested, too. This data is created with the help of
+to true data makes testing easier, although, it is already used to analyze real \gls{lst} data, too. This data is created with the help of
 \gls{mc} simulations. The software used for these simulations is called \gls{corsika}~\cite{corsika} and
 allows for detailed simulation of \glspl{eas} initiated by \glspl{he} cosmic rays. The showers are observed by
-a virtual \gls{iact} array, the \texttt{sim\_telarray}~\cite{bernlohr2008}, that allows simulating the optics
-of various mirror and camera geometries via ray-tracing of incoming photons. This also includes
-simulations of imperfections or misalignments of the mirrors of each telescope. The resulting so-called
-\texttt{simtel} data is used in \ctapipe{} and can be processed as described in \autoref{sec:data-levels}
-and \autoref{fig:ctapipe}. Some of the data properties are listed in \autoref{tab:simtel}.
+a virtual \gls{iact} array, the \texttt{sim\_telarray}~\cite{bernlohr2008}, that allows simulating the detector
+electronics of each \gls{iact} as well as the optics of various mirror and camera geometries via
+ray-tracing of incoming photons. This also includes simulations of imperfections or misalignments of the
+mirrors of each telescope. The resulting so-called \texttt{simtel} data is used in \ctapipe{} and can
+be processed as described in \autoref{sec:data-levels} and \autoref{fig:ctapipe}. Some of the data
+properties are listed in \autoref{tab:simtel}.
 
 This data is the basis for the analysis in this work. A total of around \(\num{27}\)\,k telescope events
 (\sim\(\num{12}\)\,k array events) throughout \(\num{20}\) \texttt{simtel} runs of diffuse gamma data
@@ -33,15 +35,9 @@ were used for the initial analysis, \ie the testing of different parameters as d
 while array events are the events where at least two telescopes observed the same \gls{eas}.
 After processing the individual runs and merging them into one large
 file, this file is processed for the aforementioned parameters. %  \(\num{27353}\) \(\num{12668}\)
-
-Once promising parameters are found, a larger dataset, containing around \(\num{1.3}\)\,M telescope events
-(\sim\(\num{620}\)\,k array events) throughout \(987\) runs, is processed employing these
-selected settings, allowing for more statistics and a better comparison of the cleaning algorithms.
-%\(\num{1331328}\) \(\num{621848}\)
 \begin{table}
     \centering
-    \caption{\texttt{Simtel} data properties of the \gls{corsika} simulation used for the datasets in this work's
-    analysis.}%
+    \caption{Parameters of the \gls{corsika} simulation used for the datasets in this work's analysis.}%
     \label{tab:simtel}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.9}{%
@@ -57,6 +53,11 @@ selected settings, allowing for more statistics and a better comparison of the c
         {Maximum scatter range / \si{\meter}} & \num{1900} \\
     \end{tabular}}
 \end{table}
+Once promising parameters are found, a larger dataset, containing around \(\num{1.3}\)\,M telescope events
+(\sim\(\num{620}\)\,k array events) throughout \(987\) runs, is processed employing these
+selected settings, allowing for more statistics and a better comparison of the cleaning algorithms.
+%\(\num{1331328}\) \(\num{621848}\)
+
 
 
 \section{Data Levels in \texorpdfstring{\ctapipe{}}{ctapipe}}%
@@ -65,8 +66,8 @@ selected settings, allowing for more statistics and a better comparison of the c
 There are several data levels in \ctapipe{}, spanning from the raw data \rzero{} to the reconstructed events
 \dlt{}, with the raw data levels being denoted by an \textbf{R} and the stored data levels by a \textbf{D}.
 \autoref{fig:ctapipe} shows a simplified overview of the data levels and the analysis steps.
-The raw data level \rzero{} is the data that comes directly from the photodetectors. The time-resolved
-signal of the data is calibrated from \rzero{} to \rone{}. The data volume can be reduced
+The raw data level \rzero{} is the uncalibrated data on the camera server of a telescope. The time-resolved
+signal of the data is then calibrated from \rzero{} to \rone{}. The data volume can be reduced
 from \rone{} to \dlz{} by selecting and saving waveforms, thus discarding pixels that likely do not contain
 any signal.
 \begin{figure}
@@ -94,11 +95,11 @@ low-energy events, where the signal count is low compared to the \gls{nsb}. The 
 of \ctapipe{} are introduced in \autoref{sec:cleaning-algorithms} and can be roughly categorized into
 time-based and non-time-based algorithms.
 
-While the latter are selecting pixels based on charge thresholds, which
+While the latter are selecting pixels based on charge thresholds in units of photo electrons (\(\si{\pe}\)), which
 subsequently might lead to the need for a higher threshold, the former also takes the arrival times of
 pixels in the camera frame into account, allowing for a lower charge threshold.
 
-The advantage of a lower charge threshold is, that it allows the selection of a larger portion of the signal at lower energies.
+The advantage of a lower charge threshold is that it allows the selection of a larger portion of the signal at lower energies.
 Once the events are cleaned and parametrized, they can then be reconstructed (\dlob{} \rightarrow \dlt{})
 and stored on the \dlt{} data level, which consists of an event list with direction, energy and the
 reconstructed gammaness---a value that predicates how likely an event was produced by a gamma.
@@ -136,4 +137,4 @@ processing pipeline of this work is shown in \autoref{fig:data-processing}.
     \label{fig:data-processing}
 \end{figure}
 
-
+\restoregeometry

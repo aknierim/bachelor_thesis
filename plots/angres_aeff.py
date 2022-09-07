@@ -112,6 +112,8 @@ def plot_ang_res(
     ax.set_xlabel(r'$E_{\mathrm{true}} \,\,/\,\, \mathrm{TeV}$')
     ax.set_xscale('log')
 
+    ax.set_ylim(0, 1.4)
+
     ax.legend(fontsize=12)
 
     return ax

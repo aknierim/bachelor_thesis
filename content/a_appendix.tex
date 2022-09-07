@@ -123,7 +123,7 @@ For the processing of the datasets, I used the development version of \texttt{ct
 the code from the \texttt{master} branch from July 6 (\texttt{f26107fe}). A complete listing of all used python libraries can be found below:
 \begin{spacing}{0.5}
     \begin{mdframed}[backgroundcolor=codebg, hidealllines=true, leftmargin=0cm,rightmargin=0cm, skipabove=0pt, innerleftmargin=0,innerrightmargin=0,]
-    \lstinputlisting[basicstyle=\footnotesize\lstsansserif, multicols=2, language=yaml]{./configs/env.yml}
+    \lstinputlisting[basicstyle=\scriptsize\lstsansserif, multicols=2, language=yaml]{./configs/env.yml}
     \end{mdframed}
 \end{spacing}
 
@@ -200,13 +200,13 @@ angular resolution and the efficiency are shown to help with selecting the best 
     \label{tab:zenbu_no_parametoru}
     \rowcolors{0}{white!92!black}{}
     \adjustbox{varwidth=\linewidth,scale=0.85}{%
-    \begin{tabular}{c S[table-format=2.0] S[table-format=1.3]
+    \begin{tabular}{l S[table-format=2.0] S[table-format=1.3]
         S[table-format=1.3] S[table-format=1.0] S[table-format=2.1] S[table-format=2.1]
         S[table-format=2.1] S[table-format=1.3] S[table-format=1.3]}
         \hiderowcolors%
-        {Cleaning Algorithm} & {ID} & {\(Q_c \;/\; \si{\pe}\)} & {\(Q_b \;/\; \si{\pe}\)} & {Min. Neigh.} &
+        {Algorithm} & {ID} & {\(Q_c \;/\; \si{\pe}\)} & {\(Q_b \;/\; \si{\pe}\)} & {Min. Neigh.} &
         {\(t \;/\; \si{\nano\second}\)} & {\(t_c \;/\; \si{\nano\second}\)} & {\(t_b \;/\; \si{\nano\second}\)} &
-        {\(\eff\)} & {Mean Ang. Res\(\;/\; \si{\degree}\)}\\
+        {\(\eff\)} & {Mean Ang. Res\(\;/\; \si{\deg}\)}\\
         \addlinespace[0.5em]
         \showrowcolors%
         \tailcuts{} &  118 & 9.500 & 4.750 & 5 &      &      &      & 0.121 & 0.358 \\
